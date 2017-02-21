@@ -24,6 +24,9 @@ import epl.model.Compartment;
  * @see org.eclipse.core.commands.AbstractHandler
  */
 public class ConsumirEpl extends AbstractHandler {	
+	
+	public static Policy policy;
+	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		/*
@@ -34,33 +37,44 @@ public class ConsumirEpl extends AbstractHandler {
 				"Hello, Eclipse world");
 		return null;
 		/**/
-		construirPolicy();
+		
+		String path = abrirArquivo();
+		
+		if (path != null)
+		{
+			construirPolicy(path);
+		}
 		return null;
 	}
 	
-	private void construirPolicy()
+	private String abrirArquivo()
 	{
 		JFileChooser chooser = new JFileChooser();
 		chooser.setCurrentDirectory(new File("C:/Users/William/workspace/runtime-Default/test/src"));
-		
 		if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
 		{
-			String path = chooser.getSelectedFile().getAbsolutePath();
-			JOptionPane.showMessageDialog(null, path);
-			Policy policy = EPLParser.gerarPolicy(path);
-			JOptionPane.showMessageDialog(null, "message");
-			//epl.showCompartments(policy);
-			//epl.showRules(policy);
-			printCompartments(policy);
-			printRules(policy);
+			return chooser.getSelectedFile().getAbsolutePath();	
 		}
 		else
 		{
 			JOptionPane.showMessageDialog(null, "Falha ao abrir arquivo");
+			return null;
 		}
 	}
 	
-	private void printCompartments(Policy policy)
+	public void construirPolicy(String path)
+	{
+		policy = EPLParser.gerarPolicy(path);
+		
+		//epl.showCompartments(policy);
+		//epl.showRules(policy);
+		//printCompartments(policy);
+		//printRules(policy);
+		
+		JOptionPane.showMessageDialog(null, "Arquivo epl consumido com sucesso");
+	}
+	
+	public static void printCompartments()
 	{
 		StringBuilder sb = new StringBuilder();
 		for (Compartment c : policy.getCompartments())
@@ -77,12 +91,13 @@ public class ConsumirEpl extends AbstractHandler {
 		}
 	}
 	
-	private void printRules(Policy policy)
+	public static void printRules()
 	{
 		StringBuilder sb = new StringBuilder();
 		for (Rule r : policy.getRules())
 		{
 			sb.append(r);
+			sb.append("\n");
 		}
 		if (escreverArquivo(sb.toString(), "rules.txt"))
 		{
@@ -94,7 +109,7 @@ public class ConsumirEpl extends AbstractHandler {
 		}
 	}
 	
-	private boolean escreverArquivo(String texto, String nomeArquivo)
+	private static boolean escreverArquivo(String texto, String nomeArquivo)
 	{
 		try (	FileWriter arquivo = new FileWriter(nomeArquivo);
 				PrintWriter writer = new PrintWriter(arquivo);) 
