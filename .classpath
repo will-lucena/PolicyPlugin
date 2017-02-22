@@ -17,5 +17,6 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/EXCITE"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
