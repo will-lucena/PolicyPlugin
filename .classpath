@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/William/.p2/pool/plugins/org.eclipse.core.commands_3.8.0.v20160316-1921.jar" sourcepath="C:/Users/William/.p2/pool/plugins/org.eclipse.core.commands.source_3.8.0.v20160316-1921.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Users/William/.p2/pool/plugins/org.eclipse.platform.doc.isv_4.6.1.v20160829-1312.jar!/reference/api"/>
-		</attributes>
-		<accessrules>
-			<accessrule kind="accessible" pattern="org/eclipse/core/commands/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/core/commands/common/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/core/commands/contexts/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/core/commands/operations/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/core/commands/util/*"/>
-			<accessrule kind="discouraged" pattern="org/eclipse/core/internal/commands/operations/*"/>
-			<accessrule kind="discouraged" pattern="org/eclipse/core/internal/commands/util/*"/>
-			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
-		</accessrules>
-	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/EXCITE"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

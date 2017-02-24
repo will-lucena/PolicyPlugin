@@ -5,7 +5,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
 import epl.model.Policy;
-
+import excite.AplicacaoJar;
 
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
@@ -17,6 +17,8 @@ public class ValidarCodigo extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Policy policy = ConsumirEpl.policy;
 		printEpl();
+		
+		AplicacaoJar.getProjects();
 		return null;
 	}
 	

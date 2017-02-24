@@ -111,7 +111,7 @@ public class ConsumirEpl extends AbstractHandler {
 	
 	private static boolean escreverArquivo(String texto, String nomeArquivo)
 	{
-		try (	FileWriter arquivo = new FileWriter(nomeArquivo);
+		try (	FileWriter arquivo = new FileWriter("C:/Users/Public/Documents/" + nomeArquivo);
 				PrintWriter writer = new PrintWriter(arquivo);) 
 		{
 			for (String linha : texto.split("\n"))
