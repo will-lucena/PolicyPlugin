@@ -6,4 +6,5 @@ Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.workbench
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Import-Package: excite
+Import-Package: excite,
+ structs

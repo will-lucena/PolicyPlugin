@@ -1,10 +1,15 @@
 package policiesplugin.handlers;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
-import epl.model.Policy;
+import epl.model.*;
+import epl.model.Rule.DependencyType;
 import excite.AplicacaoJar;
 
 /**
@@ -13,13 +18,59 @@ import excite.AplicacaoJar;
  * @see org.eclipse.core.commands.AbstractHandler
  */
 public class ValidarCodigo extends AbstractHandler {	
+	private static AplicacaoJar app = new AplicacaoJar();
+	private static Policy policy = ConsumirEpl.policy;
+	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		Policy policy = ConsumirEpl.policy;
 		printEpl();
-		
-		AplicacaoJar.getProjects();
+		showPropagatedException();
+		validarCodigo();
 		return null;
+	}
+	
+	private void validarCodigo()
+	{
+		System.out.println("Has propagate violation: " + searchPropagateViolation());
+	}
+	
+	private boolean searchPropagateViolation()
+	{
+		Map<String, List<String>> map = app.getPropagatedException();
+		Set<String> keys = map.keySet();
+		
+		for (Rule r : policy.getRules())
+		{
+			if (r.getDependencyType().equals(DependencyType.Propagate))
+			{
+				for (String method : r.getCompartment().getExpressions())
+				{
+					if (keys.contains(method))
+					{
+						if (map.get(method).size() > 0)
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	private void showPropagatedException()
+	{
+		Map<String, List<String>> map = app.getPropagatedException();
+		Set<String> keys = map.keySet();
+		
+		for (String key : keys)
+		{
+			System.out.println("Method: " + key);
+			for (String ex : map.get(key))
+			{
+				System.out.println("\tException: " + ex);
+			}
+		}
 	}
 	
 	private void printEpl()
