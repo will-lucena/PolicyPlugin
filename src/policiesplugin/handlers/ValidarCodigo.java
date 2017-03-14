@@ -23,8 +23,10 @@ public class ValidarCodigo extends AbstractHandler {
 	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		printEpl();
+		System.out.println("Propagated exceptions");
 		showPropagatedException();
+		System.out.println("Raised exceptions");
+		showRaisedException();
 		validarCodigo();
 		return null;
 	}
@@ -61,6 +63,21 @@ public class ValidarCodigo extends AbstractHandler {
 	private void showPropagatedException()
 	{
 		Map<String, List<String>> map = app.getPropagatedException();
+		Set<String> keys = map.keySet();
+		
+		for (String key : keys)
+		{
+			System.out.println("Method: " + key);
+			for (String ex : map.get(key))
+			{
+				System.out.println("\tException: " + ex);
+			}
+		}
+	}
+	
+	private void showRaisedException()
+	{
+		Map<String, List<String>> map = app.getRaisedException();
 		Set<String> keys = map.keySet();
 		
 		for (String key : keys)
