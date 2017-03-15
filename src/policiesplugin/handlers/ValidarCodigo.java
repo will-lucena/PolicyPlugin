@@ -23,10 +23,7 @@ public class ValidarCodigo extends AbstractHandler {
 	
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		System.out.println("Propagated exceptions");
-		showPropagatedException();
-		System.out.println("Raised exceptions");
-		showRaisedException();
+		showExceptions();
 		validarCodigo();
 		return null;
 	}
@@ -34,6 +31,15 @@ public class ValidarCodigo extends AbstractHandler {
 	private void validarCodigo()
 	{
 		System.out.println("Has propagate violation: " + searchPropagateViolation());
+		System.out.println("Has raise violation: " + searchRaiseViolation());
+	}
+	
+	private void showExceptions()
+	{
+		System.out.println("Propagated exceptions");
+		showPropagatedException();
+		System.out.println("Raised exceptions");
+		showRaisedException();
 	}
 	
 	private boolean searchPropagateViolation()
@@ -44,6 +50,30 @@ public class ValidarCodigo extends AbstractHandler {
 		for (Rule r : policy.getRules())
 		{
 			if (r.getDependencyType().equals(DependencyType.Propagate))
+			{
+				for (String method : r.getCompartment().getExpressions())
+				{
+					if (keys.contains(method))
+					{
+						if (map.get(method).size() > 0)
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	private boolean searchRaiseViolation()
+	{
+		Map<String, List<String>> map = app.getRaisedException();
+		Set<String> keys = map.keySet();
+		
+		for (Rule r : policy.getRules())
+		{
+			if (r.getDependencyType().equals(DependencyType.Raise))
 			{
 				for (String method : r.getCompartment().getExpressions())
 				{
