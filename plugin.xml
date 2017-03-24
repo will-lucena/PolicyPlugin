@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            name="PoliciesPlugin"
+            id="PoliciesPlugin.commands.category">
+      </category>
+      <command
+            categoryId="PoliciesPlugin.commands.category"
+            defaultHandler="policiesplugin.handlers.ConsumirEpl"
+            description="ConsumirEpl"
+            id="PoliciesPlugin.commands.ConsumirEpl"
+            name="ConsumirEpl">
+      </command>
+      <category
+            id="PoliciesPlugin.commands.category"
+            name="PoliciesPlugin">
+      </category>
+      <command
+            categoryId="PoliciesPlugin.commands.category"
+            description="ValidarCodigo"
+            id="PoliciesPlugin.commands.ValidarCodigo"
+            name="ValidarCodigo">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="PoliciesPlugin.commands.ConsumirEpl"
+            class="policiesplugin.handlers.ConsumirEpl">
+      </handler>
+      <handler
+            class="policiesplugin.handlers.ValidarCodigo"
+            commandId="PoliciesPlugin.commands.ValidarCodigo">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="PoliciesPlugin.commands.ConsumirEpl"
+            contextId="org.eclipse.ui.contexts.window"
+            sequence="M1+6"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+      </key>
+      <key
+            commandId="PoliciesPlugin.commands.ValidarCodigo"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+7">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               label="Policy Plugin"
+               mnemonic="M"
+               id="PoliciesPlugin.menus.Policy Plugin">
+            <command
+                  commandId="PoliciesPlugin.commands.ConsumirEpl"
+                  mnemonic="S"
+                  id="PoliciesPlugin.menus.ConsumirEpl">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="PoliciesPlugin.toolbars.sampleToolbar">
+            <command
+                  commandId="PoliciesPlugin.commands.ConsumirEpl"
+                  icon="icons/sample.gif"
+                  tooltip="Say hello world"
+                  id="PoliciesPlugin.toolbars.sampleCommand">
+            </command>
+         </toolbar>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="PoliciesPlugin.menus.Policy Plugin"
+               label="Policy Plugin"
+               mnemonic="M">
+            <command
+                  commandId="PoliciesPlugin.commands.ValidarCodigo"
+                  id="PoliciesPlugin.menus.ValidarCodigo"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="PoliciesPlugin.toolbars.sampleToolbar">
+            <command
+                  commandId="PoliciesPlugin.commands.ValidarCodigo"
+                  icon="icons/sample.gif"
+                  id="PoliciesPlugin.toolbars.sampleCommand"
+                  tooltip="Say hello world">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>
