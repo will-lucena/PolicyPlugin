@@ -8,6 +8,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
+import epl.model.Compartment;
 import epl.model.Rule;
 import epl.model.Rule.DependencyType;
 import excite.AplicacaoJar;
@@ -61,6 +62,28 @@ public class ValidarCodigo extends AbstractHandler {
 				}
 			}
 		}
+		return false;
+	}
+	
+	public static boolean searchPropagateViolation(Compartment compartment, List<String> exceptions)
+	{
+		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		{
+			if (r.getDependencyType().equals(DependencyType.Propagate))
+			{
+				if (r.getCompartment().equals(compartment))
+				{
+					for (String exception : exceptions)
+					{
+						if (r.getExceptionExpressions().contains(exception))
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+		
 		return false;
 	}
 	
