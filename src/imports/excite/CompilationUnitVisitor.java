@@ -9,9 +9,9 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.SimpleType;
 
 import epl.model.Compartment;
-import epl.model.Policy;
+import epl.model.Rule;
+import epl.model.Rule.DependencyType;
 import policiesplugin.handlers.ConsumirEpl;
-import policiesplugin.handlers.ValidarCodigo;
 
 // visitador de compilation unit
 public class CompilationUnitVisitor extends ASTVisitor {
@@ -22,16 +22,12 @@ public class CompilationUnitVisitor extends ASTVisitor {
 		// esse método pertence a qual compartimento?
 		String methodName = node.resolveBinding().getDeclaringClass().getQualifiedName() + "." + node.getName().toString();		
 		
-		Policy p = ConsumirEpl.getPolicy();
-		
- 		for (Compartment c : p.getCompartments())
+ 		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
 		{
 			for (String ex : c.getExpressions())
 			{
 				if (methodName.matches(ex))
 				{
-					System.out.println("Deu match");
-					
 					List<String> thrownExceptions = new ArrayList<>();
 					
 					for (Iterator<?> iter = node.thrownExceptionTypes().iterator(); iter.hasNext();)
@@ -41,7 +37,10 @@ public class CompilationUnitVisitor extends ASTVisitor {
 					}
 	
 					//validarCompartmento (validarCodigo.searchPropagateViolation(c, thrownExceptions);
-					
+					if (searchPropagateViolation(c, thrownExceptions))
+					{
+						AplicacaoJar.addcompartmentsWithPropagateViolation(c.getId());
+					}
 					MethodVisitor visitor = new MethodVisitor();
 					// visitor -> visitador de declarações de método
 					node.accept(visitor);
@@ -50,6 +49,28 @@ public class CompilationUnitVisitor extends ASTVisitor {
 		}	
 		methods.add(node);
 		return super.visit(node);
+	}
+	
+	private boolean searchPropagateViolation(Compartment compartment, List<String> exceptions)
+	{
+		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		{
+			if (r.getDependencyType().equals(DependencyType.Propagate))
+			{
+				if (r.getCompartmentId().equals(compartment.getId()))
+				{
+					for (String exception : exceptions)
+					{
+						if (r.getExceptionExpressions().contains(exception))
+						{
+							return true;
+						}
+					}
+				}
+			}
+		}
+		
+		return false;
 	}
 
 	//*
