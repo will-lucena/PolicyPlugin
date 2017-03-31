@@ -5,4 +5,4 @@
 	<classpathentry excluding="imports/" kind="src" path="src"/>
 	<classpathentry kind="src" path="src/imports"/>
 	<classpathentry kind="output" path="bin"/>
-</classpath>
+</classpath>
