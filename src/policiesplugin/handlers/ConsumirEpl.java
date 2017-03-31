@@ -25,8 +25,7 @@ import epl.model.Compartment;
  */
 public class ConsumirEpl extends AbstractHandler
 {
-
-	public static Policy policy;
+	private static Policy policy = null;
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException
@@ -40,6 +39,15 @@ public class ConsumirEpl extends AbstractHandler
 		return null;
 	}
 
+	public static Policy getPolicy()
+	{
+		if (policy != null)
+		{
+			return policy;
+		}
+		return null;
+	}
+	
 	private String abrirArquivo()
 	{
 		JFileChooser chooser = new JFileChooser();
