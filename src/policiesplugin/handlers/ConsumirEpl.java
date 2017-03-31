@@ -15,6 +15,7 @@ import org.eclipse.core.commands.ExecutionException;
 import epl.EPLParser;
 import epl.model.Policy;
 import epl.model.Rule;
+import excite.AplicacaoJar;
 import epl.model.Compartment;
 
 /**
@@ -35,6 +36,7 @@ public class ConsumirEpl extends AbstractHandler
 		if (path != null)
 		{
 			construirPolicy(path);
+			new AplicacaoJar();
 		}
 		return null;
 	}
@@ -65,6 +67,7 @@ public class ConsumirEpl extends AbstractHandler
 	public void construirPolicy(String path)
 	{
 		policy = EPLParser.gerarPolicy(path);
+		Policy p = policy;
 		JOptionPane.showMessageDialog(null, "Arquivo epl consumido com sucesso");
 	}
 
