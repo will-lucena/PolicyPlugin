@@ -1,0 +1,45 @@
+define net.sf.freecol.common.resources.*.* as compartment RESOURCE;
+
+define net.sf.freecol.common.sound.*.* as compartment SOUND;
+
+define net.sf.freecol.FreeCol, net.sf.freecol.client.FreeColClient, net.sf.freecol.client.control.*.*, net.sf.freecol.server.control.*.* as compartment CONTROL;
+
+define net.sf.freecol.common.io* as compartment XML;
+
+define net.sf.freecol.server.FreeColServer.* as compartment SERVER;
+
+SOUND must raise net.sf.freecol.common.sound.OggStreamException;
+
+SOUND may only handle javax.sound.sampled.LineUnavailableException, java.io.IOException, java.lang.InterruptedException, net.sf.freecol.common.sound.OggStreamException;
+
+SOUND must remap from java.io.IOException to net.sf.freecol.common.sound.OggStreamException, from java.io.FileNotFoundException to net.sf.freecol.common.sound.OggStreamException, from javax.sound.sampled.UnsupportedAudioFileException to net.sf.freecol.common.sound.OggStreamException;
+
+SOUND may only propagate net.sf.freecol.common.sound.OggStreamException, java.io.IOException;
+
+RESOURCE must remap from net.sf.freecol.common.sound.OggStreamException to net.sf.freecol.common.resources.ResourceException, 	from java.awt.FontFormatException to net.sf.freecol.common.resources.ResourceException, 	from java.io.IOException to net.sf.freecol.common.resources.ResourceException, 	from java.net.MalformedURLException to net.sf.freecol.common.resources.ResourceException;
+
+RESOURCE may only handle java.lang.NumberFormatException, java.io.IOException;
+
+RESOURCE must propagate net.sf.freecol.common.resources.ResourceException;
+
+only CONTROL may handle net.sf.freecol.common.resources.ResourceException, net.sf.freecol.server.ConnectionException, net.sf.freecol.common.networking.NoRouteToServerException, javax.xml.stream.XMLStreamException, net.sf.freecol.common.FreeColException;
+
+CONTROL may only handle net.sf.freecol.common.resources.ResourceException, net.sf.freecol.server.ConnectionException, net.sf.freecol.common.networking.NoRouteToServerException, net.sf.freecol.server.ServerException, javax.xml.stream.XMLStreamException, java.io.IOException;
+
+CONTROL cannot remap from * to *;
+
+CONTROL cannot rethrow *;
+
+only SERVER may raise net.sf.freecol.server.ConnectionException, net.sf.freecol.common.networking.NoRouteToServerException, net.sf.freecol.server.ServerException;
+
+SERVER may only handle java.io.IOException;
+
+SERVER must propagate net.sf.freecol.server.ConnectionException, net.sf.freecol.common.networking.NoRouteToServerException, net.sf.freecol.server.ServerException;
+
+XML may only raise java.io.IOException, javax.xml.stream.XMLStreamException;
+
+XML may only handle java.io.IOException;
+
+XML must propagate net.sf.freecol.common.resources.ResourceException;
+
+XML must remap from java.io.IOException to javax.xml.stream.XMLStreamException, from java.io.FileNotFoundcliException to javax.xml.stream.XMLStreamException, from java.io.UnsupportedEncodingException to javax.xml.stream.XMLStreamException;
