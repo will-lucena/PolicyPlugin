@@ -14,68 +14,64 @@ import epl.model.Rule.DependencyType;
 import policiesplugin.handlers.ConsumirEpl;
 
 // visitador de compilation unit
-public class CompilationUnitVisitor extends ASTVisitor {
-	private List<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
-	
+public class CompilationUnitVisitor extends ASTVisitor
+{
 	@Override
-	public boolean visit(MethodDeclaration node) {
-		// esse método pertence a qual compartimento?
-		String methodName = node.resolveBinding().getDeclaringClass().getQualifiedName() + "." + node.getName().toString();		
-		
- 		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
-		{
-			for (String ex : c.getExpressions())
-			{
-				if (methodName.matches(ex))
-				{
-					List<String> thrownExceptions = new ArrayList<>();
-					
-					for (Iterator<?> iter = node.thrownExceptionTypes().iterator(); iter.hasNext();)
-					{
-						SimpleType exceptionType = (SimpleType) iter.next();
-						thrownExceptions.add(exceptionType.getName().toString());
-					}
-	
-					//validarCompartmento (validarCodigo.searchPropagateViolation(c, thrownExceptions);
-					if (searchPropagateViolation(c, thrownExceptions))
-					{
-						AplicacaoJar.addcompartmentsWithPropagateViolation(c.getId());
-					}
-					MethodVisitor visitor = new MethodVisitor();
-					// visitor -> visitador de declarações de método
-					node.accept(visitor);
-				}
-			}
-		}	
-		methods.add(node);
-		return super.visit(node);
-	}
-	
-	private boolean searchPropagateViolation(Compartment compartment, List<String> exceptions)
+	public boolean visit(MethodDeclaration node)
 	{
-		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		// esse método pertence a qual compartimento?
+		String methodName = node.resolveBinding().getDeclaringClass().getQualifiedName() + "." 
+				+ node.getName().toString();
+
+		Compartment compartment = findCompartment(methodName);
+		if (compartment != null)
 		{
-			if (r.getDependencyType().equals(DependencyType.Propagate))
+			List<String> exceptions = getExcecptionTypes(node);
+			if (exceptions != null)
 			{
-				if (r.getCompartmentId().equals(compartment.getId()))
+				String violation = checkPropagateViolation(compartment, exceptions);
+				if (violation != null)
 				{
-					for (String exception : exceptions)
-					{
-						if (r.getExceptionExpressions().contains(exception))
-						{
-							return true;
-						}
-					}
+					AplicacaoJar.getInstance().setViolation(new Violation(methodName, violation));
 				}
 			}
 		}
 		
-		return false;
+		MethodVisitor visitor = new MethodVisitor();
+		// visitor -> visitador de declarações de método
+		node.accept(visitor);
+		return super.visit(node);
+	}
+	
+	private List<String> getExcecptionTypes(MethodDeclaration node)
+	{
+		List<String> thrownExceptions = new ArrayList<>();
+		
+		for (Iterator<?> iter = node.thrownExceptionTypes().iterator(); iter.hasNext();)
+		{
+			SimpleType exceptionType = (SimpleType) iter.next();
+			thrownExceptions.add(exceptionType.getName().toString());
+		}
+		return thrownExceptions;
 	}
 
-	//*
-	public List<MethodDeclaration> getMethods() {
-		return methods;
+	private Compartment findCompartment(String methodName)
+	{
+		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
+		{
+			for (String method : c.getExpressions())
+			{
+				if (method.matches(methodName))
+				{
+					return c;
+				}
+			}
+		}
+		return null;
 	}
-	/**/
+	
+	private String checkPropagateViolation(Compartment compartment, List<String> exceptions)
+	{
+		return AplicacaoJar.getInstance().searchViolation(compartment, exceptions, DependencyType.Propagate);			
+	}
 }

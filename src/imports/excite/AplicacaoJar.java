@@ -19,17 +19,39 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
+import epl.model.Compartment;
+import epl.model.Rule;
+import epl.model.Rule.DependencyType;
+import policiesplugin.handlers.ConsumirEpl;
+
 public class AplicacaoJar
 {
 	private static final String JDT_NATURE = "org.eclipse.jdt.core.javanature";
-	private static List<String> compartmentsWithPropagateViolation = new ArrayList<>();
-	private static List<String> compartmentsWithRaiseViolation = new ArrayList<>();
-
-	public AplicacaoJar()
+	private List<Violation> violations;
+	
+	private static AplicacaoJar instance = null;
+	
+	private AplicacaoJar()
 	{
 		getProjects();
+		this.violations = new ArrayList<>();
 	}
 	
+	public static AplicacaoJar getInstance()
+	{
+		if (instance == null)
+		{
+			synchronized (AplicacaoJar.class)
+			{
+				if (instance == null)
+				{
+					instance = new AplicacaoJar();
+				}
+			}
+		}
+		return instance;
+	}
+
 	private void getProjects()
 	{
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -57,7 +79,7 @@ public class AplicacaoJar
 			}
 		}
 	}
-
+	
 	private void analyzeProject(IProject project) throws JavaModelException
 	{
 		IPackageFragment[] packages = JavaCore.create(project).getPackageFragments();
@@ -65,8 +87,7 @@ public class AplicacaoJar
 		{
 			if (mypackage.getElementName().equals("main"))
 			{
-				//System.out.println("Package: " + mypackage.getElementName());
-
+				// System.out.println("Package: " + mypackage.getElementName());
 				if (mypackage.getKind() == IPackageFragmentRoot.K_SOURCE)
 				{
 					for (ICompilationUnit unit : mypackage.getCompilationUnits())
@@ -81,40 +102,6 @@ public class AplicacaoJar
 		}
 	}
 	
-	public static void addcompartmentsWithPropagateViolation(String compartment)
-	{
-		if (!compartmentsWithPropagateViolation.contains(compartment))
-		{
-			compartmentsWithPropagateViolation.add(compartment);
-		}
-	}
-	
-	public static void showCompartmentsWithPropagateViolation()
-	{
-		System.out.println("Compartment with propagate violation:");
-		for (String s : compartmentsWithPropagateViolation)
-		{
-			System.out.println("\t" + s);
-		}
-	}
-	
-	public static void showCompartmentsWithRaiseViolation()
-	{
-		System.out.println("Compartment with raise violation:");
-		for (String s : compartmentsWithRaiseViolation)
-		{
-			System.out.println("\t" + s);
-		}
-	}
-	
-	public static void addcompartmentsWithRaiseViolation(String compartment)
-	{
-		if (!compartmentsWithRaiseViolation.contains(compartment))
-		{
-			compartmentsWithRaiseViolation.add(compartment);
-		}
-	}
-
 	private CompilationUnit parse(ICompilationUnit cu)
 	{
 		ASTParser parser = ASTParser.newParser(AST.JLS8);
@@ -122,6 +109,58 @@ public class AplicacaoJar
 		parser.setSource(cu);
 		parser.setResolveBindings(true);
 		return (CompilationUnit) parser.createAST(null);
+	}
+	
+	public String searchViolation(Compartment compartment, List<String> exceptions, DependencyType dependecy)
+	{
+		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		{
+			if (r.getDependencyType().equals(dependecy))
+			{
+				if (r.getCompartmentId().equals(compartment.getId()))
+				{
+					for (String exception : exceptions)
+					{
+						if (r.getExceptionExpressions().contains(exception))
+						{
+							return r.toString();
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	public Compartment findCompartment(String methodName)
+	{
+		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
+		{
+			for (String ex : c.getExpressions())
+			{
+				if (methodName.matches(ex))
+				{
+					return c;
+				}
+			}
+		}
+		return null;
+	}
+	
+	public void setViolation(Violation violation)
+	{
+		if (!this.violations.contains(violation))
+		{
+			this.violations.add(violation);
+		}
+	}
+	
+	public void showViolations()
+	{
+		for (Violation v : this.violations)
+		{
+			System.out.println(v);
+		}
 	}
 }
 /**/

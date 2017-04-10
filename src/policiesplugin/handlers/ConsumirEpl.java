@@ -36,7 +36,6 @@ public class ConsumirEpl extends AbstractHandler
 		if (path != null)
 		{
 			construirPolicy(path);
-			new AplicacaoJar();
 		}
 		return null;
 	}

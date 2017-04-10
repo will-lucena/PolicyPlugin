@@ -13,8 +13,7 @@ import excite.AplicacaoJar;
 public class ValidarCodigo extends AbstractHandler {		
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		AplicacaoJar.showCompartmentsWithPropagateViolation();
-		AplicacaoJar.showCompartmentsWithRaiseViolation();
+		AplicacaoJar.getInstance().showViolations();
 		return null;
 	}
 }
