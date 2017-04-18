@@ -1,14 +1,16 @@
 package excite;
 
+import epl.model.Rule;
+
 public class Violation
 {
 	private String methodName;
-	private String violationType;
+	private Rule violation;
 	
-	public Violation(String method, String violation)
+	public Violation(String method, Rule violation)
 	{
 		this.methodName = method;
-		this.violationType = violation;
+		this.violation = violation;
 	}
 	
 	public String getMethodName()
@@ -16,9 +18,9 @@ public class Violation
 		return this.methodName;
 	}
 	
-	public String getViolationType()
+	public Rule getViolation()
 	{
-		return this.violationType;
+		return this.violation;
 	}
 	
 	@Override
@@ -27,7 +29,7 @@ public class Violation
 		Violation vio = (Violation) obj;
 		if (vio.getMethodName().equals(this.methodName))
 		{
-			if (vio.getViolationType().equals(this.violationType))
+			if (vio.getViolation().equals(this.violation))
 			{
 				return true;
 			}
@@ -44,7 +46,7 @@ public class Violation
 		sb.append(this.methodName);
 		sb.append("\n");
 		sb.append("Violation: ");
-		sb.append(this.violationType);
+		sb.append(this.violation.toString());
 		sb.append("\n");
 		
 		return sb.toString();

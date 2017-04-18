@@ -34,7 +34,7 @@ public class AplicacaoJar
 	{
 		getProjects();
 	}
-
+	
 	private void getProjects()
 	{
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
@@ -95,7 +95,7 @@ public class AplicacaoJar
 		return (CompilationUnit) parser.createAST(null);
 	}
 
-	public static String verifyCannotRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
+	public static Rule verifyCannotRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -107,7 +107,7 @@ public class AplicacaoJar
 					{
 						if (r.getExceptionExpressions().contains(exception))
 						{
-							return r.toString();
+							return r;
 						}
 					}
 				}
@@ -116,7 +116,7 @@ public class AplicacaoJar
 		return null;
 	}
 
-	public static String verifyOnlyMayRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
+	public static Rule verifyOnlyMayRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -128,7 +128,7 @@ public class AplicacaoJar
 					{
 						if (r.getExceptionExpressions().contains(exception))
 						{
-							return r.toString();
+							return r;
 						}
 					}
 				}
@@ -137,6 +137,24 @@ public class AplicacaoJar
 		return null;
 	}
 
+	public static Rule verifyMayOnlyRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
+	{
+		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		{
+			if (r.getRuleType().equals(RuleType.MayOnly) && r.getDependencyType().equals(dependecy))
+			{
+				if (r.getCompartmentId().equals(compartment.getId()))
+				{
+					if (!r.getExceptionExpressions().containsAll(exceptions))
+					{
+						return r;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
 	public static Compartment findCompartment(String methodName)
 	{
 		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())

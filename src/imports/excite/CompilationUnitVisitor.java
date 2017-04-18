@@ -9,6 +9,7 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.SimpleType;
 
 import epl.model.Compartment;
+import epl.model.Rule;
 import epl.model.Rule.DependencyType;
 
 // visitador de compilation unit
@@ -50,18 +51,30 @@ public class CompilationUnitVisitor extends ASTVisitor
 	
 	private void checkPropagateViolation(Compartment compartment, List<String> exceptions, String methodName)
 	{
-		String cannotViolation = AplicacaoJar.verifyCannotRule(compartment, exceptions, DependencyType.Propagate);
-		String onlyMayViolation = AplicacaoJar.verifyOnlyMayRule(compartment, exceptions, DependencyType.Propagate);
+		Rule cannotViolation = AplicacaoJar.verifyCannotRule(compartment, exceptions, DependencyType.Propagate);
+		Rule onlyMayViolation = AplicacaoJar.verifyOnlyMayRule(compartment, exceptions, DependencyType.Propagate);
+		Rule mayOnlyViolation = AplicacaoJar.verifyMayOnlyRule(compartment, exceptions, DependencyType.Propagate);
 		
 		if (cannotViolation != null)
 		{
+			//*
 			Violation v = new Violation(methodName, cannotViolation);
 			AplicacaoJar.setViolation(v);
+			/**/
 		}
 		if (onlyMayViolation != null)
 		{
+			//*
 			Violation v = new Violation(methodName, onlyMayViolation);
 			AplicacaoJar.setViolation(v);
+			/**/
+		}
+		if (mayOnlyViolation != null)
+		{
+			//*
+			Violation v = new Violation(methodName, mayOnlyViolation);
+			AplicacaoJar.setViolation(v);
+			/**/
 		}
 	}
 }
