@@ -49,19 +49,27 @@ public class MethodVisitor extends ASTVisitor
 
 				if (compartment != null)
 				{
-					String rule = checkRaiseViolation(compartment, exceptions);
-					if (rule != null)
-					{
-						AplicacaoJar.setViolation(new Violation(methodName, rule));
-					}
+					checkRaiseViolation(compartment, exceptions, methodName);
 				}
 			}
 		}
 		return super.visit(node);
 	}
 
-	private String checkRaiseViolation(Compartment compartment, List<String> exceptions)
+	private void checkRaiseViolation(Compartment compartment, List<String> exceptions, String methodName)
 	{
-		return AplicacaoJar.verifyCannotRule(compartment, exceptions, DependencyType.Raise);
+		String cannotViolation = AplicacaoJar.verifyCannotRule(compartment, exceptions, DependencyType.Raise);
+		String onlyMayViolation = AplicacaoJar.verifyOnlyMayRule(compartment, exceptions, DependencyType.Raise);
+		
+		if (cannotViolation != null)
+		{
+			Violation v = new Violation(methodName, cannotViolation);
+			AplicacaoJar.setViolation(v);
+		}
+		if (onlyMayViolation != null)
+		{
+			Violation v = new Violation(methodName, onlyMayViolation);
+			AplicacaoJar.setViolation(v);
+		}
 	}
 }

@@ -50,7 +50,6 @@ public class CompilationUnitVisitor extends ASTVisitor
 	
 	private void checkPropagateViolation(Compartment compartment, List<String> exceptions, String methodName)
 	{
-		
 		String cannotViolation = AplicacaoJar.verifyCannotRule(compartment, exceptions, DependencyType.Propagate);
 		String onlyMayViolation = AplicacaoJar.verifyOnlyMayRule(compartment, exceptions, DependencyType.Propagate);
 		
