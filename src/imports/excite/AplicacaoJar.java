@@ -22,18 +22,18 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 import epl.model.Compartment;
 import epl.model.Rule;
 import epl.model.Rule.DependencyType;
+import epl.model.Rule.RuleType;
 import policiesplugin.handlers.ConsumirEpl;
 
 public class AplicacaoJar
 {
 	private static final String JDT_NATURE = "org.eclipse.jdt.core.javanature";
 	private static final List<Violation> violations = new ArrayList<>();
-	
+
 	public AplicacaoJar()
 	{
 		getProjects();
 	}
-	
 
 	private void getProjects()
 	{
@@ -62,7 +62,7 @@ public class AplicacaoJar
 			}
 		}
 	}
-	
+
 	private void analyzeProject(IProject project) throws JavaModelException
 	{
 		IPackageFragment[] packages = JavaCore.create(project).getPackageFragments();
@@ -78,16 +78,14 @@ public class AplicacaoJar
 						// Now create the AST for the ICompilationUnits
 						CompilationUnit compilationUnit = parse(unit);
 						CompilationUnitVisitor compilationUnitVisitor = new CompilationUnitVisitor();
-						
-						
-						
+
 						compilationUnit.accept(compilationUnitVisitor);
 					}
 				}
 			}
 		}
 	}
-	
+
 	private CompilationUnit parse(ICompilationUnit cu)
 	{
 		ASTParser parser = ASTParser.newParser(AST.JLS8);
@@ -96,12 +94,12 @@ public class AplicacaoJar
 		parser.setResolveBindings(true);
 		return (CompilationUnit) parser.createAST(null);
 	}
-	
-	public static String searchViolation(Compartment compartment, List<String> exceptions, DependencyType dependecy)
+
+	public static String verifyCannotRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
-			if (r.getDependencyType().equals(dependecy))
+			if (r.getRuleType().equals(RuleType.Cannot) && r.getDependencyType().equals(dependecy))
 			{
 				if (r.getCompartmentId().equals(compartment.getId()))
 				{
@@ -117,7 +115,28 @@ public class AplicacaoJar
 		}
 		return null;
 	}
-	
+
+	public static String verifyOnlyMayRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
+	{
+		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		{
+			if (r.getRuleType().equals(RuleType.OnlyMay) && r.getDependencyType().equals(dependecy))
+			{
+				if (!r.getCompartmentId().equals(compartment.getId()))
+				{
+					for (String exception : exceptions)
+					{
+						if (r.getExceptionExpressions().contains(exception))
+						{
+							return r.toString();
+						}
+					}
+				}
+			}
+		}
+		return null;
+	}
+
 	public static Compartment findCompartment(String methodName)
 	{
 		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
@@ -132,7 +151,7 @@ public class AplicacaoJar
 		}
 		return null;
 	}
-	
+
 	public static void setViolation(Violation violation)
 	{
 		if (!AplicacaoJar.violations.contains(violation))
@@ -140,9 +159,9 @@ public class AplicacaoJar
 			AplicacaoJar.violations.add(violation);
 		}
 	}
-	
+
 	public static void showViolations()
-	{		
+	{
 		for (Violation v : AplicacaoJar.violations)
 		{
 			System.out.println(v);

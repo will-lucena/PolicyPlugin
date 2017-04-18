@@ -10,7 +10,6 @@ import org.eclipse.jdt.core.dom.SimpleType;
 
 import epl.model.Compartment;
 import epl.model.Rule.DependencyType;
-import policiesplugin.handlers.ConsumirEpl;
 
 // visitador de compilation unit
 public class CompilationUnitVisitor extends ASTVisitor
@@ -22,18 +21,13 @@ public class CompilationUnitVisitor extends ASTVisitor
 		String methodName = node.resolveBinding().getDeclaringClass().getQualifiedName() + "." 
 				+ node.getName().toString();
 
-		Compartment compartment = findCompartment(methodName);
+		Compartment compartment = AplicacaoJar.findCompartment(methodName);
 		if (compartment != null)
 		{
 			List<String> exceptions = getExcecptionTypes(node);
 			if (exceptions != null)
 			{
-				String violation = checkPropagateViolation(compartment, exceptions);
-				if (violation != null)
-				{
-					Violation v = new Violation(methodName, violation);
-					AplicacaoJar.setViolation(v);
-				}
+				checkPropagateViolation(compartment, exceptions, methodName);
 			}
 		}
 		MethodVisitor visitor = new MethodVisitor();
@@ -53,24 +47,22 @@ public class CompilationUnitVisitor extends ASTVisitor
 		}
 		return thrownExceptions;
 	}
-
-	private Compartment findCompartment(String methodName)
-	{
-		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
-		{
-			for (String method : c.getExpressions())
-			{
-				if (methodName.matches(method))
-				{
-					return c;
-				}
-			}
-		}
-		return null;
-	}
 	
-	private String checkPropagateViolation(Compartment compartment, List<String> exceptions)
+	private void checkPropagateViolation(Compartment compartment, List<String> exceptions, String methodName)
 	{
-		return AplicacaoJar.searchViolation(compartment, exceptions, DependencyType.Propagate);			
+		
+		String cannotViolation = AplicacaoJar.verifyCannotRule(compartment, exceptions, DependencyType.Propagate);
+		String onlyMayViolation = AplicacaoJar.verifyOnlyMayRule(compartment, exceptions, DependencyType.Propagate);
+		
+		if (cannotViolation != null)
+		{
+			Violation v = new Violation(methodName, cannotViolation);
+			AplicacaoJar.setViolation(v);
+		}
+		if (onlyMayViolation != null)
+		{
+			Violation v = new Violation(methodName, onlyMayViolation);
+			AplicacaoJar.setViolation(v);
+		}
 	}
 }

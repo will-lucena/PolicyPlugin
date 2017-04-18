@@ -62,6 +62,6 @@ public class MethodVisitor extends ASTVisitor
 
 	private String checkRaiseViolation(Compartment compartment, List<String> exceptions)
 	{
-		return AplicacaoJar.searchViolation(compartment, exceptions, DependencyType.Raise);
+		return AplicacaoJar.verifyCannotRule(compartment, exceptions, DependencyType.Raise);
 	}
 }
