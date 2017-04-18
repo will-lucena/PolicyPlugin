@@ -13,7 +13,7 @@ import excite.AplicacaoJar;
 public class ValidarCodigo extends AbstractHandler {		
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		AplicacaoJar.getInstance().showViolations();
+		AplicacaoJar.showViolations();
 		return null;
 	}
 }

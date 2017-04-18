@@ -27,30 +27,13 @@ import policiesplugin.handlers.ConsumirEpl;
 public class AplicacaoJar
 {
 	private static final String JDT_NATURE = "org.eclipse.jdt.core.javanature";
-	private List<Violation> violations;
+	private static final List<Violation> violations = new ArrayList<>();
 	
-	private static AplicacaoJar instance = null;
-	
-	private AplicacaoJar()
+	public AplicacaoJar()
 	{
 		getProjects();
-		this.violations = new ArrayList<>();
 	}
 	
-	public static AplicacaoJar getInstance()
-	{
-		if (instance == null)
-		{
-			synchronized (AplicacaoJar.class)
-			{
-				if (instance == null)
-				{
-					instance = new AplicacaoJar();
-				}
-			}
-		}
-		return instance;
-	}
 
 	private void getProjects()
 	{
@@ -95,6 +78,9 @@ public class AplicacaoJar
 						// Now create the AST for the ICompilationUnits
 						CompilationUnit compilationUnit = parse(unit);
 						CompilationUnitVisitor compilationUnitVisitor = new CompilationUnitVisitor();
+						
+						
+						
 						compilationUnit.accept(compilationUnitVisitor);
 					}
 				}
@@ -111,7 +97,7 @@ public class AplicacaoJar
 		return (CompilationUnit) parser.createAST(null);
 	}
 	
-	public String searchViolation(Compartment compartment, List<String> exceptions, DependencyType dependecy)
+	public static String searchViolation(Compartment compartment, List<String> exceptions, DependencyType dependecy)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -132,7 +118,7 @@ public class AplicacaoJar
 		return null;
 	}
 	
-	public Compartment findCompartment(String methodName)
+	public static Compartment findCompartment(String methodName)
 	{
 		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
 		{
@@ -147,17 +133,17 @@ public class AplicacaoJar
 		return null;
 	}
 	
-	public void setViolation(Violation violation)
+	public static void setViolation(Violation violation)
 	{
-		if (!this.violations.contains(violation))
+		if (!AplicacaoJar.violations.contains(violation))
 		{
-			this.violations.add(violation);
+			AplicacaoJar.violations.add(violation);
 		}
 	}
 	
-	public void showViolations()
-	{
-		for (Violation v : this.violations)
+	public static void showViolations()
+	{		
+		for (Violation v : AplicacaoJar.violations)
 		{
 			System.out.println(v);
 		}

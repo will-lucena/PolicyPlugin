@@ -20,7 +20,7 @@ public class MethodVisitor extends ASTVisitor
 		boolean isRaise = true;
 		MethodDeclaration method = null;
 		ASTNode parent = node.getParent();
-		
+
 		while (!(parent instanceof MethodDeclaration))
 		{
 			parent = parent.getParent();
@@ -44,21 +44,24 @@ public class MethodVisitor extends ASTVisitor
 				exceptions.add(node.getExpression().resolveTypeBinding().getName());
 				String methodName = method.resolveBinding().getDeclaringClass().getQualifiedName() + "."
 						+ method.getName().toString();
-				
-				Compartment compartment = AplicacaoJar.getInstance().findCompartment(methodName);
-				
-				String rule = checkRaiseViolation(compartment, exceptions);
-				if (rule != null)
+
+				Compartment compartment = AplicacaoJar.findCompartment(methodName);
+
+				if (compartment != null)
 				{
-					AplicacaoJar.getInstance().setViolation(new Violation(methodName, rule));
-				}				
+					String rule = checkRaiseViolation(compartment, exceptions);
+					if (rule != null)
+					{
+						AplicacaoJar.setViolation(new Violation(methodName, rule));
+					}
+				}
 			}
 		}
 		return super.visit(node);
 	}
-	
+
 	private String checkRaiseViolation(Compartment compartment, List<String> exceptions)
 	{
-		return AplicacaoJar.getInstance().searchViolation(compartment, exceptions, DependencyType.Raise);			
+		return AplicacaoJar.searchViolation(compartment, exceptions, DependencyType.Raise);
 	}
 }

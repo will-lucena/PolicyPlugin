@@ -2,21 +2,24 @@
 <?eclipse version="3.4"?>
 <plugin>
 	<extension point="org.eclipse.ui.commands">
+	
 		<category
 	    	name="PoliciesPlugin"
 	        id="PoliciesPlugin.commands.category">
 	    </category>
+	    
 	    <command
 	        categoryId="PoliciesPlugin.commands.category"
-	        defaultHandler="policiesplugin.handlers.ConsumirEpl"
 	        description="ConsumirEpl"
 	        id="PoliciesPlugin.commands.ConsumirEpl"
 	        name="ConsumirEpl">
 	    </command>
+	    
 	    <category
 	        id="PoliciesPlugin.commands.category"
 	        name="PoliciesPlugin">
 	    </category>
+	    
 	    <command
 	        categoryId="PoliciesPlugin.commands.category"
 	        description="ValidarCodigo"
@@ -64,17 +67,7 @@
 	            </command>
 	        </menu>
       	</menuContribution>
-      	<menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
-         	<toolbar
-            	id="PoliciesPlugin.toolbars.sampleToolbar">
-            	<command
-                  commandId="PoliciesPlugin.commands.ConsumirEpl"
-                  icon="icons/sample.gif"
-                  tooltip="Say hello world"
-                  id="PoliciesPlugin.toolbars.sampleCommand">
-            </command>
-         </toolbar>
-      </menuContribution>
+
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
@@ -87,18 +80,6 @@
                   mnemonic="S">
             </command>
          </menu>
-      </menuContribution>
-      <menuContribution
-            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
-         <toolbar
-               id="PoliciesPlugin.toolbars.sampleToolbar">
-            <command
-                  commandId="PoliciesPlugin.commands.ValidarCodigo"
-                  icon="icons/sample.gif"
-                  id="PoliciesPlugin.toolbars.sampleCommand"
-                  tooltip="Say hello world">
-            </command>
-         </toolbar>
       </menuContribution>
    </extension>
 

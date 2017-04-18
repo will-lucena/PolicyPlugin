@@ -9,17 +9,16 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.SimpleType;
 
 import epl.model.Compartment;
-import epl.model.Rule;
 import epl.model.Rule.DependencyType;
 import policiesplugin.handlers.ConsumirEpl;
 
 // visitador de compilation unit
 public class CompilationUnitVisitor extends ASTVisitor
-{
+{	
 	@Override
 	public boolean visit(MethodDeclaration node)
 	{
-		// esse método pertence a qual compartimento?
+		// esse mï¿½todo pertence a qual compartimento?
 		String methodName = node.resolveBinding().getDeclaringClass().getQualifiedName() + "." 
 				+ node.getName().toString();
 
@@ -32,13 +31,13 @@ public class CompilationUnitVisitor extends ASTVisitor
 				String violation = checkPropagateViolation(compartment, exceptions);
 				if (violation != null)
 				{
-					AplicacaoJar.getInstance().setViolation(new Violation(methodName, violation));
+					Violation v = new Violation(methodName, violation);
+					AplicacaoJar.setViolation(v);
 				}
 			}
 		}
-		
 		MethodVisitor visitor = new MethodVisitor();
-		// visitor -> visitador de declarações de método
+		// visitor -> visitador de declaraï¿½ï¿½es de mï¿½todo
 		node.accept(visitor);
 		return super.visit(node);
 	}
@@ -61,7 +60,7 @@ public class CompilationUnitVisitor extends ASTVisitor
 		{
 			for (String method : c.getExpressions())
 			{
-				if (method.matches(methodName))
+				if (methodName.matches(method))
 				{
 					return c;
 				}
@@ -72,6 +71,6 @@ public class CompilationUnitVisitor extends ASTVisitor
 	
 	private String checkPropagateViolation(Compartment compartment, List<String> exceptions)
 	{
-		return AplicacaoJar.getInstance().searchViolation(compartment, exceptions, DependencyType.Propagate);			
+		return AplicacaoJar.searchViolation(compartment, exceptions, DependencyType.Propagate);			
 	}
 }
