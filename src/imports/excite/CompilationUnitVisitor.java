@@ -9,8 +9,6 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.SimpleType;
 
 import epl.model.Compartment;
-import epl.model.Rule;
-import epl.model.Rule.DependencyType;
 
 // visitador de compilation unit
 public class CompilationUnitVisitor extends ASTVisitor
@@ -18,23 +16,30 @@ public class CompilationUnitVisitor extends ASTVisitor
 	@Override
 	public boolean visit(MethodDeclaration node)
 	{
-		// esse m�todo pertence a qual compartimento?
-		String methodName = node.resolveBinding().getDeclaringClass().getQualifiedName() + "." 
-				+ node.getName().toString();
-
-		Compartment compartment = AplicacaoJar.findCompartment(methodName);
+		verificarMethod(node);
+		
+		MethodVisitor visitor = new MethodVisitor();
+		node.accept(visitor);
+		
+		return super.visit(node);
+	}
+	
+	private void verificarMethod(MethodDeclaration node)
+	{
+		String methodName = node.resolveBinding().getDeclaringClass().getQualifiedName() + "." + node.getName().toString();
+		
+		//descobrir compartimento
+		Compartment compartment = Verifier.getInstance().findCompartment(methodName);
 		if (compartment != null)
 		{
+			//pegar exceções declaradas
 			List<String> exceptions = getExcecptionTypes(node);
 			if (exceptions != null)
 			{
-				checkPropagateViolation(compartment, exceptions, methodName);
+				//validar method
+				Verifier.getInstance().checkPropagateViolation(compartment, exceptions, methodName);
 			}
 		}
-		MethodVisitor visitor = new MethodVisitor();
-		// visitor -> visitador de declara��es de m�todo
-		node.accept(visitor);
-		return super.visit(node);
 	}
 	
 	private List<String> getExcecptionTypes(MethodDeclaration node)
@@ -47,34 +52,5 @@ public class CompilationUnitVisitor extends ASTVisitor
 			thrownExceptions.add(exceptionType.getName().toString());
 		}
 		return thrownExceptions;
-	}
-	
-	private void checkPropagateViolation(Compartment compartment, List<String> exceptions, String methodName)
-	{
-		Rule cannotViolation = AplicacaoJar.verifyCannotRule(compartment, exceptions, DependencyType.Propagate);
-		Rule onlyMayViolation = AplicacaoJar.verifyOnlyMayRule(compartment, exceptions, DependencyType.Propagate);
-		Rule mayOnlyViolation = AplicacaoJar.verifyMayOnlyRule(compartment, exceptions, DependencyType.Propagate);
-		
-		if (cannotViolation != null)
-		{
-			//*
-			Violation v = new Violation(methodName, cannotViolation);
-			AplicacaoJar.setViolation(v);
-			/**/
-		}
-		if (onlyMayViolation != null)
-		{
-			//*
-			Violation v = new Violation(methodName, onlyMayViolation);
-			AplicacaoJar.setViolation(v);
-			/**/
-		}
-		if (mayOnlyViolation != null)
-		{
-			//*
-			Violation v = new Violation(methodName, mayOnlyViolation);
-			AplicacaoJar.setViolation(v);
-			/**/
-		}
 	}
 }

@@ -1,8 +1,5 @@
 package excite;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
 
 import org.eclipse.core.resources.IProject;
@@ -19,16 +16,9 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 
-import epl.model.Compartment;
-import epl.model.Rule;
-import epl.model.Rule.DependencyType;
-import epl.model.Rule.RuleType;
-import policiesplugin.handlers.ConsumirEpl;
-
 public class AplicacaoJar
 {
 	private static final String JDT_NATURE = "org.eclipse.jdt.core.javanature";
-	private static final List<Violation> violations = new ArrayList<>();
 
 	public AplicacaoJar()
 	{
@@ -37,6 +27,7 @@ public class AplicacaoJar
 	
 	private void getProjects()
 	{
+		// Acessa workspace
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		// Acessa a raiz do workspace
 		IWorkspaceRoot root = workspace.getRoot();
@@ -68,17 +59,15 @@ public class AplicacaoJar
 		IPackageFragment[] packages = JavaCore.create(project).getPackageFragments();
 		for (IPackageFragment mypackage : packages)
 		{
+			//filtrando apenas para projeto usado para de testes
 			if (mypackage.getElementName().equals("main"))
 			{
-				// System.out.println("Package: " + mypackage.getElementName());
 				if (mypackage.getKind() == IPackageFragmentRoot.K_SOURCE)
 				{
 					for (ICompilationUnit unit : mypackage.getCompilationUnits())
 					{
-						// Now create the AST for the ICompilationUnits
 						CompilationUnit compilationUnit = parse(unit);
 						CompilationUnitVisitor compilationUnitVisitor = new CompilationUnitVisitor();
-
 						compilationUnit.accept(compilationUnitVisitor);
 					}
 				}
@@ -94,96 +83,4 @@ public class AplicacaoJar
 		parser.setResolveBindings(true);
 		return (CompilationUnit) parser.createAST(null);
 	}
-
-	public static Rule verifyCannotRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
-	{
-		for (Rule r : ConsumirEpl.getPolicy().getRules())
-		{
-			if (r.getRuleType().equals(RuleType.Cannot) && r.getDependencyType().equals(dependecy))
-			{
-				if (r.getCompartmentId().equals(compartment.getId()))
-				{
-					for (String exception : exceptions)
-					{
-						if (r.getExceptionExpressions().contains(exception))
-						{
-							return r;
-						}
-					}
-				}
-			}
-		}
-		return null;
-	}
-
-	public static Rule verifyOnlyMayRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
-	{
-		for (Rule r : ConsumirEpl.getPolicy().getRules())
-		{
-			if (r.getRuleType().equals(RuleType.OnlyMay) && r.getDependencyType().equals(dependecy))
-			{
-				if (!r.getCompartmentId().equals(compartment.getId()))
-				{
-					for (String exception : exceptions)
-					{
-						if (r.getExceptionExpressions().contains(exception))
-						{
-							return r;
-						}
-					}
-				}
-			}
-		}
-		return null;
-	}
-
-	public static Rule verifyMayOnlyRule(Compartment compartment, List<String> exceptions, DependencyType dependecy)
-	{
-		for (Rule r : ConsumirEpl.getPolicy().getRules())
-		{
-			if (r.getRuleType().equals(RuleType.MayOnly) && r.getDependencyType().equals(dependecy))
-			{
-				if (r.getCompartmentId().equals(compartment.getId()))
-				{
-					if (!r.getExceptionExpressions().containsAll(exceptions))
-					{
-						return r;
-					}
-				}
-			}
-		}
-		return null;
-	}
-	
-	public static Compartment findCompartment(String methodName)
-	{
-		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
-		{
-			for (String ex : c.getExpressions())
-			{
-				if (methodName.matches(ex))
-				{
-					return c;
-				}
-			}
-		}
-		return null;
-	}
-
-	public static void setViolation(Violation violation)
-	{
-		if (!AplicacaoJar.violations.contains(violation))
-		{
-			AplicacaoJar.violations.add(violation);
-		}
-	}
-
-	public static void showViolations()
-	{
-		for (Violation v : AplicacaoJar.violations)
-		{
-			System.out.println(v);
-		}
-	}
 }
-/**/
