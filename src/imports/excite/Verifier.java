@@ -10,7 +10,7 @@ import epl.model.Rule.RuleType;
 import policiesplugin.handlers.ConsumirEpl;
 
 public class Verifier
-{
+{	
 	private static Verifier instance;
 	private static List<Violation> cannotViolations = null;
 	private static List<Violation> mayOnlyViolations = null;
@@ -40,7 +40,7 @@ public class Verifier
 		return instance;
 	}
 	
-	private void verifyCannotRule(String methodName, Compartment compartment, List<String> exceptions, DependencyType dependecy, Marker marcador)
+	private boolean verifyCannotRule(String methodName, Compartment compartment, List<String> exceptions, DependencyType dependecy, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -56,14 +56,16 @@ public class Verifier
 							addCannotViolation(v);
 							marcador.setRule(r.toString());
 							AplicacaoJar.addMarker(marcador);
+							return true;
 						}
 					}
 				}
 			}
 		}
+		return false;
 	}
 
-	private void verifyOnlyMayRule(String methodName, Compartment compartment, List<String> exceptions, DependencyType dependecy, Marker marcador)
+	private boolean verifyOnlyMayRule(String methodName, Compartment compartment, List<String> exceptions, DependencyType dependecy, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -79,14 +81,16 @@ public class Verifier
 							addOnlyMayViolation(v);
 							marcador.setRule(r.toString());
 							AplicacaoJar.addMarker(marcador);
+							return true;
 						}
 					}
 				}
 			}
 		}
+		return false;
 	}
 
-	private void verifyMayOnlyRule(String methodName, Compartment compartment, List<String> exceptions, DependencyType dependecy, Marker marcador)
+	private boolean verifyMayOnlyRule(String methodName, Compartment compartment, List<String> exceptions, DependencyType dependecy, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -100,10 +104,12 @@ public class Verifier
 						addMayOnlyViolation(v);
 						marcador.setRule(r.toString());
 						AplicacaoJar.addMarker(marcador);
+						return true;
 					}
 				}
 			}
 		}
+		return false;
 	}
 	
 	public Compartment findCompartment(String methodName)
@@ -191,15 +197,19 @@ public class Verifier
 	
 	public void checkPropagateViolation(Compartment compartment, List<String> exceptions, String methodName, Marker marcador)
 	{
-		verifyCannotRule(methodName, compartment, exceptions, DependencyType.Propagate, marcador);
-		verifyOnlyMayRule(methodName, compartment, exceptions, DependencyType.Propagate, marcador);
-		verifyMayOnlyRule(methodName, compartment, exceptions, DependencyType.Propagate, marcador);
+		int fIndex = marcador.getFirstIndex();
+		int lIndex = marcador.getLastIndex();
+		verifyCannotRule(methodName, compartment, exceptions, DependencyType.Propagate, new Marker(fIndex, lIndex));
+		verifyOnlyMayRule(methodName, compartment, exceptions, DependencyType.Propagate, new Marker(fIndex, lIndex));
+		verifyMayOnlyRule(methodName, compartment, exceptions, DependencyType.Propagate, new Marker(fIndex, lIndex));
 	}
 	
 	public void checkRaiseViolation(Compartment compartment, List<String> exceptions, String methodName, Marker marcador)
 	{
-		verifyCannotRule(methodName, compartment, exceptions, DependencyType.Raise, marcador);
-		verifyOnlyMayRule(methodName, compartment, exceptions, DependencyType.Raise, marcador);
-		verifyMayOnlyRule(methodName, compartment, exceptions, DependencyType.Raise, marcador);
+		int fIndex = marcador.getFirstIndex();
+		int lIndex = marcador.getLastIndex();
+		verifyCannotRule(methodName, compartment, exceptions, DependencyType.Raise, new Marker(fIndex, lIndex));
+		verifyOnlyMayRule(methodName, compartment, exceptions, DependencyType.Raise, new Marker(fIndex, lIndex));
+		verifyMayOnlyRule(methodName, compartment, exceptions, DependencyType.Raise, new Marker(fIndex, lIndex));
 	}
 }

@@ -48,8 +48,8 @@ public class MethodVisitor extends ASTVisitor
 				if (compartment != null)
 				{
 					Marker m = new Marker();
-					m.setStartPosition(node.getStartPosition());
-					m.setLength(node.getStartPosition() + node.getLength());
+					m.setFirstIndex(node.getStartPosition());
+					m.setLastIndex(node.getStartPosition() + node.getLength());
 					
 					List<String> exceptions = new ArrayList<>();
 					exceptions.add(node.getExpression().resolveTypeBinding().getName());

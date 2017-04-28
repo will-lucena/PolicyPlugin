@@ -2,18 +2,32 @@ package excite;
 
 public class Marker
 {
-	private int startPosition;
-	private int length;
+	private int firstIndex;
+	private int lastIndex;
 	private String rule;
 	
-	public int getLength()
+	public Marker()
 	{
-		return length;
+		this.firstIndex = -1;
+		this.lastIndex = -1;
+		this.rule = null;
+	}
+	
+	public Marker(int firstIndex, int lastIndex)
+	{
+		this.firstIndex = firstIndex;
+		this.lastIndex = lastIndex;
+		this.rule = null;
+	}
+	
+	public int getLastIndex()
+	{
+		return lastIndex;
 	}
 
-	public int getStartPosition()
+	public int getFirstIndex()
 	{
-		return startPosition;
+		return firstIndex;
 	}
 	
 	public String getRule()
@@ -21,18 +35,33 @@ public class Marker
 		return rule;
 	}
 	
-	public void setLength(int length)
+	public void setLastIndex(int length)
 	{
-		this.length = length;
+		this.lastIndex = length;
 	}
 	
-	public void setStartPosition(int startPosition)
+	public void setFirstIndex(int startPosition)
 	{
-		this.startPosition = startPosition;
+		this.firstIndex = startPosition;
 	}
 	
 	public void setRule(String name)
 	{
 		this.rule = name;
+	}
+	
+	@Override
+	public String toString()
+	{
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Rule: ");
+		sb.append(this.rule);
+		sb.append("\tFirstIndex: ");
+		sb.append(this.firstIndex);
+		sb.append("\tLastIndex: ");
+		sb.append(this.lastIndex);
+		
+		return sb.toString();
 	}
 }

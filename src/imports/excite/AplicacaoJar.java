@@ -108,9 +108,10 @@ public class AplicacaoJar
 		{
 			IMarker marker = null;
 			marker = res.createMarker(MARKER_TYPE);
-			marker.setAttribute(IMarker.CHAR_START, m.getStartPosition());
-			marker.setAttribute(IMarker.CHAR_END, m.getLength());
+			marker.setAttribute(IMarker.CHAR_START, m.getFirstIndex());
+			marker.setAttribute(IMarker.CHAR_END, m.getLastIndex());
 			marker.setAttribute(IMarker.MESSAGE, m.getRule());
+			System.out.println(m.getRule());
 		}
 	}
 

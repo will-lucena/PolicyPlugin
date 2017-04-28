@@ -38,7 +38,7 @@ public class CompilationUnitVisitor extends ASTVisitor
 			if (exceptions != null)
 			{
 				//validar method
-				m.setStartPosition(node.getStartPosition());
+				m.setFirstIndex(node.getStartPosition());
 				Verifier.getInstance().checkPropagateViolation(compartment, exceptions, methodName, m);
 			}
 		}
@@ -52,7 +52,7 @@ public class CompilationUnitVisitor extends ASTVisitor
 		{
 			SimpleType exceptionType = (SimpleType) iter.next();			
 			thrownExceptions.add(exceptionType.getName().toString());
-			marcador.setLength(exceptionType.getStartPosition() + exceptionType.getLength());
+			marcador.setLastIndex(exceptionType.getStartPosition() + exceptionType.getLength());
 		}
 		
 		return thrownExceptions;
