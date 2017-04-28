@@ -33,24 +33,28 @@ public class CompilationUnitVisitor extends ASTVisitor
 		if (compartment != null)
 		{
 			//pegar exceções declaradas
-			List<String> exceptions = getExcecptionTypes(node);
+			Marker m = new Marker();
+			List<String> exceptions = getExcecptionTypes(node, m);
 			if (exceptions != null)
 			{
 				//validar method
-				Verifier.getInstance().checkPropagateViolation(compartment, exceptions, methodName);
+				m.setStartPosition(node.getStartPosition());
+				Verifier.getInstance().checkPropagateViolation(compartment, exceptions, methodName, m);
 			}
 		}
 	}
 	
-	private List<String> getExcecptionTypes(MethodDeclaration node)
+	private List<String> getExcecptionTypes(MethodDeclaration node, Marker marcador)
 	{
 		List<String> thrownExceptions = new ArrayList<>();
 		
 		for (Iterator<?> iter = node.thrownExceptionTypes().iterator(); iter.hasNext();)
 		{
-			SimpleType exceptionType = (SimpleType) iter.next();
+			SimpleType exceptionType = (SimpleType) iter.next();			
 			thrownExceptions.add(exceptionType.getName().toString());
+			marcador.setLength(exceptionType.getStartPosition() + exceptionType.getLength());
 		}
+		
 		return thrownExceptions;
 	}
 }

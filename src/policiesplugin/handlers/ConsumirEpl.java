@@ -16,6 +16,7 @@ import epl.EPLParser;
 import epl.model.Policy;
 import epl.model.Rule;
 import excite.AplicacaoJar;
+import excite.Verifier;
 import epl.model.Compartment;
 
 /**
@@ -35,6 +36,7 @@ public class ConsumirEpl extends AbstractHandler
 
 		if (path != null)
 		{
+			Verifier.getInstance();
 			construirPolicy(path);
 			new AplicacaoJar();
 		}

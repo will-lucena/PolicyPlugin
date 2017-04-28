@@ -14,6 +14,8 @@ public class ValidarCodigo extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		Verifier.getInstance().showCannotViolations();
+		Verifier.getInstance().showMayOnlyViolations();
+		Verifier.getInstance().showOnlyMayViolations();
 		return null;
 	}
 }

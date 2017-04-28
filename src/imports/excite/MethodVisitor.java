@@ -34,6 +34,7 @@ public class MethodVisitor extends ASTVisitor
 				isRaise = false;
 			}
 		}
+		
 
 		if (isRaise)
 		{
@@ -46,9 +47,14 @@ public class MethodVisitor extends ASTVisitor
 
 				if (compartment != null)
 				{
+					Marker m = new Marker();
+					m.setStartPosition(node.getStartPosition());
+					m.setLength(node.getStartPosition() + node.getLength());
+					
 					List<String> exceptions = new ArrayList<>();
 					exceptions.add(node.getExpression().resolveTypeBinding().getName());
-					Verifier.getInstance().checkRaiseViolation(compartment, exceptions, methodName);
+					Verifier.getInstance().checkRaiseViolation(compartment, exceptions, methodName, m);
+					
 				}
 			}
 		}
