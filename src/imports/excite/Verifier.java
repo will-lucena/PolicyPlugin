@@ -39,7 +39,7 @@ public class Verifier
 		}
 		return instance;
 	}
-	
+
 	private boolean verifyCannotRule(String methodName, Compartment compartment, List<String> exceptions, DependencyType dependecy, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
@@ -211,5 +211,14 @@ public class Verifier
 		verifyCannotRule(methodName, compartment, exceptions, DependencyType.Raise, new Marker(fIndex, lIndex));
 		verifyOnlyMayRule(methodName, compartment, exceptions, DependencyType.Raise, new Marker(fIndex, lIndex));
 		verifyMayOnlyRule(methodName, compartment, exceptions, DependencyType.Raise, new Marker(fIndex, lIndex));
+	}
+	
+	public void checkRethrowViolation(Compartment compartment, List<String> exceptions, String methodName, Marker marcador)
+	{
+		int fIndex = marcador.getFirstIndex();
+		int lIndex = marcador.getLastIndex();
+		verifyCannotRule(methodName, compartment, exceptions, DependencyType.Rethrow, new Marker(fIndex, lIndex));
+		verifyOnlyMayRule(methodName, compartment, exceptions, DependencyType.Rethrow, new Marker(fIndex, lIndex));
+		verifyMayOnlyRule(methodName, compartment, exceptions, DependencyType.Rethrow, new Marker(fIndex, lIndex));
 	}
 }

@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.CatchClause;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.ThrowStatement;
 import org.eclipse.jdt.core.dom.TryStatement;
 
@@ -17,7 +19,9 @@ public class MethodVisitor extends ASTVisitor
 	public boolean visit(ThrowStatement node)
 	{
 		boolean isRaise = true;
+		boolean isRethrow = false;
 		MethodDeclaration method = null;
+		CatchClause catchClause = null;
 		ASTNode parent = node.getParent();
 
 		while (!(parent instanceof MethodDeclaration))
@@ -29,8 +33,11 @@ public class MethodVisitor extends ASTVisitor
 				method = (MethodDeclaration) parent;
 			}
 
-			if (parent instanceof TryStatement)
+			if (parent instanceof CatchClause)
 			{
+				catchClause = (CatchClause) parent;
+				
+				isRethrow = true;
 				isRaise = false;
 			}
 		}
@@ -38,26 +45,71 @@ public class MethodVisitor extends ASTVisitor
 
 		if (isRaise)
 		{
-			if (method instanceof MethodDeclaration)
+			if (method != null && method instanceof MethodDeclaration)
 			{
-				String methodName = method.resolveBinding().getDeclaringClass().getQualifiedName() + "."
-						+ method.getName().toString();
-
-				Compartment compartment = Verifier.getInstance().findCompartment(methodName);
-
-				if (compartment != null)
-				{
-					Marker m = new Marker();
-					m.setFirstIndex(node.getStartPosition());
-					m.setLastIndex(node.getStartPosition() + node.getLength());
-					
-					List<String> exceptions = new ArrayList<>();
-					exceptions.add(node.getExpression().resolveTypeBinding().getName());
-					Verifier.getInstance().checkRaiseViolation(compartment, exceptions, methodName, m);
-					
-				}
+				verifyRaise(node, method);
 			}
 		}
+		
+		if (isRethrow)
+		{
+			verifyCatch(catchClause, node, method);
+		}
+		
+		return super.visit(node);
+	}
+	
+	private void verifyRaise(ThrowStatement node, MethodDeclaration method)
+	{
+		String methodName = method.resolveBinding().getDeclaringClass().getQualifiedName() + "."
+				+ method.getName().toString();
+
+		Compartment compartment = Verifier.getInstance().findCompartment(methodName);
+
+		if (compartment != null)
+		{
+			Marker m = new Marker();
+			m.setFirstIndex(node.getStartPosition());
+			m.setLastIndex(node.getStartPosition() + node.getLength());
+			
+			List<String> exceptions = new ArrayList<>();
+			exceptions.add(node.getExpression().resolveTypeBinding().getName());
+			Verifier.getInstance().checkRaiseViolation(compartment, exceptions, methodName, m);
+		}
+	}
+	
+	private void verifyCatch(CatchClause catchClause, ThrowStatement node, MethodDeclaration method)
+	{		
+		//System.out.println(catchClause.getException().getType());
+		//System.out.println(node.getExpression());
+		
+		//melhorar match usando equals dos tipos de node e cathClause
+		if (node.getExpression().toString().contains((catchClause.getException().getType().toString())))
+		{
+			String methodName = method.resolveBinding().getDeclaringClass().getQualifiedName() + "."
+					+ method.getName().toString();
+
+			Compartment compartment = Verifier.getInstance().findCompartment(methodName);
+			
+			if (compartment != null)
+			{
+				Marker m = new Marker();
+				m.setFirstIndex(node.getStartPosition());
+				m.setLastIndex(node.getStartPosition() + node.getLength());
+				
+				List<String> exceptions = new ArrayList<>();
+				exceptions.add(node.getExpression().resolveTypeBinding().getName());
+				
+				Verifier.getInstance().checkRethrowViolation(compartment, exceptions, methodName, m);
+			}
+		}
+	}
+	
+	
+	@Override
+	public boolean visit(CatchClause node)
+	{
+		System.out.println("Entrei no catch");
 		return super.visit(node);
 	}
 }

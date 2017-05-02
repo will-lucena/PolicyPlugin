@@ -100,6 +100,7 @@ public class AplicacaoJar
 	private void deleteMarkers(IResource res, String type) throws CoreException
 	{
 		res.deleteMarkers(type, false, 0);
+		markers.clear();
 	}
 	
 	private void createMarker(IResource res) throws CoreException, BadLocationException
