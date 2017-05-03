@@ -16,7 +16,7 @@ public class CompilationUnitVisitor extends ASTVisitor
 	@Override
 	public boolean visit(MethodDeclaration node)
 	{
-		verificarMethod(node);
+		verificarMethodDeclaration(node);
 		
 		MethodVisitor visitor = new MethodVisitor();
 		node.accept(visitor);
@@ -24,7 +24,7 @@ public class CompilationUnitVisitor extends ASTVisitor
 		return super.visit(node);
 	}
 	
-	private void verificarMethod(MethodDeclaration node)
+	private void verificarMethodDeclaration(MethodDeclaration node)
 	{
 		String methodName = node.resolveBinding().getDeclaringClass().getQualifiedName() + "." + node.getName().toString();
 		

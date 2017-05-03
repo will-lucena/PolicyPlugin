@@ -7,9 +7,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CatchClause;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
-import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.ThrowStatement;
-import org.eclipse.jdt.core.dom.TryStatement;
 
 import epl.model.Compartment;
 
@@ -83,8 +81,13 @@ public class MethodVisitor extends ASTVisitor
 		//System.out.println(catchClause.getException().getType());
 		//System.out.println(node.getExpression());
 		
+		CatchClauseVisitor visitor = new CatchClauseVisitor();
+		catchClause.accept(visitor);
+		
+		//System.out.println("ClassInstanceCreation: " + visitor.getType());
+		
 		//melhorar match usando equals dos tipos de node e cathClause
-		if (node.getExpression().toString().contains((catchClause.getException().getType().toString())))
+		if (visitor.getType() != null && visitor.getType().equals(catchClause.getException().getType().toString()))
 		{
 			String methodName = method.resolveBinding().getDeclaringClass().getQualifiedName() + "."
 					+ method.getName().toString();
@@ -103,13 +106,5 @@ public class MethodVisitor extends ASTVisitor
 				Verifier.getInstance().checkRethrowViolation(compartment, exceptions, methodName, m);
 			}
 		}
-	}
-	
-	
-	@Override
-	public boolean visit(CatchClause node)
-	{
-		System.out.println("Entrei no catch");
-		return super.visit(node);
 	}
 }
