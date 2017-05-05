@@ -22,12 +22,28 @@ import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jface.text.BadLocationException;
 
+import epl.model.Compartment;
+import policiesplugin.handlers.ConsumirEpl;
+
 public class AplicacaoJar
 {
 	private static final String JDT_NATURE = "org.eclipse.jdt.core.javanature";
 	private static final List<Marker> markers = new ArrayList<>();
 	private static final String MARKER_TYPE = "excite.markerId";
 
+	public static Compartment updateCompartment(Compartment compartment)
+	{
+		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
+		{
+			if (c.getId().equals(compartment.getId()))
+			{
+				c = compartment;
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	public AplicacaoJar()
 	{
 		getProjects();

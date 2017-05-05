@@ -1,4 +1,4 @@
-package excite;
+package excite.verifiers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,9 @@ import epl.model.Compartment;
 import epl.model.Rule;
 import epl.model.Rule.DependencyType;
 import epl.model.Rule.RuleType;
+import excite.AplicacaoJar;
+import excite.Marker;
+import excite.Violation;
 import policiesplugin.handlers.ConsumirEpl;
 
 public class Verifier
@@ -221,4 +224,39 @@ public class Verifier
 		verifyOnlyMayRule(methodName, compartment, exceptions, DependencyType.Rethrow, new Marker(fIndex, lIndex));
 		verifyMayOnlyRule(methodName, compartment, exceptions, DependencyType.Rethrow, new Marker(fIndex, lIndex));
 	}
+	
+	public void checkRemapViolation(Compartment compartment, List<String> exceptions, String methodName, Marker marcador)
+	{
+		int fIndex = marcador.getFirstIndex();
+		int lIndex = marcador.getLastIndex();		
+		verifyRemapCannotRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
+		verifyRemapOnlyMayRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
+		verifyRemapMayOnlyRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
+	}
+
+	private void verifyRemapMayOnlyRule(String methodName, Compartment compartment, List<String> exceptions, Marker marker)
+	{
+		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		{
+			if (r.getRuleType().equals(RuleType.MayOnly) && r.getDependencyType().equals(DependencyType.Remap))
+			{
+				if (r.getCompartmentId().equals(compartment.getId()))
+				{
+					//criar regex de "from * to *"
+				}
+			}
+		}
+	}
+
+	private void verifyRemapOnlyMayRule(String methodName, Compartment compartment, List<String> exceptions, Marker marker)
+	{
+
+	}
+
+	private void verifyRemapCannotRule(String methodName, Compartment compartment, List<String> exceptions, Marker marker)
+	{
+
+	}
+	
+	
 }

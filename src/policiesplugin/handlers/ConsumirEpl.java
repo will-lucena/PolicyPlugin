@@ -16,7 +16,7 @@ import epl.EPLParser;
 import epl.model.Policy;
 import epl.model.Rule;
 import excite.AplicacaoJar;
-import excite.Verifier;
+import excite.verifiers.Verifier;
 import epl.model.Compartment;
 
 /**
