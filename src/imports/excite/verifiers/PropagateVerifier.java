@@ -1,6 +1,5 @@
 package excite.verifiers;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,46 +14,35 @@ import epl.model.Rule.DependencyType;
 import epl.model.Rule.RuleType;
 import excite.AplicacaoJar;
 import excite.Marker;
-import excite.Violation;
 import policiesplugin.handlers.ConsumirEpl;
 
 public class PropagateVerifier
 {
+	private static PropagateVerifier instance = null;
+	
+	private PropagateVerifier()
+	{
+
+	}
+
+	public static PropagateVerifier getInstance()
+	{
+		if (instance == null)
+		{
+			synchronized (PropagateVerifier.class)
+			{
+				if (instance == null)
+				{
+					instance = new PropagateVerifier();
+				}
+			}
+		}
+		return instance;
+	}
+	
 	public Compartment getCompartment(String name)
 	{
 		return Verifier.getInstance().findCompartment(name);
-	}
-	
-	public void verificarMethodDeclaration(MethodDeclaration node, String name)
-	{		
-		//descobrir compartimento
-		Compartment compartment = Verifier.getInstance().findCompartment(name);
-		if (compartment != null)
-		{
-			//pegar exceções declaradas
-			Marker m = new Marker();
-			List<String> exceptions = getExcecptionTypes(node, m);
-			if (exceptions != null)
-			{
-				//validar method
-				m.setFirstIndex(node.getStartPosition());
-				Verifier.getInstance().checkPropagateViolation(compartment, exceptions, name, m);
-			}
-		}
-	}
-	
-	private List<String> getExcecptionTypes(MethodDeclaration node, Marker marcador)
-	{
-		List<String> thrownExceptions = new ArrayList<>();
-		
-		for (Iterator<?> iter = node.thrownExceptionTypes().iterator(); iter.hasNext();)
-		{
-			SimpleType exceptionType = (SimpleType) iter.next();			
-			thrownExceptions.add(exceptionType.getName().toString());
-			marcador.setLastIndex(exceptionType.getStartPosition() + exceptionType.getLength());
-		}
-		
-		return thrownExceptions;
 	}
 	
 	public Method getPropagatedExceptions(MethodDeclaration node, Method method, Marker marcador)
@@ -62,7 +50,7 @@ public class PropagateVerifier
 		for (Iterator<?> iter = node.thrownExceptionTypes().iterator(); iter.hasNext();)
 		{		
 			SimpleType exceptionType = (SimpleType) iter.next();	
-			method.addExceptionPropagated(new JavaType(exceptionType.resolveBinding().getQualifiedName()));
+			method.addExceptionPropagated(new JavaType(exceptionType.resolveBinding().getName()));
 			marcador.setLastIndex(exceptionType.getStartPosition() + exceptionType.getLength());
 		}
 		
