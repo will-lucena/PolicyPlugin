@@ -28,19 +28,33 @@ import epl.model.Compartment;
 public class ConsumirEpl extends AbstractHandler
 {
 	private static Policy policy = null;
+	private static final String path = "C:\\Users\\William\\workspace\\teste.epl";
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException
 	{
-		String path = abrirArquivo();
-
-		if (path != null)
+		try
 		{
-			Verifier.getInstance();
-			construirPolicy(path);
-			new AplicacaoJar();
+			if (path != null)
+			{
+				Verifier.getInstance();
+				construirPolicy(path);
+				new AplicacaoJar();
+			}
+			return null;
+		} catch (IllegalArgumentException ex)
+		{
+			JOptionPane.showMessageDialog(null, "Arquivo invalido");
+			String path = abrirArquivo();
+			if (path != null)
+			{
+				Verifier.getInstance();
+				construirPolicy(path);
+				new AplicacaoJar();
+			}
+			return null;
 		}
-		return null;
+		
 	}
 
 	public static Policy getPolicy()

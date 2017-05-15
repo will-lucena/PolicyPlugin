@@ -24,6 +24,7 @@ import org.eclipse.jface.text.BadLocationException;
 
 import epl.model.Compartment;
 import policiesplugin.handlers.ConsumirEpl;
+import policiesplugin.handlers.PluginView;
 
 public class AplicacaoJar
 {
@@ -129,6 +130,7 @@ public class AplicacaoJar
 			marker.setAttribute(IMarker.CHAR_END, m.getLastIndex());
 			marker.setAttribute(IMarker.MESSAGE, m.getRule());
 			System.out.println(m.getRule());
+			PluginView.updateLabel(m.getRule());
 		}
 	}
 

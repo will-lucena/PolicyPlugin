@@ -93,5 +93,11 @@
             type="org.eclipse.core.resources.textmarker">
       </super>
 	</extension>
+	
+	<extension point="org.eclipse.ui.views">
+        <view id="policiesplugin.handlers.PluginView"
+             name="Label View"
+          class="policiesplugin.handlers.PluginView"/>
+	</extension>
 
 </plugin>
