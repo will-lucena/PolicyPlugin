@@ -22,9 +22,9 @@ import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jface.text.BadLocationException;
 
+import View.PluginView;
 import epl.model.Compartment;
 import policiesplugin.handlers.ConsumirEpl;
-import policiesplugin.handlers.PluginView;
 
 public class AplicacaoJar
 {
@@ -53,6 +53,16 @@ public class AplicacaoJar
 	public static void addMarker(Marker m)
 	{
 		markers.add(m);
+	}
+	
+	public static List<String> getViolations()
+	{
+		List<String> violations = new ArrayList<>();
+		for (Marker m : markers)
+		{
+			violations.add(m.getRule());
+		}
+		return violations;
 	}
 
 	private void getProjects()
@@ -130,7 +140,7 @@ public class AplicacaoJar
 			marker.setAttribute(IMarker.CHAR_END, m.getLastIndex());
 			marker.setAttribute(IMarker.MESSAGE, m.getRule());
 			System.out.println(m.getRule());
-			PluginView.updateLabel(m.getRule());
+			PluginView.insertViolations(m.getRule());
 		}
 	}
 

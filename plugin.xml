@@ -43,7 +43,7 @@
 	<extension point="org.eclipse.ui.views">
 		<view id="policiesplugin.handlers.PluginView"
 		name="Policy view"
-		class="policiesplugin.handlers.PluginView"/>
+		class="View.PluginView"/>
 	</extension>
 
 </plugin>
