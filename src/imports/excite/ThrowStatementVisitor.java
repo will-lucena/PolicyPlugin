@@ -36,8 +36,8 @@ public class ThrowStatementVisitor extends ASTVisitor
 			if (parent instanceof CatchClause)
 			{
 				isRaise = false;
-				
-				CatchClauseVisitor visitor = new CatchClauseVisitor(this.method);
+				CatchClause cc = (CatchClause) parent;
+				CatchClauseVisitor visitor = new CatchClauseVisitor(this.method, cc);
 				node.accept(visitor);	
 				this.method = visitor.updateMethod();
 				break;

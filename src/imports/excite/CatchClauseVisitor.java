@@ -1,9 +1,7 @@
 package excite;
 
-import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CatchClause;
-import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.ThrowStatement;
 
 import epl.model.ExceptionPair;
@@ -15,12 +13,14 @@ import excite.verifiers.RethrowVerifier;
 public class CatchClauseVisitor extends ASTVisitor
 {
 	private Method method;
-	
-	public CatchClauseVisitor(Method method)
+	private CatchClause catchClause;
+
+	public CatchClauseVisitor(Method method, CatchClause node)
 	{
 		this.method = method;
+		this.catchClause = node;
 	}
-	
+
 	public Method updateMethod()
 	{
 		return this.method;
@@ -29,51 +29,33 @@ public class CatchClauseVisitor extends ASTVisitor
 	@Override
 	public boolean visit(ThrowStatement node)
 	{
-		ASTNode parent = node.getParent();
-		CatchClause catchClause = null;
+		InstanceCreatorVisitor visitor = new InstanceCreatorVisitor();
+		catchClause.getBody().accept(visitor);
 
-		while (!(parent instanceof MethodDeclaration))
+		String from = catchClause.getException().getType().resolveBinding().getName();
+		String to = visitor.getType();
+
+		if (from.equals(to))
 		{
-			parent = parent.getParent();
+			// isRethrow
+			this.method.addExceptionRethrown(new JavaType(to));
 
-			if (parent instanceof CatchClause)
-			{	
-				catchClause = (CatchClause) parent;
-				break;
-			}
-		}
-		
-		if (catchClause != null)
+			Marker marcador = new Marker();
+			marcador.setFirstIndex(node.getStartPosition());
+			marcador.setLastIndex(node.getStartPosition() + node.getLength());
+
+			RethrowVerifier.getInstance().checkRethrowViolation(this.method, marcador);
+		} else
 		{
-			InstanceCreatorVisitor visitor = new InstanceCreatorVisitor();
-			catchClause.getBody().accept(visitor);
-			
-			String from = catchClause.getException().getType().resolveBinding().getName();
-			String to = visitor.getType();
-			
-			if (from.equals(to))
-			{
-				//isRethrow
-				this.method.addExceptionRethrown(new JavaType(to));
-				
-				Marker marcador = new Marker();
-				marcador.setFirstIndex(node.getStartPosition());
-				marcador.setLastIndex(node.getStartPosition() + node.getLength());
+			// isRemap
+			ExceptionPair pair = new ExceptionPair(new JavaType(from), new JavaType(to));
+			this.method.addExceptionRemapped(pair);
 
-				RethrowVerifier.getInstance().checkRethrowViolation(this.method, marcador);	
-			}
-			else
-			{
-				//isRemap
-				ExceptionPair pair = new ExceptionPair(new JavaType(from), new JavaType(to));
-				this.method.addExceptionRemapped(pair);
-				
-				Marker marcador = new Marker();
-				marcador.setFirstIndex(node.getStartPosition());
-				marcador.setLastIndex(node.getStartPosition() + node.getLength());
+			Marker marcador = new Marker();
+			marcador.setFirstIndex(node.getStartPosition());
+			marcador.setLastIndex(node.getStartPosition() + node.getLength());
 
-				RemapVerifier.getInstance().checkRemapViolation(this.method, marcador);	
-			}
+			RemapVerifier.getInstance().checkRemapViolation(this.method, marcador);
 		}
 		return super.visit(node);
 	}
