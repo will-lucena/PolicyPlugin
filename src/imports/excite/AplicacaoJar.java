@@ -18,6 +18,7 @@ import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.dom.AST;
+import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jface.text.BadLocationException;
@@ -44,7 +45,7 @@ public class AplicacaoJar
 		}
 		return null;
 	}
-	
+
 	public AplicacaoJar()
 	{
 		getProjects();
@@ -52,9 +53,16 @@ public class AplicacaoJar
 
 	public static void addMarker(Marker m)
 	{
+		for (Marker marker : markers)
+		{
+			if (marker.getRule().equals(m.getRule()))
+			{
+				break;
+			}
+		}
 		markers.add(m);
 	}
-	
+
 	public static List<String> getViolations()
 	{
 		List<String> violations = new ArrayList<>();
@@ -114,9 +122,9 @@ public class AplicacaoJar
 						CompilationUnitVisitor compilationUnitVisitor = new CompilationUnitVisitor();
 
 						deleteMarkers(unit.getCorrespondingResource(), MARKER_TYPE);
-						
+
 						compilationUnit.accept(compilationUnitVisitor);
-						
+
 						createMarker(unit.getCorrespondingResource());
 					}
 				}
@@ -129,7 +137,15 @@ public class AplicacaoJar
 		res.deleteMarkers(type, false, 0);
 		markers.clear();
 	}
-	
+
+	public static Marker prepareMarker(ASTNode node)
+	{
+		Marker marcador = new Marker();
+		marcador.setFirstIndex(node.getStartPosition());
+		marcador.setLastIndex(node.getStartPosition() + node.getLength());
+		return marcador;
+	}
+
 	private void createMarker(IResource res) throws CoreException, BadLocationException
 	{
 		for (Marker m : markers)

@@ -2,23 +2,22 @@ package excite;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CatchClause;
-import org.eclipse.jdt.core.dom.ThrowStatement;
 
-import epl.model.ExceptionPair;
 import epl.model.JavaType;
 import epl.model.Method;
-import excite.verifiers.RemapVerifier;
-import excite.verifiers.RethrowVerifier;
+import excite.verifiers.HandleVerifier;
+import excite.verifiers.PropagateVerifier;
+import excite.verifiers.Verifier;
+
 
 public class CatchClauseVisitor extends ASTVisitor
 {
 	private Method method;
-	private CatchClause catchClause;
+	private boolean isHandle;
 
-	public CatchClauseVisitor(Method method, CatchClause node)
+	public CatchClauseVisitor(Method method)
 	{
 		this.method = method;
-		this.catchClause = node;
 	}
 
 	public Method updateMethod()
@@ -27,36 +26,24 @@ public class CatchClauseVisitor extends ASTVisitor
 	}
 
 	@Override
-	public boolean visit(ThrowStatement node)
+	public boolean visit(CatchClause node)
 	{
-		InstanceCreatorVisitor visitor = new InstanceCreatorVisitor();
-		catchClause.getBody().accept(visitor);
-
-		String from = catchClause.getException().getType().resolveBinding().getName();
-		String to = visitor.getType();
-
-		if (from.equals(to))
+		this.method.setCompartment(Verifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
+		InstanceCreatorVisitor icVisitor = new InstanceCreatorVisitor();
+		node.getBody().accept(icVisitor);
+		
+		String exCatched = icVisitor.getType();
+		ThrowStatementVisitor tsVisitor = new ThrowStatementVisitor(this.method);
+		node.getBody().accept(tsVisitor);
+		this.isHandle = tsVisitor.isRaise();
+		
+		if (isHandle)
 		{
-			// isRethrow
-			this.method.addExceptionRethrown(new JavaType(to));
-
-			Marker marcador = new Marker();
-			marcador.setFirstIndex(node.getStartPosition());
-			marcador.setLastIndex(node.getStartPosition() + node.getLength());
-
-			RethrowVerifier.getInstance().checkRethrowViolation(this.method, marcador);
-		} else
-		{
-			// isRemap
-			ExceptionPair pair = new ExceptionPair(new JavaType(from), new JavaType(to));
-			this.method.addExceptionRemapped(pair);
-
-			Marker marcador = new Marker();
-			marcador.setFirstIndex(node.getStartPosition());
-			marcador.setLastIndex(node.getStartPosition() + node.getLength());
-
-			RemapVerifier.getInstance().checkRemapViolation(this.method, marcador);
+			Marker marcador = AplicacaoJar.prepareMarker(node);
+			this.method.addExceptionHandled(new JavaType(exCatched));
+			HandleVerifier.getInstance().checkHandleViolation(this.method, marcador);
 		}
+		
 		return super.visit(node);
 	}
 }
