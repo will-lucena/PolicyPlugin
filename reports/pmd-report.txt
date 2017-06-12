@@ -1,0 +1,1261 @@
+src/View/ContentProvider.java:1:	Package name contains upper case characters
+src/View/ContentProvider.java:5:	Each class should declare at least one constructor
+src/View/ContentProvider.java:5:	headerCommentRequirement Required
+src/View/ContentProvider.java:9:	Parameter 'inputElement' is not assigned and could be declared final
+src/View/ContentProvider.java:9:	Return an empty array rather than null.
+src/View/ContentProvider.java:9:	publicMethodCommentRequirement Required
+src/View/LabelProvider.java:1:	Package name contains upper case characters
+src/View/LabelProvider.java:6:	Each class should declare at least one constructor
+src/View/LabelProvider.java:6:	headerCommentRequirement Required
+src/View/LabelProvider.java:10:	Parameter 'listener' is not assigned and could be declared final
+src/View/LabelProvider.java:10:	publicMethodCommentRequirement Required
+src/View/LabelProvider.java:17:	publicMethodCommentRequirement Required
+src/View/LabelProvider.java:24:	Parameter 'element' is not assigned and could be declared final
+src/View/LabelProvider.java:24:	Parameter 'property' is not assigned and could be declared final
+src/View/LabelProvider.java:24:	publicMethodCommentRequirement Required
+src/View/LabelProvider.java:31:	Parameter 'listener' is not assigned and could be declared final
+src/View/LabelProvider.java:31:	publicMethodCommentRequirement Required
+src/View/PluginView.java:1:	Package name contains upper case characters
+src/View/PluginView.java:16:	headerCommentRequirement Required
+src/View/PluginView.java:18:	fieldCommentRequirement Required
+src/View/PluginView.java:19:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/View/PluginView.java:19:	fieldCommentRequirement Required
+src/View/PluginView.java:20:	fieldCommentRequirement Required
+src/View/PluginView.java:22:	Parameter 'parent' is not assigned and could be declared final
+src/View/PluginView.java:22:	publicMethodCommentRequirement Required
+src/View/PluginView.java:29:	Potential violation of Law of Demeter (object not created locally)
+src/View/PluginView.java:30:	Potential violation of Law of Demeter (object not created locally)
+src/View/PluginView.java:35:	Potential violation of Law of Demeter (method chain calls)
+src/View/PluginView.java:38:	Avoid unused method parameters such as 'parent'.
+src/View/PluginView.java:38:	Avoid unused method parameters such as 'viewer'.
+src/View/PluginView.java:40:	Local variable 'column' could be declared final
+src/View/PluginView.java:44:	Parameter 'element' is not assigned and could be declared final
+src/View/PluginView.java:44:	publicMethodCommentRequirement Required
+src/View/PluginView.java:46:	Avoid variables with short names like v
+src/View/PluginView.java:46:	Local variable 'v' could be declared final
+src/View/PluginView.java:52:	Parameter 'bound' is not assigned and could be declared final
+src/View/PluginView.java:52:	Parameter 'title' is not assigned and could be declared final
+src/View/PluginView.java:56:	Potential violation of Law of Demeter (object not created locally)
+src/View/PluginView.java:57:	Potential violation of Law of Demeter (object not created locally)
+src/View/PluginView.java:58:	Potential violation of Law of Demeter (object not created locally)
+src/View/PluginView.java:59:	Potential violation of Law of Demeter (object not created locally)
+src/View/PluginView.java:63:	publicMethodCommentRequirement Required
+src/View/PluginView.java:65:	Potential violation of Law of Demeter (method chain calls)
+src/View/PluginView.java:69:	Parameter 'violation' is not assigned and could be declared final
+src/View/PluginView.java:69:	publicMethodCommentRequirement Required
+src/imports/epl/EPLParser.java:10:	headerCommentRequirement Required
+src/imports/epl/EPLParser.java:11:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/imports/epl/EPLParser.java:13:	Comment is too large: Line too long
+src/imports/epl/EPLParser.java:15:	Comment is too large: Too many lines
+src/imports/epl/EPLParser.java:18:	Comment is too large: Line too long
+src/imports/epl/EPLParser.java:23:	Comment is too large: Line too long
+src/imports/epl/EPLParser.java:43:	Parameter 'path' is not assigned and could be declared final
+src/imports/epl/EPLParser.java:51:	Local variable 'policy' could be declared final
+src/imports/epl/EPLParser.java:52:	Consider simply returning the value vs storing it in local variable 'policy'
+src/imports/epl/EPLParser.java:55:	Found 'UR'-anomaly for variable 'compartment' (lines '55'-'61').
+src/imports/epl/EPLParser.java:55:	Parameter 'policy' is not assigned and could be declared final
+src/imports/epl/EPLParser.java:55:	publicMethodCommentRequirement Required
+src/imports/epl/EPLParser.java:57:	Local variable 'compartments' could be declared final
+src/imports/epl/EPLParser.java:59:	Local variable 'compartment' could be declared final
+src/imports/epl/EPLParser.java:61:	System.out.println is used
+src/imports/epl/EPLParser.java:65:	Found 'UR'-anomaly for variable 'rule' (lines '65'-'70').
+src/imports/epl/EPLParser.java:65:	Parameter 'policy' is not assigned and could be declared final
+src/imports/epl/EPLParser.java:65:	publicMethodCommentRequirement Required
+src/imports/epl/EPLParser.java:67:	Local variable 'rules' could be declared final
+src/imports/epl/EPLParser.java:68:	Local variable 'rule' could be declared final
+src/imports/epl/EPLParser.java:70:	System.out.println is used
+src/imports/epl/PolicyParser.java:22:	The class 'PolicyParser' has a Cyclomatic Complexity of 4 (Highest = 10).
+src/imports/epl/PolicyParser.java:22:	The class 'PolicyParser' has a Modified Cyclomatic Complexity of 4 (Highest = 10).
+src/imports/epl/PolicyParser.java:22:	The class 'PolicyParser' has a Standard Cyclomatic Complexity of 4 (Highest = 10).
+src/imports/epl/PolicyParser.java:22:	headerCommentRequirement Required
+src/imports/epl/PolicyParser.java:23:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/imports/epl/PolicyParser.java:24:	Found 'UR'-anomaly for variable 'exp' (lines '24'-'33').
+src/imports/epl/PolicyParser.java:27:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:29:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:31:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:31:	The String literal ",\\s+" appears 5 times in this file; the first occurrence is on line 31
+src/imports/epl/PolicyParser.java:35:	Avoid variables with short names like id
+src/imports/epl/PolicyParser.java:35:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:37:	Consider simply returning the value vs storing it in local variable 'compartment'
+src/imports/epl/PolicyParser.java:45:	Found 'UR'-anomaly for variable 'compartmentDef' (lines '45'-'54').
+src/imports/epl/PolicyParser.java:45:	Found 'UR'-anomaly for variable 'rule' (lines '45'-'68').
+src/imports/epl/PolicyParser.java:45:	Found 'UR'-anomaly for variable 'ruleDef' (lines '45'-'62').
+src/imports/epl/PolicyParser.java:51:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:56:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:59:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:77:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:83:	Found 'UR'-anomaly for variable 'exp' (lines '83'-'143').
+src/imports/epl/PolicyParser.java:83:	The method 'buildRule' has a Cyclomatic Complexity of 10.
+src/imports/epl/PolicyParser.java:83:	The method 'buildRule' has a Modified Cyclomatic Complexity of 10.
+src/imports/epl/PolicyParser.java:83:	The method 'buildRule' has a Standard Cyclomatic Complexity of 10.
+src/imports/epl/PolicyParser.java:85:	Found 'DD'-anomaly for variable 'ruleType' (lines '85'-'108').
+src/imports/epl/PolicyParser.java:85:	Found 'DD'-anomaly for variable 'ruleType' (lines '85'-'119').
+src/imports/epl/PolicyParser.java:85:	Found 'DD'-anomaly for variable 'ruleType' (lines '85'-'130').
+src/imports/epl/PolicyParser.java:85:	Found 'DD'-anomaly for variable 'ruleType' (lines '85'-'96').
+src/imports/epl/PolicyParser.java:85:	Found 'DU'-anomaly for variable 'ruleType' (lines '85'-'147').
+src/imports/epl/PolicyParser.java:86:	Found 'DD'-anomaly for variable 'compartmentId' (lines '86'-'107').
+src/imports/epl/PolicyParser.java:86:	Found 'DD'-anomaly for variable 'compartmentId' (lines '86'-'118').
+src/imports/epl/PolicyParser.java:86:	Found 'DD'-anomaly for variable 'compartmentId' (lines '86'-'129').
+src/imports/epl/PolicyParser.java:86:	Found 'DD'-anomaly for variable 'compartmentId' (lines '86'-'95').
+src/imports/epl/PolicyParser.java:86:	Found 'DU'-anomaly for variable 'compartmentId' (lines '86'-'147').
+src/imports/epl/PolicyParser.java:87:	Avoid excessively long variable names like exceptionExpressions
+src/imports/epl/PolicyParser.java:87:	Found 'DD'-anomaly for variable 'exceptionExpressions' (lines '87'-'110').
+src/imports/epl/PolicyParser.java:87:	Found 'DD'-anomaly for variable 'exceptionExpressions' (lines '87'-'121').
+src/imports/epl/PolicyParser.java:87:	Found 'DD'-anomaly for variable 'exceptionExpressions' (lines '87'-'132').
+src/imports/epl/PolicyParser.java:87:	Found 'DD'-anomaly for variable 'exceptionExpressions' (lines '87'-'98').
+src/imports/epl/PolicyParser.java:87:	Found 'DU'-anomaly for variable 'exceptionExpressions' (lines '87'-'147').
+src/imports/epl/PolicyParser.java:88:	Found 'DD'-anomaly for variable 'dependencyType' (lines '88'-'109').
+src/imports/epl/PolicyParser.java:88:	Found 'DD'-anomaly for variable 'dependencyType' (lines '88'-'120').
+src/imports/epl/PolicyParser.java:88:	Found 'DD'-anomaly for variable 'dependencyType' (lines '88'-'131').
+src/imports/epl/PolicyParser.java:88:	Found 'DD'-anomaly for variable 'dependencyType' (lines '88'-'97').
+src/imports/epl/PolicyParser.java:88:	Found 'DU'-anomaly for variable 'dependencyType' (lines '88'-'147').
+src/imports/epl/PolicyParser.java:93:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:95:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:96:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:97:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:98:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:98:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:98:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:105:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:107:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:109:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:110:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:110:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:110:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:116:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:118:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:119:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:121:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:121:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:127:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:129:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:132:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:132:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:132:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:151:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:151:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/PolicyParser.java:164:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/epl/PolicyParser.java:168:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/epl/PolicyParser.java:178:	Found 'UR'-anomaly for variable 'policy' (lines '178'-'178').
+src/imports/epl/PolicyParser.java:178:	publicMethodCommentRequirement Required
+src/imports/epl/PolicyParser.java:184:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:194:	Found 'UR'-anomaly for variable 'list' (lines '194'-'194').
+src/imports/epl/PolicyParser.java:194:	publicMethodCommentRequirement Required
+src/imports/epl/PolicyParser.java:196:	If you run in Java5 or newer and have concurrent access, you should use the ConcurrentHashMap implementation
+src/imports/epl/PolicyParser.java:200:	Avoid variables with short names like br
+src/imports/epl/PolicyParser.java:203:	Avoid assignments in operands
+src/imports/epl/PolicyParser.java:203:	Found 'DU'-anomaly for variable 'line' (lines '203'-'226').
+src/imports/epl/PolicyParser.java:205:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:211:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:221:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/PolicyParser.java:228:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/imports/epl/PolicyParser.java:228:	If you run in Java5 or newer and have concurrent access, you should use the ConcurrentHashMap implementation
+src/imports/epl/PolicyParser.java:228:	Variables that are final and static should be all capitals, 'map' is not all capitals.
+src/imports/epl/PolicyParser.java:228:	fieldCommentRequirement Required
+src/imports/epl/PolicyParser.java:230:	Avoid excessively long variable names like COMPARTMENT_PATTERN
+src/imports/epl/PolicyParser.java:230:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/imports/epl/PolicyParser.java:230:	fieldCommentRequirement Required
+src/imports/epl/PolicyParser.java:232:	Avoid excessively long variable names like ONLY_MAY_REMAP_RULE_PATTERN
+src/imports/epl/PolicyParser.java:232:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/imports/epl/PolicyParser.java:232:	fieldCommentRequirement Required
+src/imports/epl/PolicyParser.java:234:	Avoid excessively long variable names like REGULAR_RULE_PATTERN
+src/imports/epl/PolicyParser.java:234:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/imports/epl/PolicyParser.java:234:	fieldCommentRequirement Required
+src/imports/epl/PolicyParser.java:236:	Avoid excessively long variable names like ONLY_MAY_REGULAR_RULE_PATTERN
+src/imports/epl/PolicyParser.java:236:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/imports/epl/PolicyParser.java:236:	fieldCommentRequirement Required
+src/imports/epl/PolicyParser.java:238:	Avoid excessively long variable names like REGULAR_REMAP_RULE_PATTERN
+src/imports/epl/PolicyParser.java:238:	Fields should be declared at the top of the class, before any method declarations, constructors, initializers or inner classes.
+src/imports/epl/PolicyParser.java:238:	fieldCommentRequirement Required
+src/imports/epl/StringUtils.java:3:	Comment is too large: Too many lines
+src/imports/epl/StringUtils.java:32:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/imports/epl/StringUtils.java:34:	Comment is too large: Too many lines
+src/imports/epl/StringUtils.java:47:	Parameter 'name' is not assigned and could be declared final
+src/imports/epl/StringUtils.java:49:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/epl/StringUtils.java:55:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/epl/StringUtils.java:57:	Found 'DD'-anomaly for variable 'chars' (lines '57'-'58').
+src/imports/epl/StringUtils.java:58:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/StringUtils.java:62:	Comment is too large: Too many lines
+src/imports/epl/StringUtils.java:71:	Parameter 'name' is not assigned and could be declared final
+src/imports/epl/StringUtils.java:73:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/epl/StringUtils.java:75:	Found 'DD'-anomaly for variable 'chars' (lines '75'-'76').
+src/imports/epl/StringUtils.java:76:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:6:	headerCommentRequirement Required
+src/imports/epl/model/Compartment.java:8:	Avoid variables with short names like id
+src/imports/epl/model/Compartment.java:8:	fieldCommentRequirement Required
+src/imports/epl/model/Compartment.java:10:	fieldCommentRequirement Required
+src/imports/epl/model/Compartment.java:12:	fieldCommentRequirement Required
+src/imports/epl/model/Compartment.java:14:	fieldCommentRequirement Required
+src/imports/epl/model/Compartment.java:16:	Avoid variables with short names like id
+src/imports/epl/model/Compartment.java:16:	publicMethodCommentRequirement Required
+src/imports/epl/model/Compartment.java:24:	publicMethodCommentRequirement Required
+src/imports/epl/model/Compartment.java:29:	publicMethodCommentRequirement Required
+src/imports/epl/model/Compartment.java:34:	Found 'UR'-anomaly for variable 'expression' (lines '34'-'44').
+src/imports/epl/model/Compartment.java:34:	Found 'UR'-anomaly for variable 'matched' (lines '34'-'34').
+src/imports/epl/model/Compartment.java:34:	Found 'UR'-anomaly for variable 'method' (lines '34'-'34').
+src/imports/epl/model/Compartment.java:34:	publicMethodCommentRequirement Required
+src/imports/epl/model/Compartment.java:38:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:38:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:41:	Found 'DD'-anomaly for variable 'matched' (lines '41'-'41').
+src/imports/epl/model/Compartment.java:41:	Found 'DD'-anomaly for variable 'matched' (lines '41'-'46').
+src/imports/epl/model/Compartment.java:41:	Found 'DU'-anomaly for variable 'matched' (lines '41'-'58').
+src/imports/epl/model/Compartment.java:44:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:46:	Found 'DU'-anomaly for variable 'matched' (lines '46'-'58').
+src/imports/epl/model/Compartment.java:50:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:50:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:54:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:54:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:54:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:54:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:60:	publicMethodCommentRequirement Required
+src/imports/epl/model/Compartment.java:65:	publicMethodCommentRequirement Required
+src/imports/epl/model/Compartment.java:70:	publicMethodCommentRequirement Required
+src/imports/epl/model/Compartment.java:75:	publicMethodCommentRequirement Required
+src/imports/epl/model/Compartment.java:81:	Found 'UR'-anomaly for variable 'method' (lines '81'-'86').
+src/imports/epl/model/Compartment.java:81:	publicMethodCommentRequirement Required
+src/imports/epl/model/Compartment.java:88:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Compartment.java:88:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/ExceptionPair.java:5:	headerCommentRequirement Required
+src/imports/epl/model/ExceptionPair.java:12:	fieldCommentRequirement Required
+src/imports/epl/model/ExceptionPair.java:13:	Avoid variables with short names like to
+src/imports/epl/model/ExceptionPair.java:13:	fieldCommentRequirement Required
+src/imports/epl/model/ExceptionPair.java:21:	Avoid variables with short names like to
+src/imports/epl/model/ExceptionPair.java:21:	publicMethodCommentRequirement Required
+src/imports/epl/model/ExceptionPair.java:28:	Avoid variables with short names like o
+src/imports/epl/model/ExceptionPair.java:28:	publicMethodCommentRequirement Required
+src/imports/epl/model/ExceptionPair.java:34:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/epl/model/ExceptionPair.java:36:	Avoid if (x != y) ..; else ..;
+src/imports/epl/model/ExceptionPair.java:38:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/epl/model/ExceptionPair.java:47:	Avoid variables with short names like o
+src/imports/epl/model/ExceptionPair.java:47:	publicMethodCommentRequirement Required
+src/imports/epl/model/ExceptionPair.java:51:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/epl/model/ExceptionPair.java:54:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/model/ExceptionPair.java:54:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/model/ExceptionPair.java:57:	publicMethodCommentRequirement Required
+src/imports/epl/model/ExceptionPair.java:62:	publicMethodCommentRequirement Required
+src/imports/epl/model/ExceptionPair.java:68:	publicMethodCommentRequirement Required
+src/imports/epl/model/ExceptionPair.java:70:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/ExceptionPair.java:70:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/JavaType.java:5:	headerCommentRequirement Required
+src/imports/epl/model/JavaType.java:12:	Avoid excessively long variable names like fullyQualifiedName
+src/imports/epl/model/JavaType.java:12:	fieldCommentRequirement Required
+src/imports/epl/model/JavaType.java:14:	Avoid excessively long variable names like fullyQualifiedName
+src/imports/epl/model/JavaType.java:14:	publicMethodCommentRequirement Required
+src/imports/epl/model/JavaType.java:20:	Avoid variables with short names like o
+src/imports/epl/model/JavaType.java:20:	publicMethodCommentRequirement Required
+src/imports/epl/model/JavaType.java:26:	Avoid variables with short names like t
+src/imports/epl/model/JavaType.java:26:	publicMethodCommentRequirement Required
+src/imports/epl/model/JavaType.java:30:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/epl/model/JavaType.java:32:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/JavaType.java:35:	publicMethodCommentRequirement Required
+src/imports/epl/model/JavaType.java:41:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:11:	headerCommentRequirement Required
+src/imports/epl/model/Method.java:12:	This class has too many methods, consider refactoring it.
+src/imports/epl/model/Method.java:18:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:19:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:20:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:22:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:24:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:26:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:27:	Avoid excessively long variable names like exceptionsPropagated
+src/imports/epl/model/Method.java:27:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:28:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:29:	Avoid excessively long variable names like exceptionsRemapped
+src/imports/epl/model/Method.java:29:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:30:	Avoid excessively long variable names like exceptionsRethrown
+src/imports/epl/model/Method.java:30:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:31:	StringBuffers can grow quite a lot, and so may become a source of memory leak (if the owning class has a long life time).
+src/imports/epl/model/Method.java:31:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:33:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:35:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:37:	Avoid excessively long variable names like fullyQualifiedName
+src/imports/epl/model/Method.java:37:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/epl/model/Method.java:37:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:39:	Avoid excessively long variable names like fullyQualifiedNameWitParameters
+src/imports/epl/model/Method.java:39:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/epl/model/Method.java:39:	fieldCommentRequirement Required
+src/imports/epl/model/Method.java:41:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:54:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:59:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:64:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:69:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:74:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:79:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:84:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:89:	clone() method should be implemented only if implementing Cloneable interface
+src/imports/epl/model/Method.java:90:	Object clone() should be implemented with super.clone()
+src/imports/epl/model/Method.java:90:	clone() method should throw CloneNotSupportedException
+src/imports/epl/model/Method.java:90:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:93:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:94:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:95:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:96:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:97:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:98:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:99:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:100:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:101:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:102:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:103:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:104:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:105:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:110:	Avoid variables with short names like o
+src/imports/epl/model/Method.java:110:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:116:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:118:	Avoid variables with short names like m
+src/imports/epl/model/Method.java:119:	Potential violation of Law of Demeter (object not created locally)
+src/imports/epl/model/Method.java:122:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:127:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:132:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:137:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:142:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:147:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:152:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:157:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:162:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:166:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:166:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:166:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:171:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:175:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:175:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Method.java:181:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:186:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:191:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:196:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:201:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:207:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:209:	Avoid using final local variables, turn them into fields
+src/imports/epl/model/Method.java:211:	Consider simply returning the value vs storing it in local variable 'result'
+src/imports/epl/model/Method.java:214:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:219:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:234:	Avoid excessively long variable names like exceptionsPropagated
+src/imports/epl/model/Method.java:244:	Avoid excessively long variable names like exceptionsRemapped
+src/imports/epl/model/Method.java:249:	Avoid excessively long variable names like exceptionsRethrown
+src/imports/epl/model/Method.java:254:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:259:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:269:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:274:	publicMethodCommentRequirement Required
+src/imports/epl/model/Method.java:280:	publicMethodCommentRequirement Required
+src/imports/epl/model/Policy.java:6:	headerCommentRequirement Required
+src/imports/epl/model/Policy.java:9:	fieldCommentRequirement Required
+src/imports/epl/model/Policy.java:11:	fieldCommentRequirement Required
+src/imports/epl/model/Policy.java:13:	publicMethodCommentRequirement Required
+src/imports/epl/model/Policy.java:19:	publicMethodCommentRequirement Required
+src/imports/epl/model/Policy.java:25:	publicMethodCommentRequirement Required
+src/imports/epl/model/Policy.java:30:	publicMethodCommentRequirement Required
+src/imports/epl/model/Policy.java:35:	Found 'UR'-anomaly for variable 'compartment' (lines '35'-'39').
+src/imports/epl/model/Policy.java:35:	Found 'UR'-anomaly for variable 'rule' (lines '35'-'35').
+src/imports/epl/model/Policy.java:35:	publicMethodCommentRequirement Required
+src/imports/epl/model/Policy.java:53:	publicMethodCommentRequirement Required
+src/imports/epl/model/Policy.java:58:	publicMethodCommentRequirement Required
+src/imports/epl/model/Policy.java:64:	Found 'UR'-anomaly for variable 'compartment' (lines '64'-'71').
+src/imports/epl/model/Policy.java:64:	Found 'UR'-anomaly for variable 'rule' (lines '64'-'77').
+src/imports/epl/model/Policy.java:64:	publicMethodCommentRequirement Required
+src/imports/epl/model/Policy.java:66:	StringBuffer constructor is initialized with size 16, but has at least 21 characters appended.
+src/imports/epl/model/Rule.java:5:	Avoid short class names like Rule
+src/imports/epl/model/Rule.java:5:	headerCommentRequirement Required
+src/imports/epl/model/Rule.java:7:	enumCommentRequirement Required
+src/imports/epl/model/Rule.java:11:	enumCommentRequirement Required
+src/imports/epl/model/Rule.java:15:	fieldCommentRequirement Required
+src/imports/epl/model/Rule.java:17:	fieldCommentRequirement Required
+src/imports/epl/model/Rule.java:19:	fieldCommentRequirement Required
+src/imports/epl/model/Rule.java:21:	Avoid excessively long variable names like exceptionExpressions
+src/imports/epl/model/Rule.java:21:	fieldCommentRequirement Required
+src/imports/epl/model/Rule.java:23:	fieldCommentRequirement Required
+src/imports/epl/model/Rule.java:25:	Avoid excessively long variable names like exceptionExpressions
+src/imports/epl/model/Rule.java:25:	publicMethodCommentRequirement Required
+src/imports/epl/model/Rule.java:33:	publicMethodCommentRequirement Required
+src/imports/epl/model/Rule.java:37:	publicMethodCommentRequirement Required
+src/imports/epl/model/Rule.java:41:	publicMethodCommentRequirement Required
+src/imports/epl/model/Rule.java:45:	publicMethodCommentRequirement Required
+src/imports/epl/model/Rule.java:49:	publicMethodCommentRequirement Required
+src/imports/epl/model/Rule.java:53:	publicMethodCommentRequirement Required
+src/imports/epl/model/Rule.java:58:	publicMethodCommentRequirement Required
+src/imports/epl/model/Rule.java:59:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Rule.java:59:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Rule.java:59:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/model/Rule.java:59:	Potential violation of Law of Demeter (method chain calls)
+src/imports/epl/util/EPLConstants.java:3:	Each class should declare at least one constructor
+src/imports/epl/util/EPLConstants.java:3:	headerCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:5:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:7:	Avoid excessively long variable names like METHOD_NAME_WITH_PARAMETER_FORMAT
+src/imports/epl/util/EPLConstants.java:7:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:9:	Avoid excessively long variable names like METHOD_FULLY_QUALIFIED_NAME_FORMAT
+src/imports/epl/util/EPLConstants.java:9:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:11:	Avoid excessively long variable names like VARIABLE_DECLARATION_TOKEN
+src/imports/epl/util/EPLConstants.java:11:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:13:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:15:	Avoid excessively long variable names like SINGLE_VARIABLE_TOKEN
+src/imports/epl/util/EPLConstants.java:15:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:17:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:19:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:21:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:23:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:25:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:27:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:29:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:31:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:33:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:35:	Avoid excessively long variable names like COMPARTMENT_DEF_ID
+src/imports/epl/util/EPLConstants.java:35:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:37:	fieldCommentRequirement Required
+src/imports/epl/util/EPLConstants.java:42:	Avoid excessively long variable names like COMPARTMENT_DEFINITION_REGEX
+src/imports/epl/util/EPLConstants.java:45:	Comment is too large: Line too long
+src/imports/epl/util/EPLConstants.java:47:	Avoid excessively long variable names like REGULAR_RULE_REGEX
+src/imports/epl/util/EPLConstants.java:52:	Avoid excessively long variable names like ONLY_MAY_REGULAR_RULE_REGEX
+src/imports/epl/util/EPLConstants.java:57:	Avoid excessively long variable names like REGULAR_REMAP_RULE_REGEX
+src/imports/epl/util/EPLConstants.java:62:	Avoid excessively long variable names like ONLY_MAY_REMAP_RULE_REGEX
+src/imports/epl/util/EPLConstants.java:67:	Avoid excessively long variable names like WILDCARD_REPLACEMENT_REGEX
+src/imports/epl/util/EPLConstants.java:69:	Avoid excessively long variable names like REMAP_EXCEPTION_PAIR_REGEX
+src/imports/epl/util/EPLConstants.java:69:	fieldCommentRequirement Required
+src/imports/epl/util/EPLUtils.java:4:	Each class should declare at least one constructor
+src/imports/epl/util/EPLUtils.java:4:	headerCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:30:	headerCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:32:	fieldCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:33:	Variables that are final and static should be all capitals, 'markers' is not all capitals.
+src/imports/excite/AplicacaoJar.java:33:	fieldCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:34:	fieldCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:36:	Found 'UR'-anomaly for variable 'c' (lines '36'-'40').
+src/imports/excite/AplicacaoJar.java:36:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/AplicacaoJar.java:36:	publicMethodCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:38:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/AplicacaoJar.java:40:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/AplicacaoJar.java:43:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/AplicacaoJar.java:49:	publicMethodCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:54:	Avoid variables with short names like m
+src/imports/excite/AplicacaoJar.java:54:	Found 'UR'-anomaly for variable 'marker' (lines '54'-'58').
+src/imports/excite/AplicacaoJar.java:54:	Parameter 'm' is not assigned and could be declared final
+src/imports/excite/AplicacaoJar.java:54:	publicMethodCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:56:	Local variable 'marker' could be declared final
+src/imports/excite/AplicacaoJar.java:58:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/AplicacaoJar.java:66:	Found 'UR'-anomaly for variable 'm' (lines '66'-'71').
+src/imports/excite/AplicacaoJar.java:66:	publicMethodCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:68:	Local variable 'violations' could be declared final
+src/imports/excite/AplicacaoJar.java:69:	Local variable 'm' could be declared final
+src/imports/excite/AplicacaoJar.java:76:	Found 'UR'-anomaly for variable 'iProject' (lines '76'-'89').
+src/imports/excite/AplicacaoJar.java:79:	Local variable 'workspace' could be declared final
+src/imports/excite/AplicacaoJar.java:81:	Local variable 'root' could be declared final
+src/imports/excite/AplicacaoJar.java:81:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/AplicacaoJar.java:83:	Local variable 'projects' could be declared final
+src/imports/excite/AplicacaoJar.java:83:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/AplicacaoJar.java:85:	Local variable 'iProject' could be declared final
+src/imports/excite/AplicacaoJar.java:96:	Avoid printStackTrace(); use a logger call instead.
+src/imports/excite/AplicacaoJar.java:100:	Avoid printStackTrace(); use a logger call instead.
+src/imports/excite/AplicacaoJar.java:104:	Avoid printStackTrace(); use a logger call instead.
+src/imports/excite/AplicacaoJar.java:109:	Found 'UR'-anomaly for variable 'mypackage' (lines '109'-'115').
+src/imports/excite/AplicacaoJar.java:109:	Found 'UR'-anomaly for variable 'unit' (lines '109'-'121').
+src/imports/excite/AplicacaoJar.java:109:	Parameter 'project' is not assigned and could be declared final
+src/imports/excite/AplicacaoJar.java:111:	Local variable 'packages' could be declared final
+src/imports/excite/AplicacaoJar.java:111:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/AplicacaoJar.java:112:	Local variable 'mypackage' could be declared final
+src/imports/excite/AplicacaoJar.java:115:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/AplicacaoJar.java:117:	These nested if statements could be combined
+src/imports/excite/AplicacaoJar.java:119:	Local variable 'unit' could be declared final
+src/imports/excite/AplicacaoJar.java:121:	Local variable 'compilationUnit' could be declared final
+src/imports/excite/AplicacaoJar.java:122:	Avoid excessively long variable names like compilationUnitVisitor
+src/imports/excite/AplicacaoJar.java:122:	Avoid instantiating new objects inside loops
+src/imports/excite/AplicacaoJar.java:122:	Local variable 'compilationUnitVisitor' could be declared final
+src/imports/excite/AplicacaoJar.java:126:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/AplicacaoJar.java:135:	Parameter 'res' is not assigned and could be declared final
+src/imports/excite/AplicacaoJar.java:135:	Parameter 'type' is not assigned and could be declared final
+src/imports/excite/AplicacaoJar.java:141:	Parameter 'node' is not assigned and could be declared final
+src/imports/excite/AplicacaoJar.java:141:	publicMethodCommentRequirement Required
+src/imports/excite/AplicacaoJar.java:143:	Local variable 'marcador' could be declared final
+src/imports/excite/AplicacaoJar.java:149:	Found 'UR'-anomaly for variable 'm' (lines '149'-'155').
+src/imports/excite/AplicacaoJar.java:149:	Parameter 'res' is not assigned and could be declared final
+src/imports/excite/AplicacaoJar.java:151:	Local variable 'm' could be declared final
+src/imports/excite/AplicacaoJar.java:153:	Found 'DD'-anomaly for variable 'marker' (lines '153'-'154').
+src/imports/excite/AplicacaoJar.java:155:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/AplicacaoJar.java:156:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/AplicacaoJar.java:157:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/AplicacaoJar.java:158:	System.out.println is used
+src/imports/excite/AplicacaoJar.java:163:	Avoid variables with short names like cu
+src/imports/excite/AplicacaoJar.java:163:	Parameter 'cu' is not assigned and could be declared final
+src/imports/excite/AplicacaoJar.java:165:	Local variable 'parser' could be declared final
+src/imports/excite/AplicacaoJar.java:166:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/AplicacaoJar.java:167:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/AplicacaoJar.java:168:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/AplicacaoJar.java:169:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/CatchClauseVisitor.java:9:	Avoid unused imports such as 'excite.verifiers.PropagateVerifier'
+src/imports/excite/CatchClauseVisitor.java:13:	headerCommentRequirement Required
+src/imports/excite/CatchClauseVisitor.java:15:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/excite/CatchClauseVisitor.java:15:	Private field 'method' could be made final; it is only initialized in the declaration or constructor.
+src/imports/excite/CatchClauseVisitor.java:15:	fieldCommentRequirement Required
+src/imports/excite/CatchClauseVisitor.java:16:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/excite/CatchClauseVisitor.java:16:	Perhaps 'isHandle' could be replaced by a local variable.
+src/imports/excite/CatchClauseVisitor.java:16:	fieldCommentRequirement Required
+src/imports/excite/CatchClauseVisitor.java:18:	It is a good practice to call super() in a constructor
+src/imports/excite/CatchClauseVisitor.java:18:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/CatchClauseVisitor.java:18:	publicMethodCommentRequirement Required
+src/imports/excite/CatchClauseVisitor.java:23:	publicMethodCommentRequirement Required
+src/imports/excite/CatchClauseVisitor.java:29:	Parameter 'node' is not assigned and could be declared final
+src/imports/excite/CatchClauseVisitor.java:29:	publicMethodCommentRequirement Required
+src/imports/excite/CatchClauseVisitor.java:31:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/CatchClauseVisitor.java:31:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/CatchClauseVisitor.java:31:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/CatchClauseVisitor.java:32:	Local variable 'icVisitor' could be declared final
+src/imports/excite/CatchClauseVisitor.java:33:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/CatchClauseVisitor.java:35:	Found 'DU'-anomaly for variable 'exCatched' (lines '35'-'48').
+src/imports/excite/CatchClauseVisitor.java:35:	Local variable 'exCatched' could be declared final
+src/imports/excite/CatchClauseVisitor.java:36:	Local variable 'tsVisitor' could be declared final
+src/imports/excite/CatchClauseVisitor.java:37:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/CatchClauseVisitor.java:42:	Local variable 'marcador' could be declared final
+src/imports/excite/CatchClauseVisitor.java:44:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/CatchClauseVisitor.java:44:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/CompilationUnitVisitor.java:12:	Each class should declare at least one constructor
+src/imports/excite/CompilationUnitVisitor.java:12:	headerCommentRequirement Required
+src/imports/excite/CompilationUnitVisitor.java:14:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/excite/CompilationUnitVisitor.java:14:	Perhaps 'method' could be replaced by a local variable.
+src/imports/excite/CompilationUnitVisitor.java:14:	fieldCommentRequirement Required
+src/imports/excite/CompilationUnitVisitor.java:17:	Found 'UR'-anomaly for variable 's' (lines '17'-'36').
+src/imports/excite/CompilationUnitVisitor.java:17:	Found 'UR'-anomaly for variable 's' (lines '17'-'54').
+src/imports/excite/CompilationUnitVisitor.java:17:	Parameter 'node' is not assigned and could be declared final
+src/imports/excite/CompilationUnitVisitor.java:17:	publicMethodCommentRequirement Required
+src/imports/excite/CompilationUnitVisitor.java:21:	Local variable 'mdVisitor' could be declared final
+src/imports/excite/CompilationUnitVisitor.java:25:	Local variable 'ccVisitor' could be declared final
+src/imports/excite/CompilationUnitVisitor.java:29:	Local variable 'tsVisitor' could be declared final
+src/imports/excite/CompilationUnitVisitor.java:33:	System.out.println is used
+src/imports/excite/CompilationUnitVisitor.java:34:	Local variable 's' could be declared final
+src/imports/excite/CompilationUnitVisitor.java:36:	System.out.println is used
+src/imports/excite/CompilationUnitVisitor.java:39:	System.out.println is used
+src/imports/excite/CompilationUnitVisitor.java:40:	Local variable 's' could be declared final
+src/imports/excite/CompilationUnitVisitor.java:42:	System.out.println is used
+src/imports/excite/CompilationUnitVisitor.java:45:	System.out.println is used
+src/imports/excite/CompilationUnitVisitor.java:46:	Local variable 's' could be declared final
+src/imports/excite/CompilationUnitVisitor.java:48:	System.out.println is used
+src/imports/excite/CompilationUnitVisitor.java:51:	System.out.println is used
+src/imports/excite/CompilationUnitVisitor.java:52:	Local variable 's' could be declared final
+src/imports/excite/CompilationUnitVisitor.java:54:	System.out.println is used
+src/imports/excite/CompilationUnitVisitor.java:57:	System.out.println is used
+src/imports/excite/CompilationUnitVisitor.java:58:	Local variable 's' could be declared final
+src/imports/excite/CompilationUnitVisitor.java:60:	System.out.println is used
+src/imports/excite/InstanceCreatorVisitor.java:6:	Each class should declare at least one constructor
+src/imports/excite/InstanceCreatorVisitor.java:6:	headerCommentRequirement Required
+src/imports/excite/InstanceCreatorVisitor.java:8:	Avoid excessively long variable names like classInstanceCreationType
+src/imports/excite/InstanceCreatorVisitor.java:8:	Avoid using redundant field initializer for 'classInstanceCreationType'
+src/imports/excite/InstanceCreatorVisitor.java:8:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/excite/InstanceCreatorVisitor.java:8:	fieldCommentRequirement Required
+src/imports/excite/InstanceCreatorVisitor.java:11:	Parameter 'node' is not assigned and could be declared final
+src/imports/excite/InstanceCreatorVisitor.java:11:	publicMethodCommentRequirement Required
+src/imports/excite/InstanceCreatorVisitor.java:13:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/InstanceCreatorVisitor.java:13:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/InstanceCreatorVisitor.java:17:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:3:	headerCommentRequirement Required
+src/imports/excite/Marker.java:5:	fieldCommentRequirement Required
+src/imports/excite/Marker.java:6:	fieldCommentRequirement Required
+src/imports/excite/Marker.java:7:	fieldCommentRequirement Required
+src/imports/excite/Marker.java:9:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:13:	Assigning an Object to null is a code smell.  Consider refactoring.
+src/imports/excite/Marker.java:16:	Parameter 'firstIndex' is not assigned and could be declared final
+src/imports/excite/Marker.java:16:	Parameter 'lastIndex' is not assigned and could be declared final
+src/imports/excite/Marker.java:16:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:20:	Assigning an Object to null is a code smell.  Consider refactoring.
+src/imports/excite/Marker.java:23:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:28:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:33:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:38:	Parameter 'length' is not assigned and could be declared final
+src/imports/excite/Marker.java:38:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:43:	Parameter 'startPosition' is not assigned and could be declared final
+src/imports/excite/Marker.java:43:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:48:	Parameter 'name' is not assigned and could be declared final
+src/imports/excite/Marker.java:48:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:54:	publicMethodCommentRequirement Required
+src/imports/excite/Marker.java:56:	Avoid variables with short names like sb
+src/imports/excite/Marker.java:56:	Local variable 'sb' could be declared final
+src/imports/excite/Marker.java:56:	StringBuffer constructor is initialized with size 16, but has at least 33 characters appended.
+src/imports/excite/Marker.java:58:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/Marker.java:59:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/Marker.java:60:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/Marker.java:61:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/Marker.java:62:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/MethodDeclarationVisitor.java:10:	headerCommentRequirement Required
+src/imports/excite/MethodDeclarationVisitor.java:12:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/excite/MethodDeclarationVisitor.java:12:	fieldCommentRequirement Required
+src/imports/excite/MethodDeclarationVisitor.java:14:	It is a good practice to call super() in a constructor
+src/imports/excite/MethodDeclarationVisitor.java:14:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/MethodDeclarationVisitor.java:14:	publicMethodCommentRequirement Required
+src/imports/excite/MethodDeclarationVisitor.java:19:	publicMethodCommentRequirement Required
+src/imports/excite/MethodDeclarationVisitor.java:25:	Parameter 'node' is not assigned and could be declared final
+src/imports/excite/MethodDeclarationVisitor.java:25:	publicMethodCommentRequirement Required
+src/imports/excite/MethodDeclarationVisitor.java:27:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:28:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:28:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:28:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:29:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:29:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:29:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:29:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:30:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:30:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:30:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:32:	Local variable 'marcador' could be declared final
+src/imports/excite/MethodDeclarationVisitor.java:33:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:33:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:38:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:38:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:40:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/MethodDeclarationVisitor.java:40:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:12:	Avoid unused imports such as 'excite.verifiers.PropagateVerifier'
+src/imports/excite/ThrowStatementVisitor.java:18:	headerCommentRequirement Required
+src/imports/excite/ThrowStatementVisitor.java:20:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/excite/ThrowStatementVisitor.java:20:	fieldCommentRequirement Required
+src/imports/excite/ThrowStatementVisitor.java:21:	Field isRaise has the same name as a method
+src/imports/excite/ThrowStatementVisitor.java:21:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/excite/ThrowStatementVisitor.java:21:	fieldCommentRequirement Required
+src/imports/excite/ThrowStatementVisitor.java:23:	It is a good practice to call super() in a constructor
+src/imports/excite/ThrowStatementVisitor.java:23:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/ThrowStatementVisitor.java:23:	publicMethodCommentRequirement Required
+src/imports/excite/ThrowStatementVisitor.java:29:	publicMethodCommentRequirement Required
+src/imports/excite/ThrowStatementVisitor.java:34:	publicMethodCommentRequirement Required
+src/imports/excite/ThrowStatementVisitor.java:40:	Parameter 'node' is not assigned and could be declared final
+src/imports/excite/ThrowStatementVisitor.java:40:	publicMethodCommentRequirement Required
+src/imports/excite/ThrowStatementVisitor.java:47:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/ThrowStatementVisitor.java:59:	These nested if statements could be combined
+src/imports/excite/ThrowStatementVisitor.java:68:	Parameter 'catchClause' is not assigned and could be declared final
+src/imports/excite/ThrowStatementVisitor.java:68:	Parameter 'throwStatement' is not assigned and could be declared final
+src/imports/excite/ThrowStatementVisitor.java:70:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:70:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:70:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:71:	Local variable 'visitor' could be declared final
+src/imports/excite/ThrowStatementVisitor.java:72:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:74:	Local variable 'from' could be declared final
+src/imports/excite/ThrowStatementVisitor.java:74:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:74:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:74:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:75:	Avoid variables with short names like to
+src/imports/excite/ThrowStatementVisitor.java:75:	Local variable 'to' could be declared final
+src/imports/excite/ThrowStatementVisitor.java:77:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/ThrowStatementVisitor.java:81:	Local variable 'marcador' could be declared final
+src/imports/excite/ThrowStatementVisitor.java:82:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:82:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:86:	Local variable 'pair' could be declared final
+src/imports/excite/ThrowStatementVisitor.java:88:	Local variable 'marcador' could be declared final
+src/imports/excite/ThrowStatementVisitor.java:89:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:89:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:93:	Parameter 'node' is not assigned and could be declared final
+src/imports/excite/ThrowStatementVisitor.java:97:	Local variable 'marcador' could be declared final
+src/imports/excite/ThrowStatementVisitor.java:98:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:98:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:99:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/ThrowStatementVisitor.java:99:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/Violation.java:5:	headerCommentRequirement Required
+src/imports/excite/Violation.java:7:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/excite/Violation.java:7:	Private field 'methodName' could be made final; it is only initialized in the declaration or constructor.
+src/imports/excite/Violation.java:7:	fieldCommentRequirement Required
+src/imports/excite/Violation.java:8:	Found non-transient, non-static member. Please mark as transient or provide accessors.
+src/imports/excite/Violation.java:8:	It is somewhat confusing to have a field name matching the declaring class name
+src/imports/excite/Violation.java:8:	Private field 'violation' could be made final; it is only initialized in the declaration or constructor.
+src/imports/excite/Violation.java:8:	fieldCommentRequirement Required
+src/imports/excite/Violation.java:10:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/Violation.java:10:	Parameter 'violation' is not assigned and could be declared final
+src/imports/excite/Violation.java:10:	publicMethodCommentRequirement Required
+src/imports/excite/Violation.java:16:	publicMethodCommentRequirement Required
+src/imports/excite/Violation.java:21:	publicMethodCommentRequirement Required
+src/imports/excite/Violation.java:27:	Ensure you override both equals() and hashCode()
+src/imports/excite/Violation.java:27:	Parameter 'obj' is not assigned and could be declared final
+src/imports/excite/Violation.java:27:	publicMethodCommentRequirement Required
+src/imports/excite/Violation.java:29:	Local variable 'vio' could be declared final
+src/imports/excite/Violation.java:30:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/Violation.java:30:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/Violation.java:30:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/Violation.java:32:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/Violation.java:32:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/Violation.java:32:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/Violation.java:32:	These nested if statements could be combined
+src/imports/excite/Violation.java:34:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/Violation.java:41:	publicMethodCommentRequirement Required
+src/imports/excite/Violation.java:43:	Avoid variables with short names like sb
+src/imports/excite/Violation.java:43:	Local variable 'sb' could be declared final
+src/imports/excite/Violation.java:43:	StringBuffer constructor is initialized with size 16, but has at least 23 characters appended.
+src/imports/excite/Violation.java:45:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/Violation.java:46:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/Violation.java:47:	Avoid appending characters as strings in StringBuffer.append.
+src/imports/excite/Violation.java:47:	StringBuffer (or StringBuilder).append is called 2 consecutive times with literal Strings. Use a single append with a single combined String.
+src/imports/excite/Violation.java:47:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/Violation.java:48:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/Violation.java:49:	StringBuffer (or StringBuilder).append is called consecutively without reusing the target variable.
+src/imports/excite/Violation.java:50:	Avoid appending characters as strings in StringBuffer.append.
+src/imports/excite/verifiers/HandleVerifier.java:15:	A class which only has private constructors should be final
+src/imports/excite/verifiers/HandleVerifier.java:15:	headerCommentRequirement Required
+src/imports/excite/verifiers/HandleVerifier.java:17:	Avoid using redundant field initializer for 'instance'
+src/imports/excite/verifiers/HandleVerifier.java:17:	fieldCommentRequirement Required
+src/imports/excite/verifiers/HandleVerifier.java:24:	Double checked locking is not thread safe in Java.
+src/imports/excite/verifiers/HandleVerifier.java:24:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/HandleVerifier.java:26:	Singleton is not thread safe
+src/imports/excite/verifiers/HandleVerifier.java:39:	Parameter 'name' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:39:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/HandleVerifier.java:41:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:44:	Avoid variables with short names like m
+src/imports/excite/verifiers/HandleVerifier.java:44:	Parameter 'm' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:44:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:44:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/HandleVerifier.java:50:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:50:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:50:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:51:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:53:	Local variable 'fIndex' could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:54:	Local variable 'lIndex' could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:60:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/HandleVerifier.java:60:	Found 'UR'-anomaly for variable 'exception' (lines '60'-'71').
+src/imports/excite/verifiers/HandleVerifier.java:60:	Found 'UR'-anomaly for variable 'r' (lines '60'-'65').
+src/imports/excite/verifiers/HandleVerifier.java:60:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:60:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:60:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:61:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:63:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:63:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:65:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:65:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:67:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:67:	These nested if statements could be combined
+src/imports/excite/verifiers/HandleVerifier.java:69:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:71:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/HandleVerifier.java:71:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:75:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/HandleVerifier.java:84:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/HandleVerifier.java:84:	Found 'UR'-anomaly for variable 'exception' (lines '84'-'95').
+src/imports/excite/verifiers/HandleVerifier.java:84:	Found 'UR'-anomaly for variable 'r' (lines '84'-'89').
+src/imports/excite/verifiers/HandleVerifier.java:84:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:84:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:84:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:85:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:87:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:87:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:89:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:89:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:91:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:91:	These nested if statements could be combined
+src/imports/excite/verifiers/HandleVerifier.java:93:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:95:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/HandleVerifier.java:95:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:99:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/HandleVerifier.java:108:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/HandleVerifier.java:108:	Found 'UR'-anomaly for variable 'r' (lines '108'-'113').
+src/imports/excite/verifiers/HandleVerifier.java:108:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:108:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:108:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:109:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:111:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/HandleVerifier.java:111:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:113:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:113:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:115:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:115:	These nested if statements could be combined
+src/imports/excite/verifiers/HandleVerifier.java:117:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/HandleVerifier.java:117:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/HandleVerifier.java:117:	These nested if statements could be combined
+src/imports/excite/verifiers/HandleVerifier.java:121:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/PropagateVerifier.java:19:	A class which only has private constructors should be final
+src/imports/excite/verifiers/PropagateVerifier.java:19:	headerCommentRequirement Required
+src/imports/excite/verifiers/PropagateVerifier.java:21:	Avoid using redundant field initializer for 'instance'
+src/imports/excite/verifiers/PropagateVerifier.java:21:	fieldCommentRequirement Required
+src/imports/excite/verifiers/PropagateVerifier.java:28:	Double checked locking is not thread safe in Java.
+src/imports/excite/verifiers/PropagateVerifier.java:28:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/PropagateVerifier.java:30:	Singleton is not thread safe
+src/imports/excite/verifiers/PropagateVerifier.java:43:	Parameter 'name' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:43:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/PropagateVerifier.java:45:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:48:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:48:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:48:	Parameter 'node' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:48:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/PropagateVerifier.java:50:	Local variable 'iter' could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:50:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:52:	Local variable 'exceptionType' could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:53:	Avoid instantiating new objects inside loops
+src/imports/excite/verifiers/PropagateVerifier.java:53:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:53:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/verifiers/PropagateVerifier.java:54:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/verifiers/PropagateVerifier.java:54:	Potential violation of Law of Demeter (object not created locally)
+src/imports/excite/verifiers/PropagateVerifier.java:60:	Avoid variables with short names like m
+src/imports/excite/verifiers/PropagateVerifier.java:60:	Parameter 'm' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:60:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:60:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/PropagateVerifier.java:65:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:65:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:65:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:65:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:67:	Local variable 'fIndex' could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:68:	Local variable 'lIndex' could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:74:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/PropagateVerifier.java:74:	Found 'UR'-anomaly for variable 'exception' (lines '74'-'84').
+src/imports/excite/verifiers/PropagateVerifier.java:74:	Found 'UR'-anomaly for variable 'r' (lines '74'-'78').
+src/imports/excite/verifiers/PropagateVerifier.java:74:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:74:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:74:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:74:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:76:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:76:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:78:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:78:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:80:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:80:	These nested if statements could be combined
+src/imports/excite/verifiers/PropagateVerifier.java:82:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:84:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/PropagateVerifier.java:84:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:88:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/PropagateVerifier.java:97:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/PropagateVerifier.java:97:	Found 'UR'-anomaly for variable 'exception' (lines '97'-'107').
+src/imports/excite/verifiers/PropagateVerifier.java:97:	Found 'UR'-anomaly for variable 'r' (lines '97'-'101').
+src/imports/excite/verifiers/PropagateVerifier.java:97:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:97:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:97:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:97:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:99:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:99:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:101:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:101:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:103:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:103:	These nested if statements could be combined
+src/imports/excite/verifiers/PropagateVerifier.java:105:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:107:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/PropagateVerifier.java:107:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:111:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/PropagateVerifier.java:120:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/PropagateVerifier.java:120:	Found 'UR'-anomaly for variable 'r' (lines '120'-'124').
+src/imports/excite/verifiers/PropagateVerifier.java:120:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:120:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:120:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:120:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:122:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/PropagateVerifier.java:122:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:124:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:124:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:126:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:126:	These nested if statements could be combined
+src/imports/excite/verifiers/PropagateVerifier.java:128:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/PropagateVerifier.java:128:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/PropagateVerifier.java:128:	These nested if statements could be combined
+src/imports/excite/verifiers/PropagateVerifier.java:132:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/RaiseVerifier.java:18:	A class which only has private constructors should be final
+src/imports/excite/verifiers/RaiseVerifier.java:18:	headerCommentRequirement Required
+src/imports/excite/verifiers/RaiseVerifier.java:20:	Avoid using redundant field initializer for 'instance'
+src/imports/excite/verifiers/RaiseVerifier.java:20:	fieldCommentRequirement Required
+src/imports/excite/verifiers/RaiseVerifier.java:27:	Double checked locking is not thread safe in Java.
+src/imports/excite/verifiers/RaiseVerifier.java:27:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/RaiseVerifier.java:29:	Singleton is not thread safe
+src/imports/excite/verifiers/RaiseVerifier.java:42:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:42:	Parameter 'node' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:42:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/RaiseVerifier.java:44:	Local variable 'visitor' could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:46:	Local variable 'exceptionType' could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:52:	Avoid variables with short names like m
+src/imports/excite/verifiers/RaiseVerifier.java:52:	Parameter 'm' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:52:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:52:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/RaiseVerifier.java:57:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:57:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:57:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:57:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:59:	Local variable 'fIndex' could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:60:	Local variable 'lIndex' could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:66:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/RaiseVerifier.java:66:	Found 'UR'-anomaly for variable 'exception' (lines '66'-'76').
+src/imports/excite/verifiers/RaiseVerifier.java:66:	Found 'UR'-anomaly for variable 'r' (lines '66'-'70').
+src/imports/excite/verifiers/RaiseVerifier.java:66:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:66:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:66:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:66:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:68:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:68:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:70:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:70:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:72:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:72:	These nested if statements could be combined
+src/imports/excite/verifiers/RaiseVerifier.java:74:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:76:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/RaiseVerifier.java:76:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:80:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/RaiseVerifier.java:89:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/RaiseVerifier.java:89:	Found 'UR'-anomaly for variable 'exception' (lines '89'-'99').
+src/imports/excite/verifiers/RaiseVerifier.java:89:	Found 'UR'-anomaly for variable 'r' (lines '89'-'93').
+src/imports/excite/verifiers/RaiseVerifier.java:89:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:89:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:89:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:89:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:91:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:91:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:93:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:93:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:95:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:95:	These nested if statements could be combined
+src/imports/excite/verifiers/RaiseVerifier.java:97:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:99:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/RaiseVerifier.java:99:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:103:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/RaiseVerifier.java:112:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/RaiseVerifier.java:112:	Found 'UR'-anomaly for variable 'r' (lines '112'-'116').
+src/imports/excite/verifiers/RaiseVerifier.java:112:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:112:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:112:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:112:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:114:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/RaiseVerifier.java:114:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:116:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:116:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:118:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:118:	These nested if statements could be combined
+src/imports/excite/verifiers/RaiseVerifier.java:120:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/RaiseVerifier.java:120:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RaiseVerifier.java:120:	These nested if statements could be combined
+src/imports/excite/verifiers/RaiseVerifier.java:124:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/RemapVerifier.java:8:	Avoid unused imports such as 'epl.model.JavaType'
+src/imports/excite/verifiers/RemapVerifier.java:17:	A class which only has private constructors should be final
+src/imports/excite/verifiers/RemapVerifier.java:17:	headerCommentRequirement Required
+src/imports/excite/verifiers/RemapVerifier.java:19:	Avoid using redundant field initializer for 'instance'
+src/imports/excite/verifiers/RemapVerifier.java:19:	fieldCommentRequirement Required
+src/imports/excite/verifiers/RemapVerifier.java:26:	Double checked locking is not thread safe in Java.
+src/imports/excite/verifiers/RemapVerifier.java:26:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/RemapVerifier.java:28:	Singleton is not thread safe
+src/imports/excite/verifiers/RemapVerifier.java:42:	Found 'UR'-anomaly for variable 'par' (lines '42'-'52').
+src/imports/excite/verifiers/RemapVerifier.java:42:	Parameter 'pares' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:44:	Local variable 'novosPares' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:45:	Avoid variables with short names like sb
+src/imports/excite/verifiers/RemapVerifier.java:45:	Found 'DD'-anomaly for variable 'sb' (lines '45'-'49').
+src/imports/excite/verifiers/RemapVerifier.java:45:	Found 'DU'-anomaly for variable 'sb' (lines '45'-'59').
+src/imports/excite/verifiers/RemapVerifier.java:47:	Local variable 'par' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:49:	Avoid instantiating new objects inside loops
+src/imports/excite/verifiers/RemapVerifier.java:61:	Avoid variables with short names like m
+src/imports/excite/verifiers/RemapVerifier.java:61:	Parameter 'm' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:61:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:61:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/RemapVerifier.java:66:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:66:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:66:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:66:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:68:	Local variable 'fIndex' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:69:	Local variable 'lIndex' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:70:	Avoid variables with short names like ex
+src/imports/excite/verifiers/RemapVerifier.java:70:	Local variable 'ex' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:76:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/RemapVerifier.java:76:	Found 'UR'-anomaly for variable 'exception' (lines '76'-'86').
+src/imports/excite/verifiers/RemapVerifier.java:76:	Found 'UR'-anomaly for variable 'r' (lines '76'-'80').
+src/imports/excite/verifiers/RemapVerifier.java:76:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:76:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:76:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:76:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:78:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:78:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:80:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:80:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:82:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:82:	These nested if statements could be combined
+src/imports/excite/verifiers/RemapVerifier.java:84:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:86:	Avoid calling toString() on String objects; this is unnecessary.
+src/imports/excite/verifiers/RemapVerifier.java:86:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/RemapVerifier.java:86:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:90:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/RemapVerifier.java:99:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/RemapVerifier.java:99:	Found 'UR'-anomaly for variable 'exception' (lines '99'-'109').
+src/imports/excite/verifiers/RemapVerifier.java:99:	Found 'UR'-anomaly for variable 'r' (lines '99'-'103').
+src/imports/excite/verifiers/RemapVerifier.java:99:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:99:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:99:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:99:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:101:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:101:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:103:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:103:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:105:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:105:	These nested if statements could be combined
+src/imports/excite/verifiers/RemapVerifier.java:107:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:109:	Avoid calling toString() on String objects; this is unnecessary.
+src/imports/excite/verifiers/RemapVerifier.java:109:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/RemapVerifier.java:109:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:113:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/RemapVerifier.java:122:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/RemapVerifier.java:122:	Found 'UR'-anomaly for variable 'r' (lines '122'-'126').
+src/imports/excite/verifiers/RemapVerifier.java:122:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:122:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:122:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:122:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:124:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/RemapVerifier.java:124:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:126:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:126:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:128:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:128:	These nested if statements could be combined
+src/imports/excite/verifiers/RemapVerifier.java:130:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/RemapVerifier.java:130:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RemapVerifier.java:130:	These nested if statements could be combined
+src/imports/excite/verifiers/RemapVerifier.java:134:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/RethrowVerifier.java:15:	A class which only has private constructors should be final
+src/imports/excite/verifiers/RethrowVerifier.java:15:	headerCommentRequirement Required
+src/imports/excite/verifiers/RethrowVerifier.java:17:	Avoid using redundant field initializer for 'instance'
+src/imports/excite/verifiers/RethrowVerifier.java:17:	fieldCommentRequirement Required
+src/imports/excite/verifiers/RethrowVerifier.java:24:	Double checked locking is not thread safe in Java.
+src/imports/excite/verifiers/RethrowVerifier.java:24:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/RethrowVerifier.java:26:	Singleton is not thread safe
+src/imports/excite/verifiers/RethrowVerifier.java:40:	Avoid variables with short names like m
+src/imports/excite/verifiers/RethrowVerifier.java:40:	Parameter 'm' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:40:	Parameter 'method' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:40:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/RethrowVerifier.java:45:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:45:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:45:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:45:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:47:	Local variable 'fIndex' could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:48:	Local variable 'lIndex' could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:54:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/RethrowVerifier.java:54:	Found 'UR'-anomaly for variable 'exception' (lines '54'-'64').
+src/imports/excite/verifiers/RethrowVerifier.java:54:	Found 'UR'-anomaly for variable 'r' (lines '54'-'58').
+src/imports/excite/verifiers/RethrowVerifier.java:54:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:54:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:54:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:54:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:56:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:56:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:58:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:58:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:60:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:60:	These nested if statements could be combined
+src/imports/excite/verifiers/RethrowVerifier.java:62:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:64:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/RethrowVerifier.java:64:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:68:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/RethrowVerifier.java:77:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/RethrowVerifier.java:77:	Found 'UR'-anomaly for variable 'exception' (lines '77'-'87').
+src/imports/excite/verifiers/RethrowVerifier.java:77:	Found 'UR'-anomaly for variable 'r' (lines '77'-'81').
+src/imports/excite/verifiers/RethrowVerifier.java:77:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:77:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:77:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:77:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:79:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:79:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:81:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:81:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:83:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:83:	These nested if statements could be combined
+src/imports/excite/verifiers/RethrowVerifier.java:85:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:87:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/RethrowVerifier.java:87:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:91:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/RethrowVerifier.java:100:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/RethrowVerifier.java:100:	Found 'UR'-anomaly for variable 'r' (lines '100'-'104').
+src/imports/excite/verifiers/RethrowVerifier.java:100:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:100:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:100:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:100:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:102:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/RethrowVerifier.java:102:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:104:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:104:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:106:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:106:	These nested if statements could be combined
+src/imports/excite/verifiers/RethrowVerifier.java:108:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/RethrowVerifier.java:108:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/RethrowVerifier.java:108:	These nested if statements could be combined
+src/imports/excite/verifiers/RethrowVerifier.java:112:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/Verifier.java:1:	Possible God class (WMC=54, ATFD=29, TCC=0.0)
+src/imports/excite/verifiers/Verifier.java:15:	A class which only has private constructors should be final
+src/imports/excite/verifiers/Verifier.java:15:	headerCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:16:	This class has too many methods, consider refactoring it.
+src/imports/excite/verifiers/Verifier.java:17:	fieldCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:18:	Avoid using redundant field initializer for 'cannotViolations'
+src/imports/excite/verifiers/Verifier.java:18:	Possible unsafe assignment to a non-final static field in a constructor.
+src/imports/excite/verifiers/Verifier.java:18:	fieldCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:19:	Avoid using redundant field initializer for 'mayOnlyViolations'
+src/imports/excite/verifiers/Verifier.java:19:	Possible unsafe assignment to a non-final static field in a constructor.
+src/imports/excite/verifiers/Verifier.java:19:	fieldCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:20:	Avoid using redundant field initializer for 'onlyMayViolations'
+src/imports/excite/verifiers/Verifier.java:20:	Possible unsafe assignment to a non-final static field in a constructor.
+src/imports/excite/verifiers/Verifier.java:20:	fieldCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:21:	Avoid using redundant field initializer for 'mustViolations'
+src/imports/excite/verifiers/Verifier.java:21:	Possible unsafe assignment to a non-final static field in a constructor.
+src/imports/excite/verifiers/Verifier.java:21:	fieldCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:31:	Double checked locking is not thread safe in Java.
+src/imports/excite/verifiers/Verifier.java:31:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:33:	Singleton is not thread safe
+src/imports/excite/verifiers/Verifier.java:46:	Found 'UR'-anomaly for variable 'exception' (lines '46'-'56').
+src/imports/excite/verifiers/Verifier.java:46:	Found 'UR'-anomaly for variable 'r' (lines '46'-'50').
+src/imports/excite/verifiers/Verifier.java:46:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:46:	Parameter 'dependecy' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:46:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:46:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:46:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:48:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/Verifier.java:48:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:50:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:50:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:52:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:52:	These nested if statements could be combined
+src/imports/excite/verifiers/Verifier.java:54:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/Verifier.java:56:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/Verifier.java:56:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:58:	Avoid instantiating new objects inside loops
+src/imports/excite/verifiers/Verifier.java:58:	Avoid variables with short names like v
+src/imports/excite/verifiers/Verifier.java:58:	Local variable 'v' could be declared final
+src/imports/excite/verifiers/Verifier.java:62:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/Verifier.java:71:	Found 'UR'-anomaly for variable 'exception' (lines '71'-'81').
+src/imports/excite/verifiers/Verifier.java:71:	Found 'UR'-anomaly for variable 'r' (lines '71'-'75').
+src/imports/excite/verifiers/Verifier.java:71:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:71:	Parameter 'dependecy' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:71:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:71:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:71:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:73:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/Verifier.java:73:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:75:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:75:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:77:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:77:	These nested if statements could be combined
+src/imports/excite/verifiers/Verifier.java:79:	Local variable 'exception' could be declared final
+src/imports/excite/verifiers/Verifier.java:81:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/Verifier.java:81:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:83:	Avoid instantiating new objects inside loops
+src/imports/excite/verifiers/Verifier.java:83:	Avoid variables with short names like v
+src/imports/excite/verifiers/Verifier.java:83:	Local variable 'v' could be declared final
+src/imports/excite/verifiers/Verifier.java:87:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/Verifier.java:96:	Found 'UR'-anomaly for variable 'r' (lines '96'-'100').
+src/imports/excite/verifiers/Verifier.java:96:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:96:	Parameter 'dependecy' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:96:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:96:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:96:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:98:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/Verifier.java:98:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:100:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:100:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:102:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:102:	These nested if statements could be combined
+src/imports/excite/verifiers/Verifier.java:104:	Deeply nested if..then statements are hard to read
+src/imports/excite/verifiers/Verifier.java:104:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:104:	These nested if statements could be combined
+src/imports/excite/verifiers/Verifier.java:106:	Avoid instantiating new objects inside loops
+src/imports/excite/verifiers/Verifier.java:106:	Avoid variables with short names like v
+src/imports/excite/verifiers/Verifier.java:106:	Local variable 'v' could be declared final
+src/imports/excite/verifiers/Verifier.java:110:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/Verifier.java:118:	Found 'UR'-anomaly for variable 'c' (lines '118'-'122').
+src/imports/excite/verifiers/Verifier.java:118:	Found 'UR'-anomaly for variable 'ex' (lines '118'-'124').
+src/imports/excite/verifiers/Verifier.java:118:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:118:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:120:	Local variable 'c' could be declared final
+src/imports/excite/verifiers/Verifier.java:120:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:122:	Local variable 'ex' could be declared final
+src/imports/excite/verifiers/Verifier.java:126:	A method should have only one exit point, and that should be the last statement in the method
+src/imports/excite/verifiers/Verifier.java:133:	Parameter 'violation' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:141:	Parameter 'violation' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:149:	Parameter 'violation' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:157:	Avoid unused private methods such as 'addMustViolation(Violation)'.
+src/imports/excite/verifiers/Verifier.java:157:	Parameter 'violation' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:165:	Found 'UR'-anomaly for variable 'v' (lines '165'-'170').
+src/imports/excite/verifiers/Verifier.java:165:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:167:	System.out.println is used
+src/imports/excite/verifiers/Verifier.java:168:	Local variable 'v' could be declared final
+src/imports/excite/verifiers/Verifier.java:170:	System.out.println is used
+src/imports/excite/verifiers/Verifier.java:174:	Found 'UR'-anomaly for variable 'v' (lines '174'-'179').
+src/imports/excite/verifiers/Verifier.java:174:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:176:	System.out.println is used
+src/imports/excite/verifiers/Verifier.java:177:	Local variable 'v' could be declared final
+src/imports/excite/verifiers/Verifier.java:179:	System.out.println is used
+src/imports/excite/verifiers/Verifier.java:183:	Found 'UR'-anomaly for variable 'v' (lines '183'-'188').
+src/imports/excite/verifiers/Verifier.java:183:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:185:	System.out.println is used
+src/imports/excite/verifiers/Verifier.java:186:	Local variable 'v' could be declared final
+src/imports/excite/verifiers/Verifier.java:188:	System.out.println is used
+src/imports/excite/verifiers/Verifier.java:192:	Found 'UR'-anomaly for variable 'v' (lines '192'-'197').
+src/imports/excite/verifiers/Verifier.java:192:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:194:	System.out.println is used
+src/imports/excite/verifiers/Verifier.java:195:	Local variable 'v' could be declared final
+src/imports/excite/verifiers/Verifier.java:197:	System.out.println is used
+src/imports/excite/verifiers/Verifier.java:201:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:201:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:201:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:201:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:201:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:203:	Local variable 'fIndex' could be declared final
+src/imports/excite/verifiers/Verifier.java:204:	Local variable 'lIndex' could be declared final
+src/imports/excite/verifiers/Verifier.java:210:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:210:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:210:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:210:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:210:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:212:	Local variable 'fIndex' could be declared final
+src/imports/excite/verifiers/Verifier.java:213:	Local variable 'lIndex' could be declared final
+src/imports/excite/verifiers/Verifier.java:219:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:219:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:219:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:219:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:219:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:221:	Local variable 'fIndex' could be declared final
+src/imports/excite/verifiers/Verifier.java:222:	Local variable 'lIndex' could be declared final
+src/imports/excite/verifiers/Verifier.java:228:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:228:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:228:	Parameter 'marcador' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:228:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:228:	publicMethodCommentRequirement Required
+src/imports/excite/verifiers/Verifier.java:230:	Local variable 'fIndex' could be declared final
+src/imports/excite/verifiers/Verifier.java:231:	Local variable 'lIndex' could be declared final
+src/imports/excite/verifiers/Verifier.java:237:	Avoid unused method parameters such as 'exceptions'.
+src/imports/excite/verifiers/Verifier.java:237:	Avoid unused method parameters such as 'marker'.
+src/imports/excite/verifiers/Verifier.java:237:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/Verifier.java:237:	Found 'UR'-anomaly for variable 'r' (lines '237'-'241').
+src/imports/excite/verifiers/Verifier.java:237:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:237:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:237:	Parameter 'marker' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:237:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:239:	Local variable 'r' could be declared final
+src/imports/excite/verifiers/Verifier.java:239:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:241:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:241:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:243:	Potential violation of Law of Demeter (method chain calls)
+src/imports/excite/verifiers/Verifier.java:243:	These nested if statements could be combined
+src/imports/excite/verifiers/Verifier.java:244:	Avoid empty if statements
+src/imports/excite/verifiers/Verifier.java:251:	Avoid unused method parameters such as 'compartment'.
+src/imports/excite/verifiers/Verifier.java:251:	Avoid unused method parameters such as 'exceptions'.
+src/imports/excite/verifiers/Verifier.java:251:	Avoid unused method parameters such as 'marker'.
+src/imports/excite/verifiers/Verifier.java:251:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/Verifier.java:251:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:251:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:251:	Parameter 'marker' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:251:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:252:	Document empty method body
+src/imports/excite/verifiers/Verifier.java:256:	Avoid unused method parameters such as 'compartment'.
+src/imports/excite/verifiers/Verifier.java:256:	Avoid unused method parameters such as 'exceptions'.
+src/imports/excite/verifiers/Verifier.java:256:	Avoid unused method parameters such as 'marker'.
+src/imports/excite/verifiers/Verifier.java:256:	Avoid unused method parameters such as 'methodName'.
+src/imports/excite/verifiers/Verifier.java:256:	Parameter 'compartment' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:256:	Parameter 'exceptions' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:256:	Parameter 'marker' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:256:	Parameter 'methodName' is not assigned and could be declared final
+src/imports/excite/verifiers/Verifier.java:257:	Document empty method body
+src/policiesplugin/handlers/ConsumirEpl.java:30:	Avoid using redundant field initializer for 'policy'
+src/policiesplugin/handlers/ConsumirEpl.java:30:	fieldCommentRequirement Required
+src/policiesplugin/handlers/ConsumirEpl.java:31:	Variables that are final and static should be all capitals, 'path' is not all capitals.
+src/policiesplugin/handlers/ConsumirEpl.java:31:	fieldCommentRequirement Required
+src/policiesplugin/handlers/ConsumirEpl.java:34:	Parameter 'event' is not assigned and could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:34:	publicMethodCommentRequirement Required
+src/policiesplugin/handlers/ConsumirEpl.java:44:	A method should have only one exit point, and that should be the last statement in the method
+src/policiesplugin/handlers/ConsumirEpl.java:48:	Local variable 'path' could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:60:	publicMethodCommentRequirement Required
+src/policiesplugin/handlers/ConsumirEpl.java:64:	A method should have only one exit point, and that should be the last statement in the method
+src/policiesplugin/handlers/ConsumirEpl.java:71:	Local variable 'chooser' could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:75:	A method should have only one exit point, and that should be the last statement in the method
+src/policiesplugin/handlers/ConsumirEpl.java:75:	Potential violation of Law of Demeter (method chain calls)
+src/policiesplugin/handlers/ConsumirEpl.java:83:	Parameter 'path' is not assigned and could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:83:	publicMethodCommentRequirement Required
+src/policiesplugin/handlers/ConsumirEpl.java:89:	Found 'UR'-anomaly for variable 'c' (lines '89'-'94').
+src/policiesplugin/handlers/ConsumirEpl.java:89:	publicMethodCommentRequirement Required
+src/policiesplugin/handlers/ConsumirEpl.java:91:	Avoid variables with short names like sb
+src/policiesplugin/handlers/ConsumirEpl.java:91:	Local variable 'sb' could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:92:	Local variable 'c' could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:105:	Found 'UR'-anomaly for variable 'r' (lines '105'-'110').
+src/policiesplugin/handlers/ConsumirEpl.java:105:	publicMethodCommentRequirement Required
+src/policiesplugin/handlers/ConsumirEpl.java:107:	Avoid variables with short names like sb
+src/policiesplugin/handlers/ConsumirEpl.java:107:	Local variable 'sb' could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:108:	Local variable 'r' could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:111:	Avoid appending characters as strings in StringBuffer.append.
+src/policiesplugin/handlers/ConsumirEpl.java:122:	Found 'UR'-anomaly for variable 'linha' (lines '122'-'129').
+src/policiesplugin/handlers/ConsumirEpl.java:122:	Parameter 'nomeArquivo' is not assigned and could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:122:	Parameter 'texto' is not assigned and could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:127:	Local variable 'linha' could be declared final
+src/policiesplugin/handlers/ConsumirEpl.java:132:	A method should have only one exit point, and that should be the last statement in the method
+src/policiesplugin/handlers/ConsumirEpl.java:135:	Avoid printStackTrace(); use a logger call instead.
+src/policiesplugin/handlers/ValidarCodigo.java:13:	Each class should declare at least one constructor
+src/policiesplugin/handlers/ValidarCodigo.java:15:	Parameter 'event' is not assigned and could be declared final
+src/policiesplugin/handlers/ValidarCodigo.java:15:	publicMethodCommentRequirement Required
+src/policiesplugin/handlers/ValidarCodigo.java:16:	Potential violation of Law of Demeter (method chain calls)
+src/policiesplugin/handlers/ValidarCodigo.java:17:	Potential violation of Law of Demeter (method chain calls)
+src/policiesplugin/handlers/ValidarCodigo.java:18:	Potential violation of Law of Demeter (method chain calls)

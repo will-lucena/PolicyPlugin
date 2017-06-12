@@ -5,7 +5,6 @@ import java.util.List;
 
 import epl.model.Compartment;
 import epl.model.ExceptionPair;
-import epl.model.JavaType;
 import epl.model.Method;
 import epl.model.Rule;
 import epl.model.Rule.DependencyType;
