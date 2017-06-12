@@ -63,14 +63,9 @@ public class AplicacaoJar
 		markers.add(m);
 	}
 
-	public static List<String> getViolations()
+	public static List<Marker> getViolations()
 	{
-		List<String> violations = new ArrayList<>();
-		for (Marker m : markers)
-		{
-			violations.add(m.getRule());
-		}
-		return violations;
+		return markers;
 	}
 
 	private void getProjects()
