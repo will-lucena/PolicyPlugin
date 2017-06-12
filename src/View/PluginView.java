@@ -1,5 +1,7 @@
 package View;
 
+import java.util.List;
+
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
@@ -11,18 +13,18 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.part.ViewPart;
 
+import excite.AplicacaoJar;
 import excite.Violation;
 
 public class PluginView extends ViewPart
 {
 	private static TableViewer viewer;
-	private Violation violation;
 	private static Label label;
 
 	public void createPartControl(Composite parent)
 	{
 		label = new Label(parent, 0);
-		viewer = new TableViewer(parent, SWT.VIRTUAL | SWT.BORDER);
+		viewer = new TableViewer(parent, SWT.VIRTUAL | SWT.BORDER | SWT.V_SCROLL );
 		createColumn(parent, viewer);
 		
 		final Table table = viewer.getTable();
@@ -30,7 +32,7 @@ public class PluginView extends ViewPart
 		table.setLinesVisible(true);
 		
 		viewer.setContentProvider(ArrayContentProvider.getInstance());
-		viewer.setInput(violation);
+		viewer.setInput(AplicacaoJar.getViolations());
 		
 		getSite().setSelectionProvider(viewer);
 	}
@@ -43,8 +45,7 @@ public class PluginView extends ViewPart
 			@Override
 			public String getText(Object element)
 			{
-				Violation v = (Violation) element;
-				return super.getText(v);
+				return super.getText(element.toString());
 			}
 		});
 	}
@@ -69,5 +70,6 @@ public class PluginView extends ViewPart
 	public static void insertViolations(String violation)
 	{
 		label.setText(label.getText() + "\n" + violation);
+		viewer.setInput(AplicacaoJar.getViolations());
 	}
 }

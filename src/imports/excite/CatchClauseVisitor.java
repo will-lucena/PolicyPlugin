@@ -6,7 +6,6 @@ import org.eclipse.jdt.core.dom.CatchClause;
 import epl.model.JavaType;
 import epl.model.Method;
 import excite.verifiers.HandleVerifier;
-import excite.verifiers.PropagateVerifier;
 import excite.verifiers.Verifier;
 
 

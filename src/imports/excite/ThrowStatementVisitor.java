@@ -9,7 +9,6 @@ import org.eclipse.jdt.core.dom.ThrowStatement;
 import epl.model.ExceptionPair;
 import epl.model.JavaType;
 import epl.model.Method;
-import excite.verifiers.PropagateVerifier;
 import excite.verifiers.RaiseVerifier;
 import excite.verifiers.RemapVerifier;
 import excite.verifiers.RethrowVerifier;

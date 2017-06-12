@@ -11,9 +11,9 @@ public class MethodDeclarationVisitor extends ASTVisitor
 {
 	private Method method;
 	
-	public MethodDeclarationVisitor(Method method)
+	public MethodDeclarationVisitor()
 	{
-		this.method = method;
+		
 	}
 	
 	public Method updateMethod()
@@ -24,11 +24,32 @@ public class MethodDeclarationVisitor extends ASTVisitor
 	@Override
 	public boolean visit(MethodDeclaration node)
 	{
+		this.method = new Method();
+		
+		getMethodInfos(node);
+		checkMethod(node);
+		
+		CatchClauseVisitor ccVisitor = new CatchClauseVisitor(method);
+		node.accept(ccVisitor);	
+		method = ccVisitor.updateMethod();
+		
+		ThrowStatementVisitor tsVisitor = new ThrowStatementVisitor(method);
+		node.accept(tsVisitor);
+		method = tsVisitor.updateMethod();
+		
+		return super.visit(node);
+	}
+	
+	private void getMethodInfos(MethodDeclaration node)
+	{
 		this.method.setName(node.getName().toString());
 		this.method.setClassName(node.resolveBinding().getDeclaringClass().getName().toString());
 		this.method.setPackageName(node.resolveBinding().getDeclaringClass().getPackage().getName().toString());
 		this.method.setCompartment(Verifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
-		
+	}
+	
+	private void checkMethod(MethodDeclaration node)
+	{
 		Marker marcador = AplicacaoJar.prepareMarker(node);
 		this.method = PropagateVerifier.getInstance().getPropagatedExceptions(node, this.method, marcador);
 
@@ -38,7 +59,5 @@ public class MethodDeclarationVisitor extends ASTVisitor
 			AplicacaoJar.updateCompartment(this.method.getCompartment());
 		}
 		PropagateVerifier.getInstance().checkPropagateViolation(this.method, marcador);
-		
-		return super.visit(node);
 	}
 }
