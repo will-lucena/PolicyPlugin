@@ -12,7 +12,6 @@ import epl.model.Method;
 import excite.verifiers.RaiseVerifier;
 import excite.verifiers.RemapVerifier;
 import excite.verifiers.RethrowVerifier;
-import excite.verifiers.Verifier;
 
 public class ThrowStatementVisitor extends ASTVisitor
 {
@@ -66,7 +65,7 @@ public class ThrowStatementVisitor extends ASTVisitor
 	
 	private void verifyCatch(CatchClause catchClause, ThrowStatement throwStatement)
 	{
-		this.method.setCompartment(Verifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
+		this.method.setCompartment(RemapVerifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
 		InstanceCreatorVisitor visitor = new InstanceCreatorVisitor();
 		catchClause.getBody().accept(visitor);
 

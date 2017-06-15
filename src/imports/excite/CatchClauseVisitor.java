@@ -6,6 +6,7 @@ import org.eclipse.jdt.core.dom.CatchClause;
 import epl.model.JavaType;
 import epl.model.Method;
 import excite.verifiers.HandleVerifier;
+import excite.verifiers.RethrowVerifier;
 import excite.verifiers.Verifier;
 
 
@@ -27,7 +28,7 @@ public class CatchClauseVisitor extends ASTVisitor
 	@Override
 	public boolean visit(CatchClause node)
 	{
-		this.method.setCompartment(Verifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
+		this.method.setCompartment(RethrowVerifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
 		InstanceCreatorVisitor icVisitor = new InstanceCreatorVisitor();
 		node.getBody().accept(icVisitor);
 		

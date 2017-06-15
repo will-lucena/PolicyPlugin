@@ -45,7 +45,7 @@ public class MethodDeclarationVisitor extends ASTVisitor
 		this.method.setName(node.getName().toString());
 		this.method.setClassName(node.resolveBinding().getDeclaringClass().getName().toString());
 		this.method.setPackageName(node.resolveBinding().getDeclaringClass().getPackage().getName().toString());
-		this.method.setCompartment(Verifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
+		this.method.setCompartment(PropagateVerifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
 	}
 	
 	private void checkMethod(MethodDeclaration node)

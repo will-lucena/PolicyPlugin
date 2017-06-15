@@ -12,7 +12,7 @@ import excite.AplicacaoJar;
 import excite.Marker;
 import policiesplugin.handlers.ConsumirEpl;
 
-public class HandleVerifier
+public class HandleVerifier extends Verifier
 {
 	private static HandleVerifier instance = null;
 
@@ -36,11 +36,6 @@ public class HandleVerifier
 		return instance;
 	}
 
-	public Compartment getCompartment(String name)
-	{
-		return Verifier.getInstance().findCompartment(name);
-	}
-
 	public void checkHandleViolation(Method method, Marker m)
 	{
 		checkHandleViolation(method.getCompartment(), method.getExceptionsPropagated(),
@@ -55,6 +50,7 @@ public class HandleVerifier
 		verifyCannotRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
 		verifyOnlyMayRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
 		verifyMayOnlyRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
+		verifyMustRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
 	}
 
 	private boolean verifyCannotRule(String methodName, Compartment compartment, List<JavaType> exceptions,
@@ -69,6 +65,29 @@ public class HandleVerifier
 					for (JavaType exception : exceptions)
 					{
 						if (r.getExceptionExpressions().contains(exception.toString()))
+						{
+							marcador.setRule(r.toString());
+							AplicacaoJar.addMarker(marcador);
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	private boolean verifyMustRule(String methodName, Compartment compartment, List<JavaType> exceptions, Marker marcador)
+	{
+		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		{
+			if (r.getRuleType().equals(RuleType.Must) && r.getDependencyType().equals(DependencyType.Handle))
+			{
+				if (compartment != null && r.getCompartmentId().equals(compartment.getId()))
+				{
+					for (JavaType exception : exceptions)
+					{
+						if (!r.getExceptionExpressions().contains(exception.toString()))
 						{
 							marcador.setRule(r.toString());
 							AplicacaoJar.addMarker(marcador);
@@ -125,4 +144,5 @@ public class HandleVerifier
 		}
 		return false;
 	}
+	
 }

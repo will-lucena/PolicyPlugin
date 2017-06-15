@@ -37,7 +37,6 @@ public class ConsumirEpl extends AbstractHandler
 		{
 			if (path != null)
 			{
-				Verifier.getInstance();
 				construirPolicy(path);
 				new AplicacaoJar();
 			}
@@ -48,7 +47,6 @@ public class ConsumirEpl extends AbstractHandler
 			String path = abrirArquivo();
 			if (path != null)
 			{
-				Verifier.getInstance();
 				construirPolicy(path);
 				new AplicacaoJar();
 			}

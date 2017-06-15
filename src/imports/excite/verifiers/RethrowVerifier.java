@@ -12,7 +12,7 @@ import excite.AplicacaoJar;
 import excite.Marker;
 import policiesplugin.handlers.ConsumirEpl;
 
-public class RethrowVerifier
+public class RethrowVerifier extends Verifier
 {
 	private static RethrowVerifier instance = null;
 	
@@ -46,12 +46,13 @@ public class RethrowVerifier
 	{
 		int fIndex = marcador.getFirstIndex();
 		int lIndex = marcador.getLastIndex();
- 		verifyCannotRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
-		verifyOnlyMayRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
-		verifyMayOnlyRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
+ 		verifyCannotRule(compartment, exceptions, new Marker(fIndex, lIndex));
+		verifyOnlyMayRule(compartment, exceptions, new Marker(fIndex, lIndex));
+		verifyMayOnlyRule(compartment, exceptions, new Marker(fIndex, lIndex));
+		verifyMustRule(compartment, exceptions, new Marker(fIndex, lIndex));
 	}
 	
-	private boolean verifyCannotRule(String methodName, Compartment compartment, List<JavaType> exceptions, Marker marcador)
+	private void verifyCannotRule(Compartment compartment, List<JavaType> exceptions, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -65,16 +66,38 @@ public class RethrowVerifier
 						{
 							marcador.setRule(r.toString());
 							AplicacaoJar.addMarker(marcador);
-							return true;
+							return;
 						}
 					}
 				}
 			}
 		}
-		return false;
+	}
+	
+	private void verifyMustRule(Compartment compartment, List<JavaType> exceptions, Marker marcador)
+	{
+		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		{
+			if (r.getRuleType().equals(RuleType.Must) && r.getDependencyType().equals(DependencyType.Rethrow))
+			{
+				if (compartment != null && r.getCompartmentId().equals(compartment.getId()))
+				{
+					for (JavaType exception : exceptions)
+					{
+						if (r.getExceptionExpressions().contains(exception.toString()))
+						{
+							return;
+						}
+					}
+					marcador.setRule(r.toString());
+					AplicacaoJar.addMarker(marcador);
+					return;
+				}
+			}
+		}
 	}
 
-	private boolean verifyOnlyMayRule(String methodName, Compartment compartment, List<JavaType> exceptions, Marker marcador)
+	private void verifyOnlyMayRule(Compartment compartment, List<JavaType> exceptions, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -88,16 +111,15 @@ public class RethrowVerifier
 						{
 							marcador.setRule(r.toString());
 							AplicacaoJar.addMarker(marcador);
-							return true;
+							return;
 						}
 					}
 				}
 			}
 		}
-		return false;
 	}
 
-	private boolean verifyMayOnlyRule(String methodName, Compartment compartment, List<JavaType> exceptions, Marker marcador)
+	private void verifyMayOnlyRule(Compartment compartment, List<JavaType> exceptions, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -109,11 +131,10 @@ public class RethrowVerifier
 					{
 						marcador.setRule(r.toString());
 						AplicacaoJar.addMarker(marcador);
-						return true;
+						return;
 					}
 				}
 			}
 		}
-		return false;
 	}
 }

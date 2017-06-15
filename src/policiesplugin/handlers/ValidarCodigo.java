@@ -4,7 +4,6 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
-import excite.verifiers.Verifier;
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
  * @see org.eclipse.core.commands.IHandler
@@ -13,9 +12,6 @@ import excite.verifiers.Verifier;
 public class ValidarCodigo extends AbstractHandler {		
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		Verifier.getInstance().showCannotViolations();
-		Verifier.getInstance().showMayOnlyViolations();
-		Verifier.getInstance().showOnlyMayViolations();
 		return null;
 	}
 }

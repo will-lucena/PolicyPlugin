@@ -1,12 +1,8 @@
 package View;
 
-import javax.swing.JOptionPane;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -32,11 +28,9 @@ import excite.Marker;
 public class PluginView extends ViewPart
 {
 	private static TableViewer viewer;
-	// private static Label label;
 
 	public void createPartControl(Composite parent)
 	{
-		// label = new Label(parent, 0);
 		viewer = new TableViewer(parent, SWT.VIRTUAL | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 		createColumn(parent, viewer);
 
@@ -95,12 +89,10 @@ public class PluginView extends ViewPart
 	public void setFocus()
 	{
 		viewer.getControl().setFocus();
-		// label.setFocus();
 	}
 
 	public static void insertViolations(String violation)
 	{
-		// label.setText(label.getText() + "\n" + violation);
 		viewer.setInput(AplicacaoJar.getViolations());
 	}
 
@@ -119,8 +111,7 @@ public class PluginView extends ViewPart
 				if (openEditor instanceof ITextEditor)
 				{
 					ITextEditor textEditor = (ITextEditor) openEditor;
-					IDocument document = textEditor.getDocumentProvider().getDocument(textEditor.getEditorInput());
-					textEditor.selectAndReveal(marker.getFirstIndex(), marker.getLastIndex());
+					textEditor.selectAndReveal(marker.getFirstIndex(), marker.getLastIndex() - marker.getFirstIndex());
 				}
 			} catch (PartInitException e)
 			{
@@ -128,6 +119,5 @@ public class PluginView extends ViewPart
 				e.printStackTrace();
 			}
 		}
-
 	}
 }

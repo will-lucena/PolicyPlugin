@@ -1,8 +1,5 @@
 package excite.verifiers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import epl.model.Compartment;
 import epl.model.ExceptionPair;
 import epl.model.Method;
@@ -13,13 +10,13 @@ import excite.AplicacaoJar;
 import excite.Marker;
 import policiesplugin.handlers.ConsumirEpl;
 
-public class RemapVerifier
+public class RemapVerifier extends Verifier
 {
-private static RemapVerifier instance = null;
-	
+	private static RemapVerifier instance = null;
+
 	private RemapVerifier()
 	{
-		
+
 	}
 
 	public static RemapVerifier getInstance()
@@ -37,42 +34,37 @@ private static RemapVerifier instance = null;
 		return instance;
 	}
 	
-	
-	private List<String> gerarPares(List<ExceptionPair> pares)
+	public void checkRemapViolation(Method method, Marker marcador)
 	{
-		List<String> novosPares = new ArrayList<>();
-		StringBuilder sb = null;
-		
-		for (ExceptionPair par : pares)
-		{
-			sb = new StringBuilder();
-			
-			sb.append("from ");
-			sb.append(par.getFrom());
-			sb.append(" to ");
-			sb.append(par.getTo());
-			
-			novosPares.add(sb.toString());
-		}		
-		return novosPares;
+		checkRemapViolation(method.getCompartment(), method.getExceptionsRemapped().get(0),
+				method.getFullyQualifiedName(), marcador);
 	}
-	
-	public void checkRemapViolation(Method method, Marker m)
-	{
-		checkRemapViolation(method.getCompartment(), method.getExceptionsRemapped(), method.getFullyQualifiedName(), m);
-	}
-	
-	private void checkRemapViolation(Compartment compartment, List<ExceptionPair> exceptions, String methodName, Marker marcador)
+
+	private void checkRemapViolation(Compartment compartment, ExceptionPair exceptionPair, String methodName,
+			Marker marcador)
 	{
 		int fIndex = marcador.getFirstIndex();
 		int lIndex = marcador.getLastIndex();
-		List<String> ex = gerarPares(exceptions);
- 		verifyCannotRule(methodName, compartment, ex, new Marker(fIndex, lIndex));
-		verifyOnlyMayRule(methodName, compartment, ex, new Marker(fIndex, lIndex));
-		verifyMayOnlyRule(methodName, compartment, ex, new Marker(fIndex, lIndex));
+
+		verifyCannotRule(compartment, exceptionPair, new Marker(fIndex, lIndex));
+		verifyOnlyMayRule(compartment, exceptionPair, new Marker(fIndex, lIndex));
+		verifyMayOnlyRule(compartment, exceptionPair, new Marker(fIndex, lIndex));
+		verifyMustRule(compartment, exceptionPair, new Marker(fIndex, lIndex));
 	}
 
-	private boolean verifyCannotRule(String methodName, Compartment compartment, List<String> exceptions, Marker marcador)
+	private String montarExpressao(ExceptionPair pair)
+	{
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("from ");
+		sb.append(pair.getFrom().toString());
+		sb.append(" to ");
+		sb.append(pair.getTo().toString());
+
+		return sb.toString();
+	}
+
+	private void verifyCannotRule(Compartment compartment, ExceptionPair exceptionPair, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -80,22 +72,46 @@ private static RemapVerifier instance = null;
 			{
 				if (compartment != null && r.getCompartmentId().equals(compartment.getId()))
 				{
-					for (String exception : exceptions)
+					String pair = montarExpressao(exceptionPair);
+					for (String expression : r.getExceptionExpressions())
 					{
-						if (r.getExceptionExpressions().contains(exception.toString()))
+						if (!expression.equals(pair))
 						{
 							marcador.setRule(r.toString());
 							AplicacaoJar.addMarker(marcador);
-							return true;
+							return;
 						}
 					}
 				}
 			}
 		}
-		return false;
 	}
-	
-	private boolean verifyOnlyMayRule(String methodName, Compartment compartment, List<String> exceptions, Marker marcador)
+
+	private void verifyMustRule(Compartment compartment, ExceptionPair exceptionPair, Marker marcador)
+	{
+		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		{
+			if (r.getRuleType().equals(RuleType.Must) && r.getDependencyType().equals(DependencyType.Remap))
+			{
+				if (compartment != null && r.getCompartmentId().equals(compartment.getId()))
+				{
+					String pair = montarExpressao(exceptionPair);
+					for (String expression : r.getExceptionExpressions())
+					{
+						if (expression.equals(pair))
+						{
+							return;
+						}
+					}
+					marcador.setRule(r.toString());
+					AplicacaoJar.addMarker(marcador);
+					return;
+				}
+			}
+		}
+	}
+
+	private void verifyOnlyMayRule(Compartment compartment, ExceptionPair exceptionPair, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -103,22 +119,22 @@ private static RemapVerifier instance = null;
 			{
 				if (compartment != null && !r.getCompartmentId().equals(compartment.getId()))
 				{
-					for (String exception : exceptions)
+					String pair = montarExpressao(exceptionPair);
+					for (String expression : r.getExceptionExpressions())
 					{
-						if (r.getExceptionExpressions().contains(exception.toString()))
+						if (expression.equals(pair))
 						{
 							marcador.setRule(r.toString());
 							AplicacaoJar.addMarker(marcador);
-							return true;
+							return;
 						}
 					}
 				}
 			}
 		}
-		return false;
 	}
-	
-	private boolean verifyMayOnlyRule(String methodName, Compartment compartment, List<String> exceptions, Marker marcador)
+
+	private void verifyMayOnlyRule(Compartment compartment, ExceptionPair exceptionPair, Marker marcador)
 	{
 		for (Rule r : ConsumirEpl.getPolicy().getRules())
 		{
@@ -126,15 +142,18 @@ private static RemapVerifier instance = null;
 			{
 				if (compartment != null && r.getCompartmentId().equals(compartment.getId()))
 				{
-					if (!r.getExceptionExpressions().containsAll(exceptions))
+					String pair = montarExpressao(exceptionPair);
+					for (String expression : r.getExceptionExpressions())
 					{
-						marcador.setRule(r.toString());
-						AplicacaoJar.addMarker(marcador);
-						return true;
+						if (!expression.equals(pair))
+						{
+							marcador.setRule(r.toString());
+							AplicacaoJar.addMarker(marcador);
+							return;
+						}
 					}
 				}
 			}
 		}
-		return false;
 	}
 }
