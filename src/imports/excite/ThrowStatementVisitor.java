@@ -65,7 +65,6 @@ public class ThrowStatementVisitor extends ASTVisitor
 	
 	private void verifyCatch(CatchClause catchClause, ThrowStatement throwStatement)
 	{
-		this.method.setCompartment(RemapVerifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
 		InstanceCreatorVisitor visitor = new InstanceCreatorVisitor();
 		catchClause.getBody().accept(visitor);
 

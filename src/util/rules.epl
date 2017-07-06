@@ -1,0 +1,17 @@
+define app.PluginTest.propagateMethod as compartment PRO;
+define app.PluginTest.handleMethod as compartment HAN;
+define app.PluginTest.rethrowMethod as compartment RET;
+define app.PluginTest.remapMethod as compartment REM;
+define app.PluginTest.raiseMethod as compartment RAI;
+
+PRO cannot propagate IOException;
+PRO must propagate NullPointerException;
+
+HAN may only handle IllegalArgumentException;
+
+only RET may rethrow IOException;
+RET cannot rethrow IllegalArgumentException;
+
+REM cannot remap from IllegalArgumentException to IOException;
+
+RAI must *;

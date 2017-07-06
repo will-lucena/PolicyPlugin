@@ -28,13 +28,20 @@ public class CatchClauseVisitor extends ASTVisitor
 	@Override
 	public boolean visit(CatchClause node)
 	{
-		this.method.setCompartment(RethrowVerifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
+		checkMethod(node);
+		
+		return super.visit(node);
+	}
+	
+	private void checkMethod(CatchClause node)
+	{
 		InstanceCreatorVisitor icVisitor = new InstanceCreatorVisitor();
 		node.getBody().accept(icVisitor);
 		
 		String exCatched = icVisitor.getType();
 		ThrowStatementVisitor tsVisitor = new ThrowStatementVisitor(this.method);
 		node.getBody().accept(tsVisitor);
+		
 		this.isHandle = tsVisitor.isRaise();
 		
 		if (isHandle)
@@ -43,7 +50,5 @@ public class CatchClauseVisitor extends ASTVisitor
 			this.method.addExceptionHandled(new JavaType(exCatched));
 			HandleVerifier.getInstance().checkHandleViolation(this.method, marcador);
 		}
-		
-		return super.visit(node);
 	}
 }

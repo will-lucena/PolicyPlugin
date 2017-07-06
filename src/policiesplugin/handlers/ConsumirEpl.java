@@ -28,7 +28,7 @@ import epl.model.Compartment;
 public class ConsumirEpl extends AbstractHandler
 {
 	private static Policy policy = null;
-	private static final String path = "C:\\Users\\William\\workspace\\teste.epl";
+	private static final String path = "src\\util\\rules.epl";
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException
