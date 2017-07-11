@@ -1,4 +1,4 @@
-package excite;
+package br.ufrn.imd.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +24,10 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jface.text.BadLocationException;
 
 import View.PluginView;
+import br.ufrn.imd.domain.visitors.CompilationUnitVisitor;
 import epl.model.Compartment;
 import policiesplugin.handlers.Application;
-
+import br.ufrn.imd.domain.Marker;
 public class Controller
 {
 	private static final String JDT_NATURE = "org.eclipse.jdt.core.javanature";

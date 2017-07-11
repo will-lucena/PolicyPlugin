@@ -1,4 +1,4 @@
-package excite;
+package br.ufrn.imd.domain.visitors;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.TypeDeclaration;

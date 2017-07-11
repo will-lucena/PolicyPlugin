@@ -1,4 +1,4 @@
-package excite.verifiers;
+package br.ufrn.imd.domain.verifiers;
 
 import epl.model.Compartment;
 import policiesplugin.handlers.Application;

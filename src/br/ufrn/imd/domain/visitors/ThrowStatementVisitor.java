@@ -1,4 +1,4 @@
-package excite;
+package br.ufrn.imd.domain.visitors;
 
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTVisitor;
@@ -9,9 +9,11 @@ import org.eclipse.jdt.core.dom.ThrowStatement;
 import epl.model.ExceptionPair;
 import epl.model.JavaType;
 import epl.model.Method;
-import excite.verifiers.RaiseVerifier;
-import excite.verifiers.RemapVerifier;
-import excite.verifiers.RethrowVerifier;
+import br.ufrn.imd.controller.Controller;
+import br.ufrn.imd.domain.Marker;
+import br.ufrn.imd.domain.verifiers.RaiseVerifier;
+import br.ufrn.imd.domain.verifiers.RemapVerifier;
+import br.ufrn.imd.domain.verifiers.RethrowVerifier;
 
 public class ThrowStatementVisitor extends ASTVisitor
 {

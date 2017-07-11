@@ -1,10 +1,12 @@
-package excite;
+package br.ufrn.imd.domain.visitors;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 
 import epl.model.Method;
-import excite.verifiers.PropagateVerifier;
+import br.ufrn.imd.controller.Controller;
+import br.ufrn.imd.domain.Marker;
+import br.ufrn.imd.domain.verifiers.PropagateVerifier;
 
 public class MethodDeclarationVisitor extends ASTVisitor
 {

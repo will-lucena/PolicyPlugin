@@ -1,8 +1,10 @@
-package excite.verifiers;
+package br.ufrn.imd.domain.verifiers;
 
+import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.jdt.core.dom.ThrowStatement;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
+import org.eclipse.jdt.core.dom.SimpleType;
 
 import epl.model.Compartment;
 import epl.model.JavaType;
@@ -10,51 +12,52 @@ import epl.model.Method;
 import epl.model.Rule;
 import epl.model.Rule.DependencyType;
 import epl.model.Rule.RuleType;
-import excite.Controller;
-import excite.InstanceCreatorVisitor;
-import excite.Marker;
+import br.ufrn.imd.controller.Controller;
+import br.ufrn.imd.domain.Marker;
 import policiesplugin.handlers.Application;
 
-public class RaiseVerifier
+public class PropagateVerifier extends Verifier
 {
-	private static RaiseVerifier instance = null;
+	private static PropagateVerifier instance = null;
 	
-	private RaiseVerifier()
+	private PropagateVerifier()
 	{
-		
+
 	}
 
-	public static RaiseVerifier getInstance()
+	public static PropagateVerifier getInstance()
 	{
 		if (instance == null)
 		{
-			synchronized (RaiseVerifier.class)
+			synchronized (PropagateVerifier.class)
 			{
 				if (instance == null)
 				{
-					instance = new RaiseVerifier();
+					instance = new PropagateVerifier();
 				}
 			}
 		}
 		return instance;
 	}
-	
-	public Method getRaisedExceptions(ThrowStatement node, Method method)
+		
+	public Method getPropagatedExceptions(MethodDeclaration node, Method method, Marker marker)
 	{
-		InstanceCreatorVisitor visitor = new InstanceCreatorVisitor();
-		node.accept(visitor);
-		String exceptionType = visitor.getType();
-		method.addExceptionRaised(new JavaType(exceptionType));
+		for (Iterator<?> iter = node.thrownExceptionTypes().iterator(); iter.hasNext();)
+		{		
+			SimpleType exceptionType = (SimpleType) iter.next();	
+			method.addExceptionPropagated(new JavaType(exceptionType.resolveBinding().getName()));
+			marker.setLastIndex(exceptionType.getStartPosition() + exceptionType.getLength());
+		}
 		
 		return method;
 	}
 	
-	public void checkRaiseViolation(Method method, Marker marker)
+	public void checkPropagateViolation(Method method, Marker marker)
 	{
-		checkRaiseViolation(method.getCompartment(), method.getExceptionsRaised(), method.getFullyQualifiedName(), marker);
+		checkPropagateViolation(method.getCompartment(), method.getExceptionsPropagated(), method.getFullyQualifiedName(), marker);
 	}
 	
-	private void checkRaiseViolation(Compartment compartment, List<JavaType> exceptions, String methodName, Marker marker)
+	private void checkPropagateViolation(Compartment compartment, List<JavaType> exceptions, String methodName, Marker marker)
 	{
 		int fIndex = marker.getFirstIndex();
 		int lIndex = marker.getLastIndex();
@@ -68,7 +71,7 @@ public class RaiseVerifier
 	{
 		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (rule.getRuleType().equals(RuleType.Cannot) && rule.getDependencyType().equals(DependencyType.Raise))
+			if (rule.getRuleType().equals(RuleType.Cannot) && rule.getDependencyType().equals(DependencyType.Propagate))
 			{
 				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
 				{
@@ -90,7 +93,7 @@ public class RaiseVerifier
 	{
 		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (rule.getRuleType().equals(RuleType.Must) && rule.getDependencyType().equals(DependencyType.Raise))
+			if (rule.getRuleType().equals(RuleType.Must) && rule.getDependencyType().equals(DependencyType.Propagate))
 			{
 				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
 				{
@@ -113,7 +116,7 @@ public class RaiseVerifier
 	{
 		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (rule.getRuleType().equals(RuleType.OnlyMay) && rule.getDependencyType().equals(DependencyType.Raise))
+			if (rule.getRuleType().equals(RuleType.OnlyMay) && rule.getDependencyType().equals(DependencyType.Propagate))
 			{
 				if (compartment != null && !rule.getCompartmentId().equals(compartment.getId()))
 				{
@@ -135,7 +138,7 @@ public class RaiseVerifier
 	{
 		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (rule.getRuleType().equals(RuleType.MayOnly) && rule.getDependencyType().equals(DependencyType.Raise))
+			if (rule.getRuleType().equals(RuleType.MayOnly) && rule.getDependencyType().equals(DependencyType.Propagate))
 			{
 				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
 				{

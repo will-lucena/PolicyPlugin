@@ -1,4 +1,4 @@
-package excite.verifiers;
+package br.ufrn.imd.domain.verifiers;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import epl.model.Method;
 import epl.model.Rule;
 import epl.model.Rule.DependencyType;
 import epl.model.Rule.RuleType;
-import excite.Controller;
-import excite.Marker;
+import br.ufrn.imd.controller.Controller;
+import br.ufrn.imd.domain.Marker;
 import policiesplugin.handlers.Application;
 
 public class HandleVerifier extends Verifier

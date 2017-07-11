@@ -12,10 +12,10 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
+import br.ufrn.imd.controller.Controller;
 import epl.EPLParser;
 import epl.model.Policy;
 import epl.model.Rule;
-import excite.Controller;
 import epl.model.Compartment;
 
 

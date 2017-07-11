@@ -1,11 +1,13 @@
-package excite;
+package br.ufrn.imd.domain.visitors;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CatchClause;
 
 import epl.model.JavaType;
 import epl.model.Method;
-import excite.verifiers.HandleVerifier;
+import br.ufrn.imd.controller.Controller;
+import br.ufrn.imd.domain.Marker;
+import br.ufrn.imd.domain.verifiers.HandleVerifier;
 
 public class CatchClauseVisitor extends ASTVisitor
 {

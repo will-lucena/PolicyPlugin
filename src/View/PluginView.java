@@ -22,8 +22,8 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.texteditor.ITextEditor;
 
-import excite.Controller;
-import excite.Marker;
+import br.ufrn.imd.controller.Controller;
+import br.ufrn.imd.domain.Marker;
 
 public class PluginView extends ViewPart
 {
