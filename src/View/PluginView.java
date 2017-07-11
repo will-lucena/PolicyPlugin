@@ -22,38 +22,38 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.texteditor.ITextEditor;
 
-import excite.AplicacaoJar;
+import excite.Controller;
 import excite.Marker;
 
 public class PluginView extends ViewPart
 {
-	private static TableViewer viewer;
+	private static TableViewer VIEWER;
 
 	public void createPartControl(Composite parent)
 	{
-		viewer = new TableViewer(parent, SWT.VIRTUAL | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
-		createColumn(parent, viewer);
+		VIEWER = new TableViewer(parent, SWT.VIRTUAL | SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
+		createColumn(parent, VIEWER);
 
-		final Table table = viewer.getTable();
+		final Table table = VIEWER.getTable();
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 
-		viewer.setContentProvider(ArrayContentProvider.getInstance());
-		viewer.setInput(AplicacaoJar.getViolations());
+		VIEWER.setContentProvider(ArrayContentProvider.getInstance());
+		VIEWER.setInput(Controller.getViolations());
 
 		selectionListenner();
 
-		getSite().setSelectionProvider(viewer);
+		getSite().setSelectionProvider(VIEWER);
 	}
 
 	private void selectionListenner()
 	{
-		viewer.addSelectionChangedListener(new ISelectionChangedListener()
+		VIEWER.addSelectionChangedListener(new ISelectionChangedListener()
 		{
 			@Override
 			public void selectionChanged(SelectionChangedEvent event)
 			{
-				IStructuredSelection selection = viewer.getStructuredSelection();
+				IStructuredSelection selection = VIEWER.getStructuredSelection();
 				Marker element = (Marker) selection.getFirstElement();
 
 				openALine(element);
@@ -69,15 +69,15 @@ public class PluginView extends ViewPart
 			@Override
 			public String getText(Object element)
 			{
-				Marker m = (Marker) element;
-				return super.getText(m.getRule().toString());
+				Marker marker = (Marker) element;
+				return super.getText(marker.getRule().toString());
 			}
 		});
 	}
 
 	private TableViewerColumn createTableViewerColumn(String title, int bound)
 	{
-		final TableViewerColumn viewerColumn = new TableViewerColumn(viewer, SWT.NONE);
+		final TableViewerColumn viewerColumn = new TableViewerColumn(VIEWER, SWT.NONE);
 		final TableColumn column = viewerColumn.getColumn();
 		column.setText(title);
 		column.setWidth(bound);
@@ -88,20 +88,20 @@ public class PluginView extends ViewPart
 
 	public void setFocus()
 	{
-		viewer.getControl().setFocus();
+		VIEWER.getControl().setFocus();
 	}
 
 	public static void insertViolations(String violation)
 	{
-		viewer.setInput(AplicacaoJar.getViolations());
+		VIEWER.setInput(Controller.getViolations());
 	}
 
 	private void openALine(Marker marker)
 	{
 		IEditorPart openEditor = null;
-		String filePath = "C:\\Users\\William\\workspace\\runtime-Default\\TestEpl\\src\\main\\Rules.java";
-		final IFile inputFile = ResourcesPlugin.getWorkspace().getRoot()
-				.getFileForLocation(Path.fromOSString(filePath));
+		//Pegar caminho de forma dinamica, adicionar informação ao marcador talvez funcione
+		String filePath = "F:\\Eclipse workspaces\\runtime-EclipseApplication\\PluginTest\\src\\app\\PluginTest.java";
+		final IFile inputFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(Path.fromOSString(filePath));
 		if (inputFile != null)
 		{
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();

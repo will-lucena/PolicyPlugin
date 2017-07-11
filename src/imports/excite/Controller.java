@@ -25,9 +25,9 @@ import org.eclipse.jface.text.BadLocationException;
 
 import View.PluginView;
 import epl.model.Compartment;
-import policiesplugin.handlers.ConsumirEpl;
+import policiesplugin.handlers.Application;
 
-public class AplicacaoJar
+public class Controller
 {
 	private static final String JDT_NATURE = "org.eclipse.jdt.core.javanature";
 	private static final List<Marker> markers = new ArrayList<>();
@@ -35,18 +35,18 @@ public class AplicacaoJar
 
 	public static Compartment updateCompartment(Compartment compartment)
 	{
-		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
+		for (Compartment comp : Application.getPolicy().getCompartments())
 		{
-			if (c.getId().equals(compartment.getId()))
+			if (comp.getId().equals(compartment.getId()))
 			{
-				c = compartment;
-				return c;
+				comp = compartment;
+				return comp;
 			}
 		}
 		return null;
 	}
 
-	public AplicacaoJar()
+	public Controller()
 	{
 		getProjects();
 	}
@@ -70,11 +70,8 @@ public class AplicacaoJar
 
 	private void getProjects()
 	{
-		// Acessa workspace
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		// Acessa a raiz do workspace
 		IWorkspaceRoot root = workspace.getRoot();
-		// Pega todos projetos na raiz do workspace
 		IProject[] projects = root.getProjects();
 
 		for (IProject iProject : projects)
@@ -106,60 +103,56 @@ public class AplicacaoJar
 		IPackageFragment[] packages = JavaCore.create(project).getPackageFragments();
 		for (IPackageFragment mypackage : packages)
 		{
-			// filtrando apenas para projeto usado para de testes
-			if (mypackage.getElementName().equals("main"))
+			if (mypackage.getKind() == IPackageFragmentRoot.K_SOURCE)
 			{
-				if (mypackage.getKind() == IPackageFragmentRoot.K_SOURCE)
+				for (ICompilationUnit unit : mypackage.getCompilationUnits())
 				{
-					for (ICompilationUnit unit : mypackage.getCompilationUnits())
-					{
-						CompilationUnit compilationUnit = parse(unit);
-						CompilationUnitVisitor compilationUnitVisitor = new CompilationUnitVisitor();
+					CompilationUnit compilationUnit = parse(unit);
+					CompilationUnitVisitor compilationUnitVisitor = new CompilationUnitVisitor();
 
-						deleteMarkers(unit.getCorrespondingResource(), MARKER_TYPE);
+					deleteMarkers(unit.getCorrespondingResource(), MARKER_TYPE);
 
-						compilationUnit.accept(compilationUnitVisitor);
+					compilationUnit.accept(compilationUnitVisitor);
 
-						createMarker(unit.getCorrespondingResource());
-					}
+					createMarker(unit.getCorrespondingResource());
 				}
 			}
 		}
 	}
 
-	private void deleteMarkers(IResource res, String type) throws CoreException
+	private void deleteMarkers(IResource resource, String type) throws CoreException
 	{
-		res.deleteMarkers(type, false, 0);
+		resource.deleteMarkers(type, false, 0);
 		markers.clear();
 	}
 
 	public static Marker prepareMarker(ASTNode node)
 	{
-		Marker marcador = new Marker();
-		marcador.setFirstIndex(node.getStartPosition());
-		marcador.setLastIndex(node.getStartPosition() + node.getLength());
-		return marcador;
+		Marker marker = new Marker();
+		marker.setFirstIndex(node.getStartPosition());
+		marker.setLastIndex(node.getStartPosition() + node.getLength());
+		return marker;
 	}
 
-	private void createMarker(IResource res) throws CoreException, BadLocationException
+	private void createMarker(IResource resource) throws CoreException, BadLocationException
 	{
-		for (Marker m : markers)
+		for (Marker mark : markers)
 		{
 			IMarker marker = null;
-			marker = res.createMarker(MARKER_TYPE);
-			marker.setAttribute(IMarker.CHAR_START, m.getFirstIndex());
-			marker.setAttribute(IMarker.CHAR_END, m.getLastIndex());
-			marker.setAttribute(IMarker.MESSAGE, m.getRule());
-			System.out.println(m.getRule());
-			PluginView.insertViolations(m.getRule());
+			marker = resource.createMarker(MARKER_TYPE);
+			marker.setAttribute(IMarker.CHAR_START, mark.getFirstIndex());
+			marker.setAttribute(IMarker.CHAR_END, mark.getLastIndex());
+			marker.setAttribute(IMarker.MESSAGE, mark.getRule());
+			System.out.println(mark.getRule());
+			PluginView.insertViolations(mark.getRule());
 		}
 	}
 
-	private CompilationUnit parse(ICompilationUnit cu)
+	private CompilationUnit parse(ICompilationUnit compilationUnit)
 	{
 		ASTParser parser = ASTParser.newParser(AST.JLS8);
 		parser.setKind(ASTParser.K_COMPILATION_UNIT);
-		parser.setSource(cu);
+		parser.setSource(compilationUnit);
 		parser.setResolveBindings(true);
 		return (CompilationUnit) parser.createAST(null);
 	}

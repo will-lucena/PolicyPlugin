@@ -14,4 +14,4 @@ RET cannot rethrow IllegalArgumentException;
 
 REM cannot remap from IllegalArgumentException to IOException;
 
-RAI must *;
+RAI must raise *;

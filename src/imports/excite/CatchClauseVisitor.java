@@ -6,9 +6,6 @@ import org.eclipse.jdt.core.dom.CatchClause;
 import epl.model.JavaType;
 import epl.model.Method;
 import excite.verifiers.HandleVerifier;
-import excite.verifiers.RethrowVerifier;
-import excite.verifiers.Verifier;
-
 
 public class CatchClauseVisitor extends ASTVisitor
 {
@@ -35,20 +32,20 @@ public class CatchClauseVisitor extends ASTVisitor
 	
 	private void checkMethod(CatchClause node)
 	{
-		InstanceCreatorVisitor icVisitor = new InstanceCreatorVisitor();
-		node.getBody().accept(icVisitor);
+		InstanceCreatorVisitor instanceCreatorVisitor = new InstanceCreatorVisitor();
+		node.getBody().accept(instanceCreatorVisitor);
 		
-		String exCatched = icVisitor.getType();
-		ThrowStatementVisitor tsVisitor = new ThrowStatementVisitor(this.method);
-		node.getBody().accept(tsVisitor);
+		String exceptionCaught = instanceCreatorVisitor.getType();
+		ThrowStatementVisitor throwStatementVisitor = new ThrowStatementVisitor(this.method);
+		node.getBody().accept(throwStatementVisitor);
 		
-		this.isHandle = tsVisitor.isRaise();
+		this.isHandle = throwStatementVisitor.isRaise();
 		
 		if (isHandle)
 		{
-			Marker marcador = AplicacaoJar.prepareMarker(node);
-			this.method.addExceptionHandled(new JavaType(exCatched));
-			HandleVerifier.getInstance().checkHandleViolation(this.method, marcador);
+			Marker marker = Controller.prepareMarker(node);
+			this.method.addExceptionHandled(new JavaType(exceptionCaught));
+			HandleVerifier.getInstance().checkHandleViolation(this.method, marker);
 		}
 	}
 }

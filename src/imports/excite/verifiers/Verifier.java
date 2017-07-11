@@ -1,19 +1,19 @@
 package excite.verifiers;
 
 import epl.model.Compartment;
-import policiesplugin.handlers.ConsumirEpl;
+import policiesplugin.handlers.Application;
 
 public abstract class Verifier
 {	
 	public Compartment findCompartment(String methodName)
 	{
-		for (Compartment c : ConsumirEpl.getPolicy().getCompartments())
+		for (Compartment compartment : Application.getPolicy().getCompartments())
 		{
-			for (String ex : c.getExpressions())
+			for (String expression : compartment.getExpressions())
 			{
-				if (methodName.matches(ex))
+				if (methodName.matches(expression))
 				{
-					return c;
+					return compartment;
 				}
 			}
 		}
