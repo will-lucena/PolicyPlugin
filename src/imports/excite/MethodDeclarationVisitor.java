@@ -5,7 +5,6 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 
 import epl.model.Method;
 import excite.verifiers.PropagateVerifier;
-import excite.verifiers.Verifier;
 
 public class MethodDeclarationVisitor extends ASTVisitor
 {
@@ -29,13 +28,13 @@ public class MethodDeclarationVisitor extends ASTVisitor
 		getMethodInfos(node);
 		checkMethod(node);
 		
-		CatchClauseVisitor ccVisitor = new CatchClauseVisitor(method);
-		node.accept(ccVisitor);	
-		method = ccVisitor.updateMethod();
+		CatchClauseVisitor catchClauseVisitor = new CatchClauseVisitor(method);
+		node.accept(catchClauseVisitor);	
+		method = catchClauseVisitor.updateMethod();
 		
-		ThrowStatementVisitor tsVisitor = new ThrowStatementVisitor(method);
-		node.accept(tsVisitor);
-		method = tsVisitor.updateMethod();
+		ThrowStatementVisitor throwStatementVisitor = new ThrowStatementVisitor(method);
+		node.accept(throwStatementVisitor);
+		method = throwStatementVisitor.updateMethod();
 		
 		return super.visit(node);
 	}
@@ -45,19 +44,19 @@ public class MethodDeclarationVisitor extends ASTVisitor
 		this.method.setName(node.getName().toString());
 		this.method.setClassName(node.resolveBinding().getDeclaringClass().getName().toString());
 		this.method.setPackageName(node.resolveBinding().getDeclaringClass().getPackage().getName().toString());
-		this.method.setCompartment(Verifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
+		this.method.setCompartment(PropagateVerifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
 	}
 	
 	private void checkMethod(MethodDeclaration node)
 	{
-		Marker marcador = AplicacaoJar.prepareMarker(node);
-		this.method = PropagateVerifier.getInstance().getPropagatedExceptions(node, this.method, marcador);
+		Marker marker = Controller.prepareMarker(node);
+		this.method = PropagateVerifier.getInstance().getPropagatedExceptions(node, this.method, marker);
 
 		if (this.method.getCompartment() != null)
 		{
 			this.method.getCompartment().addMethod(this.method);
-			AplicacaoJar.updateCompartment(this.method.getCompartment());
+			Controller.updateCompartment(this.method.getCompartment());
 		}
-		PropagateVerifier.getInstance().checkPropagateViolation(this.method, marcador);
+		PropagateVerifier.getInstance().checkPropagateViolation(this.method, marker);
 	}
 }

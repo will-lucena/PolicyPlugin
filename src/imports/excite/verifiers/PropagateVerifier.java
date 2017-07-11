@@ -12,11 +12,11 @@ import epl.model.Method;
 import epl.model.Rule;
 import epl.model.Rule.DependencyType;
 import epl.model.Rule.RuleType;
-import excite.AplicacaoJar;
+import excite.Controller;
 import excite.Marker;
-import policiesplugin.handlers.ConsumirEpl;
+import policiesplugin.handlers.Application;
 
-public class PropagateVerifier
+public class PropagateVerifier extends Verifier
 {
 	private static PropagateVerifier instance = null;
 	
@@ -39,101 +39,117 @@ public class PropagateVerifier
 		}
 		return instance;
 	}
-	
-	public Compartment getCompartment(String name)
-	{
-		return Verifier.getInstance().findCompartment(name);
-	}
-	
-	public Method getPropagatedExceptions(MethodDeclaration node, Method method, Marker marcador)
+		
+	public Method getPropagatedExceptions(MethodDeclaration node, Method method, Marker marker)
 	{
 		for (Iterator<?> iter = node.thrownExceptionTypes().iterator(); iter.hasNext();)
 		{		
 			SimpleType exceptionType = (SimpleType) iter.next();	
 			method.addExceptionPropagated(new JavaType(exceptionType.resolveBinding().getName()));
-			marcador.setLastIndex(exceptionType.getStartPosition() + exceptionType.getLength());
+			marker.setLastIndex(exceptionType.getStartPosition() + exceptionType.getLength());
 		}
 		
 		return method;
 	}
 	
-	public void checkPropagateViolation(Method method, Marker m)
+	public void checkPropagateViolation(Method method, Marker marker)
 	{
-		checkPropagateViolation(method.getCompartment(), method.getExceptionsPropagated(), method.getFullyQualifiedName(), m);
+		checkPropagateViolation(method.getCompartment(), method.getExceptionsPropagated(), method.getFullyQualifiedName(), marker);
 	}
 	
-	private void checkPropagateViolation(Compartment compartment, List<JavaType> exceptions, String methodName, Marker marcador)
+	private void checkPropagateViolation(Compartment compartment, List<JavaType> exceptions, String methodName, Marker marker)
 	{
-		int fIndex = marcador.getFirstIndex();
-		int lIndex = marcador.getLastIndex();
-		verifyCannotRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
-		verifyOnlyMayRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
-		verifyMayOnlyRule(methodName, compartment, exceptions, new Marker(fIndex, lIndex));
+		int fIndex = marker.getFirstIndex();
+		int lIndex = marker.getLastIndex();
+		verifyCannotRule(compartment, exceptions, new Marker(fIndex, lIndex));
+		verifyOnlyMayRule(compartment, exceptions, new Marker(fIndex, lIndex));
+		verifyMayOnlyRule(compartment, exceptions, new Marker(fIndex, lIndex));
+		verifyMustRule(compartment, exceptions, new Marker(fIndex, lIndex));
 	}
 	
-	private boolean verifyCannotRule(String methodName, Compartment compartment, List<JavaType> exceptions, Marker marcador)
+	private void verifyCannotRule(Compartment compartment, List<JavaType> exceptions, Marker marker)
 	{
-		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (r.getRuleType().equals(RuleType.Cannot) && r.getDependencyType().equals(DependencyType.Propagate))
+			if (rule.getRuleType().equals(RuleType.Cannot) && rule.getDependencyType().equals(DependencyType.Propagate))
 			{
-				if (compartment != null && r.getCompartmentId().equals(compartment.getId()))
+				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
 				{
 					for (JavaType exception : exceptions)
 					{
-						if (r.getExceptionExpressions().contains(exception.toString()))
+						if (rule.getExceptionExpressions().contains(exception.toString()))
 						{
-							marcador.setRule(r.toString());
-							AplicacaoJar.addMarker(marcador);
-							return true;
+							marker.setRule(rule.toString());
+							Controller.addMarker(marker);
+							return;
 						}
 					}
 				}
 			}
 		}
-		return false;
 	}
-
-	private boolean verifyOnlyMayRule(String methodName, Compartment compartment, List<JavaType> exceptions, Marker marcador)
+	
+	private void verifyMustRule(Compartment compartment, List<JavaType> exceptions, Marker marker)
 	{
-		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (r.getRuleType().equals(RuleType.OnlyMay) && r.getDependencyType().equals(DependencyType.Propagate))
+			if (rule.getRuleType().equals(RuleType.Must) && rule.getDependencyType().equals(DependencyType.Propagate))
 			{
-				if (compartment != null && !r.getCompartmentId().equals(compartment.getId()))
+				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
 				{
 					for (JavaType exception : exceptions)
 					{
-						if (r.getExceptionExpressions().contains(exception.toString()))
+						if (rule.getExceptionExpressions().contains(exception.toString()))
 						{
-							marcador.setRule(r.toString());
-							AplicacaoJar.addMarker(marcador);
-							return true;
+							return;
+						}
+					}
+					marker.setRule(rule.toString());
+					Controller.addMarker(marker);
+					return;
+				}
+			}
+		}
+	}
+
+	private void verifyOnlyMayRule(Compartment compartment, List<JavaType> exceptions, Marker marker)
+	{
+		for (Rule rule : Application.getPolicy().getRules())
+		{
+			if (rule.getRuleType().equals(RuleType.OnlyMay) && rule.getDependencyType().equals(DependencyType.Propagate))
+			{
+				if (compartment != null && !rule.getCompartmentId().equals(compartment.getId()))
+				{
+					for (JavaType exception : exceptions)
+					{
+						if (rule.getExceptionExpressions().contains(exception.toString()))
+						{
+							marker.setRule(rule.toString());
+							Controller.addMarker(marker);
+							return;
 						}
 					}
 				}
 			}
 		}
-		return false;
 	}
 
-	private boolean verifyMayOnlyRule(String methodName, Compartment compartment, List<JavaType> exceptions, Marker marcador)
+	private void verifyMayOnlyRule(Compartment compartment, List<JavaType> exceptions, Marker marker)
 	{
-		for (Rule r : ConsumirEpl.getPolicy().getRules())
+		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (r.getRuleType().equals(RuleType.MayOnly) && r.getDependencyType().equals(DependencyType.Propagate))
+			if (rule.getRuleType().equals(RuleType.MayOnly) && rule.getDependencyType().equals(DependencyType.Propagate))
 			{
-				if (compartment != null && r.getCompartmentId().equals(compartment.getId()))
+				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
 				{
-					if (!r.getExceptionExpressions().containsAll(exceptions))
+					if (!rule.getExceptionExpressions().containsAll(exceptions))
 					{
-						marcador.setRule(r.toString());
-						AplicacaoJar.addMarker(marcador);
-						return true;
+						marker.setRule(rule.toString());
+						Controller.addMarker(marker);
+						return;
 					}
 				}
 			}
 		}
-		return false;
 	}
 }

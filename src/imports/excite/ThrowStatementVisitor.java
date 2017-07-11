@@ -12,7 +12,6 @@ import epl.model.Method;
 import excite.verifiers.RaiseVerifier;
 import excite.verifiers.RemapVerifier;
 import excite.verifiers.RethrowVerifier;
-import excite.verifiers.Verifier;
 
 public class ThrowStatementVisitor extends ASTVisitor
 {
@@ -66,26 +65,24 @@ public class ThrowStatementVisitor extends ASTVisitor
 	
 	private void verifyCatch(CatchClause catchClause, ThrowStatement throwStatement)
 	{
-		this.method.setCompartment(Verifier.getInstance().findCompartment(this.method.getFullyQualifiedName()));
 		InstanceCreatorVisitor visitor = new InstanceCreatorVisitor();
 		catchClause.getBody().accept(visitor);
 
-		String from = catchClause.getException().getType().resolveBinding().getName();
-		String to = visitor.getType();
+		String fromExceptionType = catchClause.getException().getType().resolveBinding().getName();
+		String toExceptionType = visitor.getType();
 
-		if (from.equals(to))
+		Marker marker = Controller.prepareMarker(throwStatement);
+		if (fromExceptionType.equals(toExceptionType))
 		{
 			// isRethrow
-			this.method.addExceptionRethrown(new JavaType(to));
-			Marker marcador = AplicacaoJar.prepareMarker(throwStatement);
-			RethrowVerifier.getInstance().checkRethrowViolation(this.method, marcador);
+			this.method.addExceptionRethrown(new JavaType(toExceptionType));
+			RethrowVerifier.getInstance().checkRethrowViolation(this.method, marker);
 		} else
 		{
 			// isRemap
-			ExceptionPair pair = new ExceptionPair(new JavaType(from), new JavaType(to));
+			ExceptionPair pair = new ExceptionPair(new JavaType(fromExceptionType), new JavaType(toExceptionType));
 			this.method.addExceptionRemapped(pair);
-			Marker marcador = AplicacaoJar.prepareMarker(throwStatement);
-			RemapVerifier.getInstance().checkRemapViolation(this.method, marcador);
+			RemapVerifier.getInstance().checkRemapViolation(this.method, marker);
 		}
 	}
 	
@@ -93,9 +90,9 @@ public class ThrowStatementVisitor extends ASTVisitor
 	{
 		if (this.method.getCompartment() != null)
 		{
-			Marker marcador = AplicacaoJar.prepareMarker(node);
+			Marker marker = Controller.prepareMarker(node);
 			this.method = RaiseVerifier.getInstance().getRaisedExceptions(node, this.method);
-			RaiseVerifier.getInstance().checkRaiseViolation(this.method, marcador);	
+			RaiseVerifier.getInstance().checkRaiseViolation(this.method, marker);	
 		}
 	}	
 }
