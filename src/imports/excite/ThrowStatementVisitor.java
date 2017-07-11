@@ -6,16 +6,22 @@ import org.eclipse.jdt.core.dom.CatchClause;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.ThrowStatement;
 
+import epl.model.ExceptionPair;
+import epl.model.JavaType;
 import epl.model.Method;
 import excite.verifiers.RaiseVerifier;
+import excite.verifiers.RemapVerifier;
+import excite.verifiers.RethrowVerifier;
 
 public class ThrowStatementVisitor extends ASTVisitor
 {
 	private Method method;
+	private boolean isRaise;
 	
 	public ThrowStatementVisitor(Method method)
 	{
 		this.method = method;
+		this.isRaise = true;
 	}
 	
 	public Method updateMethod()
@@ -23,28 +29,30 @@ public class ThrowStatementVisitor extends ASTVisitor
 		return this.method;
 	}
 	
+	public boolean isRaise()
+	{
+		return this.isRaise;
+	}
+	
 	@Override
 	public boolean visit(ThrowStatement node)
 	{
-		boolean isRaise = true;
 		ASTNode parent = node.getParent();
-
+		this.isRaise = true;
+		
 		while (!(parent instanceof MethodDeclaration))
 		{
 			parent = parent.getParent();
 
 			if (parent instanceof CatchClause)
 			{
-				isRaise = false;
-				
-				CatchClauseVisitor visitor = new CatchClauseVisitor(this.method);
-				node.accept(visitor);	
-				this.method = visitor.updateMethod();
+				this.isRaise = false;				
+				verifyCatch((CatchClause) parent, node);
 				break;
 			}
 		}
 
-		if (isRaise)
+		if (this.isRaise)
 		{
 			if (this.method != null)
 			{
@@ -55,17 +63,36 @@ public class ThrowStatementVisitor extends ASTVisitor
 		return super.visit(node);
 	}
 	
+	private void verifyCatch(CatchClause catchClause, ThrowStatement throwStatement)
+	{
+		InstanceCreatorVisitor visitor = new InstanceCreatorVisitor();
+		catchClause.getBody().accept(visitor);
+
+		String fromExceptionType = catchClause.getException().getType().resolveBinding().getName();
+		String toExceptionType = visitor.getType();
+
+		Marker marker = Controller.prepareMarker(throwStatement);
+		if (fromExceptionType.equals(toExceptionType))
+		{
+			// isRethrow
+			this.method.addExceptionRethrown(new JavaType(toExceptionType));
+			RethrowVerifier.getInstance().checkRethrowViolation(this.method, marker);
+		} else
+		{
+			// isRemap
+			ExceptionPair pair = new ExceptionPair(new JavaType(fromExceptionType), new JavaType(toExceptionType));
+			this.method.addExceptionRemapped(pair);
+			RemapVerifier.getInstance().checkRemapViolation(this.method, marker);
+		}
+	}
+	
 	private void verifyRaise(ThrowStatement node)
 	{
 		if (this.method.getCompartment() != null)
 		{
-			Marker marcador = new Marker();
-			marcador.setFirstIndex(node.getStartPosition());
-			marcador.setLastIndex(node.getStartPosition() + node.getLength());
-			
+			Marker marker = Controller.prepareMarker(node);
 			this.method = RaiseVerifier.getInstance().getRaisedExceptions(node, this.method);
-			
-			RaiseVerifier.getInstance().checkRaiseViolation(this.method, marcador);	
+			RaiseVerifier.getInstance().checkRaiseViolation(this.method, marker);	
 		}
-	}
+	}	
 }

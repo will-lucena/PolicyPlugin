@@ -26,10 +26,20 @@ public class Violation
 	@Override
 	public boolean equals(Object obj)
 	{
-		Violation vio = (Violation) obj;
-		if (vio.getMethodName().equals(this.methodName))
+		if (obj == null)
 		{
-			if (vio.getViolation().equals(this.violation))
+			return false;
+		}
+		if (!(obj instanceof Violation))
+		{
+			return false;
+		}
+		
+		Violation violation = (Violation) obj;
+		
+		if (violation.getMethodName().equals(this.methodName))
+		{
+			if (violation.getViolation().equals(this.violation))
 			{
 				return true;
 			}
@@ -40,15 +50,15 @@ public class Violation
 	@Override
 	public String toString()
 	{
-		StringBuilder sb = new StringBuilder();
+		StringBuilder stringBuilder = new StringBuilder();
 		
-		sb.append("Method: ");
-		sb.append(this.methodName);
-		sb.append("\n");
-		sb.append("Violation: ");
-		sb.append(this.violation.toString());
-		sb.append("\n");
+		stringBuilder.append("Method: ");
+		stringBuilder.append(this.methodName);
+		stringBuilder.append("\n");
+		stringBuilder.append("Violation: ");
+		stringBuilder.append(this.violation.toString());
+		stringBuilder.append("\n");
 		
-		return sb.toString();
+		return stringBuilder.toString();
 	}
 }
