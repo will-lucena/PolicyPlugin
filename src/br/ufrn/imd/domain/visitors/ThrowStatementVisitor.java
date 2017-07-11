@@ -78,13 +78,13 @@ public class ThrowStatementVisitor extends ASTVisitor
 		{
 			// isRethrow
 			this.method.addExceptionRethrown(new JavaType(toExceptionType));
-			RethrowVerifier.getInstance().checkRethrowViolation(this.method, marker);
+			RethrowVerifier.getInstance().checkViolation(this.method, marker);
 		} else
 		{
 			// isRemap
 			ExceptionPair pair = new ExceptionPair(new JavaType(fromExceptionType), new JavaType(toExceptionType));
 			this.method.addExceptionRemapped(pair);
-			RemapVerifier.getInstance().checkRemapViolation(this.method, marker);
+			RemapVerifier.getInstance().checkViolation(this.method, marker);
 		}
 	}
 	
@@ -94,7 +94,7 @@ public class ThrowStatementVisitor extends ASTVisitor
 		{
 			Marker marker = Controller.prepareMarker(node);
 			this.method = RaiseVerifier.getInstance().getRaisedExceptions(node, this.method);
-			RaiseVerifier.getInstance().checkRaiseViolation(this.method, marker);	
+			RaiseVerifier.getInstance().checkViolation(this.method, marker);	
 		}
 	}	
 }

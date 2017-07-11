@@ -12,6 +12,7 @@ HAN may only handle IllegalArgumentException;
 only RET may rethrow IOException;
 RET cannot rethrow IllegalArgumentException;
 
-REM cannot remap from IllegalArgumentException to IOException;
+REM cannot remap from NullPointerException to IOException;
+REM may only remap from IllegalArgumentException to IOException;
 
 RAI must raise *;

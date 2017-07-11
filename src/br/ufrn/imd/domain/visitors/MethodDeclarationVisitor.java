@@ -34,10 +34,6 @@ public class MethodDeclarationVisitor extends ASTVisitor
 		node.accept(catchClauseVisitor);	
 		method = catchClauseVisitor.updateMethod();
 		
-		ThrowStatementVisitor throwStatementVisitor = new ThrowStatementVisitor(method);
-		node.accept(throwStatementVisitor);
-		method = throwStatementVisitor.updateMethod();
-		
 		return super.visit(node);
 	}
 	
@@ -59,6 +55,6 @@ public class MethodDeclarationVisitor extends ASTVisitor
 			this.method.getCompartment().addMethod(this.method);
 			Controller.updateCompartment(this.method.getCompartment());
 		}
-		PropagateVerifier.getInstance().checkPropagateViolation(this.method, marker);
+		PropagateVerifier.getInstance().checkViolation(this.method, marker);
 	}
 }

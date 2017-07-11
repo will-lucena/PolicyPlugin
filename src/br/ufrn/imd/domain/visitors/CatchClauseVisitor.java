@@ -47,7 +47,7 @@ public class CatchClauseVisitor extends ASTVisitor
 		{
 			Marker marker = Controller.prepareMarker(node);
 			this.method.addExceptionHandled(new JavaType(exceptionCaught));
-			HandleVerifier.getInstance().checkHandleViolation(this.method, marker);
+			HandleVerifier.getInstance().checkViolation(this.method, marker);
 		}
 	}
 }

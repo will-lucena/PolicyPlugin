@@ -34,11 +34,12 @@ public class RemapVerifier extends Verifier
 		return instance;
 	}
 	
-	public void checkRemapViolation(Method method, Marker marker)
+	@Override
+	public void checkViolation(Method method, Marker marker)
 	{
 		checkRemapViolation(method.getCompartment(), method.getExceptionsRemapped().get(0), method.getFullyQualifiedName(), marker);
 	}
-
+	
 	private void checkRemapViolation(Compartment compartment, ExceptionPair exceptionPair, String methodName, Marker marker)
 	{
 		int fIndex = marker.getFirstIndex();
@@ -147,7 +148,6 @@ public class RemapVerifier extends Verifier
 						{
 							marker.setRule(rule.toString());
 							Controller.addMarker(marker);
-							return;
 						}
 					}
 				}

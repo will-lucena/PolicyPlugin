@@ -1,9 +1,6 @@
 package policiesplugin.handlers;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -15,14 +12,11 @@ import org.eclipse.core.commands.ExecutionException;
 import br.ufrn.imd.controller.Controller;
 import epl.EPLParser;
 import epl.model.Policy;
-import epl.model.Rule;
-import epl.model.Compartment;
-
 
 public class Application extends AbstractHandler
 {
 	private static Policy POLICY = null;
-	private static final String SOURCE = "src\\util\\rules.epl";
+	private static final String SOURCE = "C:\\Users\\Will\\git\\PoliciesPlugin\\src\\util\\rules.epl";
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException
@@ -42,6 +36,7 @@ public class Application extends AbstractHandler
 			if (path != null)
 			{
 				buildPolicy(path);
+				System.out.println(path);
 				new Controller();
 			}
 			return null;
@@ -76,56 +71,5 @@ public class Application extends AbstractHandler
 	{
 		POLICY = EPLParser.gerarPolicy(path);
 		JOptionPane.showMessageDialog(null, "Policy built successfully");
-	}
-
-	public static void printCompartments()
-	{
-		StringBuilder stringBuilder = new StringBuilder();
-		for (Compartment compartment : POLICY.getCompartments())
-		{
-			stringBuilder.append(compartment);
-		}
-		if (writeArchive(stringBuilder.toString(), "compartments.txt"))
-		{
-			JOptionPane.showMessageDialog(null, "Compartments archive generated successfully");
-		} else
-		{
-			JOptionPane.showMessageDialog(null, "Fail to generate compartments archive");
-		}
-	}
-
-	public static void printRules()
-	{
-		StringBuilder stringBuilder = new StringBuilder();
-		for (Rule rule : POLICY.getRules())
-		{
-			stringBuilder.append(rule);
-			stringBuilder.append("\n");
-		}
-		if (writeArchive(stringBuilder.toString(), "rules.txt"))
-		{
-			JOptionPane.showMessageDialog(null, "Rules archive generated successfully");
-		} else
-		{
-			JOptionPane.showMessageDialog(null, "Fail to generate rules archive");
-		}
-	}
-
-	private static boolean writeArchive(String text, String archiveName)
-	{
-		try (FileWriter archive = new FileWriter("C:/Users/William/Documents/" + archiveName);
-				PrintWriter writer = new PrintWriter(archive);)
-		{
-			for (String line : text.split("\n"))
-			{
-				writer.println(line);
-				writer.print("\n");
-			}
-			return true;
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-			return false;
-		}
 	}
 }
