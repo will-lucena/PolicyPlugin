@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.ufrn.imd.controller.Controller;
 import br.ufrn.imd.domain.Marker;
+import br.ufrn.imd.domain.criteria.RuleCriteria;
 import epl.model.Compartment;
 import epl.model.JavaType;
 import epl.model.Method;
@@ -13,7 +14,7 @@ import epl.model.Rule.RuleType;
 import policiesplugin.handlers.Application;
 
 public abstract class Verifier
-{	
+{
 	public Compartment findCompartment(String methodName)
 	{
 		for (Compartment compartment : Application.getPolicy().getCompartments())
@@ -28,14 +29,37 @@ public abstract class Verifier
 		}
 		return null;
 	}
-	
+
 	public abstract void checkViolation(Method method, Marker marker);
-	
-	protected void verifyCannotRule(Compartment compartment, List<JavaType> exceptions, Marker marker, DependencyType type)
+
+	private boolean verifyRule(Rule rule, RuleType ruleType, DependencyType dependencyType)
+	{
+		return rule.getRuleType().equals(ruleType) && rule.getDependencyType().equals(dependencyType);
+	}
+
+	protected void verifyRule(Compartment compartment, List<String> expressions, Marker marker, DependencyType dependencyType, RuleCriteria criteria)
 	{
 		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (rule.getRuleType().equals(RuleType.Cannot) && rule.getDependencyType().equals(type))
+			if (verifyRule(rule, criteria.getRuleType(), dependencyType) && criteria.compartmentCriteria(compartment, rule))
+			{
+				for (String expression : expressions)
+				{
+					if (criteria.expressionCriteria(rule.getExceptionExpressions(), expression))
+					{
+						marker.setRule(rule.toString());
+						Controller.addMarker(marker);
+					}
+				}
+			}
+		}
+	}
+
+	protected void verifyCannotRule(Compartment compartment, List<JavaType> exceptions, Marker marker, RuleType ruleType, DependencyType dependencyType)
+	{
+		for (Rule rule : Application.getPolicy().getRules())
+		{
+			if (verifyRule(rule, ruleType, dependencyType))
 			{
 				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
 				{
@@ -52,12 +76,12 @@ public abstract class Verifier
 			}
 		}
 	}
-	
-	protected void verifyMustRule(Compartment compartment, List<JavaType> exceptions, Marker marker, DependencyType type)
+
+	protected void verifyMustRule(Compartment compartment, List<JavaType> exceptions, Marker marker, RuleType ruleType, DependencyType dependencyType)
 	{
 		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (rule.getRuleType().equals(RuleType.Must) && rule.getDependencyType().equals(type))
+			if (verifyRule(rule, ruleType, dependencyType))
 			{
 				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
 				{
@@ -76,11 +100,11 @@ public abstract class Verifier
 		}
 	}
 
-	protected void verifyOnlyMayRule(Compartment compartment, List<JavaType> exceptions, Marker marker, DependencyType type)
+	protected void verifyOnlyMayRule(Compartment compartment, List<JavaType> exceptions, Marker marker, RuleType ruleType, DependencyType dependencyType)
 	{
 		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (rule.getRuleType().equals(RuleType.OnlyMay) && rule.getDependencyType().equals(type))
+			if (verifyRule(rule, ruleType, dependencyType))
 			{
 				if (compartment != null && !rule.getCompartmentId().equals(compartment.getId()))
 				{
@@ -98,11 +122,11 @@ public abstract class Verifier
 		}
 	}
 
-	protected void verifyMayOnlyRule(Compartment compartment, List<JavaType> exceptions, Marker marker, DependencyType type)
+	protected void verifyMayOnlyRule(Compartment compartment, List<JavaType> exceptions, Marker marker, RuleType ruleType, DependencyType dependencyType)
 	{
 		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (rule.getRuleType().equals(RuleType.MayOnly) && rule.getDependencyType().equals(type))
+			if (verifyRule(rule, ruleType, dependencyType))
 			{
 				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
 				{

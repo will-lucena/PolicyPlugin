@@ -3,12 +3,16 @@ package br.ufrn.imd.domain.verifiers;
 import epl.model.Compartment;
 import epl.model.ExceptionPair;
 import epl.model.Method;
-import epl.model.Rule;
 import epl.model.Rule.DependencyType;
-import epl.model.Rule.RuleType;
-import br.ufrn.imd.controller.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import br.ufrn.imd.domain.Marker;
-import policiesplugin.handlers.Application;
+import br.ufrn.imd.domain.criteria.CannotCriteria;
+import br.ufrn.imd.domain.criteria.MayOnlyCriteria;
+import br.ufrn.imd.domain.criteria.MustCriteria;
+import br.ufrn.imd.domain.criteria.OnlyMayCriteria;
 
 public class RemapVerifier extends Verifier
 {
@@ -37,20 +41,27 @@ public class RemapVerifier extends Verifier
 	@Override
 	public void checkViolation(Method method, Marker marker)
 	{
-		checkRemapViolation(method.getCompartment(), method.getExceptionsRemapped().get(0), method.getFullyQualifiedName(), marker);
+		check(method.getCompartment(), method.getExceptionsRemapped(), method.getFullyQualifiedName(), marker);
 	}
 	
-	private void checkRemapViolation(Compartment compartment, ExceptionPair exceptionPair, String methodName, Marker marker)
+	private void check(Compartment compartment, List<ExceptionPair> pairs, String methodName, Marker marker)
 	{
 		int fIndex = marker.getFirstIndex();
 		int lIndex = marker.getLastIndex();
+		
+		List<String> expressions = new ArrayList<>();
 
-		verifyCannotRule(compartment, exceptionPair, new Marker(fIndex, lIndex));
-		verifyOnlyMayRule(compartment, exceptionPair, new Marker(fIndex, lIndex));
-		verifyMayOnlyRule(compartment, exceptionPair, new Marker(fIndex, lIndex));
-		verifyMustRule(compartment, exceptionPair, new Marker(fIndex, lIndex));
+		for (ExceptionPair pair : pairs)
+		{
+			expressions.add(buildExpression(pair));
+		}
+		
+		verifyRule(compartment, expressions, new Marker(fIndex, lIndex), DependencyType.Remap, CannotCriteria.getInstance());
+		verifyRule(compartment, expressions, new Marker(fIndex, lIndex), DependencyType.Remap, OnlyMayCriteria.getInstance());
+		verifyRule(compartment, expressions, new Marker(fIndex, lIndex), DependencyType.Remap, MayOnlyCriteria.getInstance());
+		verifyRule(compartment, expressions, new Marker(fIndex, lIndex), DependencyType.Remap, MustCriteria.getInstance());
 	}
-
+	
 	private String buildExpression(ExceptionPair pair)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
@@ -61,97 +72,5 @@ public class RemapVerifier extends Verifier
 		stringBuilder.append(pair.getTo().toString());
 
 		return stringBuilder.toString();
-	}
-
-	private void verifyCannotRule(Compartment compartment, ExceptionPair exceptionPair, Marker marker)
-	{
-		for (Rule rule : Application.getPolicy().getRules())
-		{
-			if (rule.getRuleType().equals(RuleType.Cannot) && rule.getDependencyType().equals(DependencyType.Remap))
-			{
-				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
-				{
-					String pair = buildExpression(exceptionPair);
-					for (String expression : rule.getExceptionExpressions())
-					{
-						if (!expression.equals(pair))
-						{
-							marker.setRule(rule.toString());
-							Controller.addMarker(marker);
-							return;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private void verifyMustRule(Compartment compartment, ExceptionPair exceptionPair, Marker marker)
-	{
-		for (Rule rule : Application.getPolicy().getRules())
-		{
-			if (rule.getRuleType().equals(RuleType.Must) && rule.getDependencyType().equals(DependencyType.Remap))
-			{
-				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
-				{
-					String pair = buildExpression(exceptionPair);
-					for (String expression : rule.getExceptionExpressions())
-					{
-						if (expression.equals(pair))
-						{
-							return;
-						}
-					}
-					marker.setRule(rule.toString());
-					Controller.addMarker(marker);
-					return;
-				}
-			}
-		}
-	}
-
-	private void verifyOnlyMayRule(Compartment compartment, ExceptionPair exceptionPair, Marker marker)
-	{
-		for (Rule rule : Application.getPolicy().getRules())
-		{
-			if (rule.getRuleType().equals(RuleType.OnlyMay) && rule.getDependencyType().equals(DependencyType.Remap))
-			{
-				if (compartment != null && !rule.getCompartmentId().equals(compartment.getId()))
-				{
-					String pair = buildExpression(exceptionPair);
-					for (String expression : rule.getExceptionExpressions())
-					{
-						if (expression.equals(pair))
-						{
-							marker.setRule(rule.toString());
-							Controller.addMarker(marker);
-							return;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	private void verifyMayOnlyRule(Compartment compartment, ExceptionPair exceptionPair, Marker marker)
-	{
-		for (Rule rule : Application.getPolicy().getRules())
-		{
-			if (rule.getRuleType().equals(RuleType.MayOnly) && rule.getDependencyType().equals(DependencyType.Remap))
-			{
-				if (compartment != null && rule.getCompartmentId().equals(compartment.getId()))
-				{
-					String pair = buildExpression(exceptionPair);
-					for (String expression : rule.getExceptionExpressions())
-					{
-						if (!expression.equals(pair))
-						{
-							marker.setRule(rule.toString());
-							Controller.addMarker(marker);
-						}
-					}
-				}
-			}
-		}
 	}
 }
