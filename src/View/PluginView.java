@@ -99,9 +99,7 @@ public class PluginView extends ViewPart
 	private void openALine(Marker marker)
 	{
 		IEditorPart openEditor = null;
-		//Pegar caminho de forma dinamica, adicionar informação ao marcador talvez funcione
-		String filePath = "F:\\Eclipse workspaces\\runtime-EclipseApplication\\PluginTest\\src\\app\\PluginTest.java";
-		final IFile inputFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(Path.fromOSString(filePath));
+		final IFile inputFile = ResourcesPlugin.getWorkspace().getRoot().getFileForLocation(Path.fromOSString(marker.getResourcePath()));
 		if (inputFile != null)
 		{
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();

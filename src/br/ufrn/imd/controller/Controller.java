@@ -112,10 +112,9 @@ public class Controller
 					CompilationUnitVisitor compilationUnitVisitor = new CompilationUnitVisitor();
 
 					deleteMarkers(unit.getCorrespondingResource(), MARKER_TYPE);
-
 					compilationUnit.accept(compilationUnitVisitor);
 
-					createMarker(unit.getCorrespondingResource());
+					createMarkers(unit.getCorrespondingResource());
 				}
 			}
 		}
@@ -135,7 +134,7 @@ public class Controller
 		return marker;
 	}
 
-	private void createMarker(IResource resource) throws CoreException, BadLocationException
+	private void createMarkers(IResource resource) throws CoreException, BadLocationException
 	{
 		for (Marker mark : markers)
 		{
@@ -145,6 +144,8 @@ public class Controller
 			marker.setAttribute(IMarker.CHAR_END, mark.getLastIndex());
 			marker.setAttribute(IMarker.MESSAGE, mark.getRule());
 			System.out.println(mark.getRule());
+			mark.setResourcePath(resource.getLocation().toOSString());
+			
 			PluginView.insertViolations(mark.getRule());
 		}
 	}

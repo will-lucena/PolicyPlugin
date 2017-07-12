@@ -5,12 +5,14 @@ public class Marker
 	private int firstIndex;
 	private int lastIndex;
 	private String rule;
+	private String resourcePath;
 	
 	public Marker()
 	{
 		this.firstIndex = -1;
 		this.lastIndex = -1;
 		this.rule = null;
+		this.resourcePath = null;
 	}
 	
 	public Marker(int firstIndex, int lastIndex)
@@ -48,6 +50,16 @@ public class Marker
 	public void setRule(String name)
 	{
 		this.rule = name;
+	}
+	
+	public void setResourcePath(String resourcePath)
+	{
+		this.resourcePath = resourcePath;
+	}
+	
+	public String getResourcePath()
+	{
+		return resourcePath;
 	}
 	
 	@Override
