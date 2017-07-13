@@ -31,7 +31,7 @@ public abstract class Verifier
 
 	public abstract void checkViolation(Method method, Marker marker);
 
-	private boolean verifyRule(Rule rule, RuleType ruleType, DependencyType dependencyType)
+	protected boolean verifyRule(Rule rule, RuleType ruleType, DependencyType dependencyType)
 	{
 		return rule.getRuleType().equals(ruleType) && rule.getDependencyType().equals(dependencyType);
 	}
