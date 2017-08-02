@@ -16,7 +16,7 @@ import epl.model.Policy;
 public class Application extends AbstractHandler
 {
 	private static Policy POLICY = null;
-	private static final String SOURCE = "C:\\Users\\Will\\git\\PoliciesPlugin\\src\\util\\rules.epl";
+	private static final String SOURCE = "C:\\Users\\William\\workspace\\RCP\\PoliciesPlugin\\src\\util\\rules.epl";
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException

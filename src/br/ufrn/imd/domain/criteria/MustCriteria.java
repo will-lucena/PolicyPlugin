@@ -40,7 +40,7 @@ public class MustCriteria implements RuleCriteria
 	@Override
 	public boolean expressionCriteria(List<String> expressions, String expression)
 	{
-		return expressions.contains(expression);
+		return !expressions.contains(expression);
 	}
 	
 	@Override

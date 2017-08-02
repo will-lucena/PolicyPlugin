@@ -1,5 +1,7 @@
 package View;
 
+import javax.swing.JOptionPane;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
@@ -113,7 +115,7 @@ public class PluginView extends ViewPart
 				}
 			} catch (PartInitException e)
 			{
-				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "Erro ao abrir arquivo no workspace");
 				e.printStackTrace();
 			}
 		}

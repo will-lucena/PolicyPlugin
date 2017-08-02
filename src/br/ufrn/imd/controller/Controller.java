@@ -58,7 +58,7 @@ public class Controller
 		{
 			if (marker.getRule().equals(m.getRule()))
 			{
-				break;
+				return;
 			}
 		}
 		markers.add(m);

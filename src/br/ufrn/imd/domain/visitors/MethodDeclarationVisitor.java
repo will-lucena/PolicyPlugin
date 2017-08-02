@@ -69,7 +69,7 @@ public class MethodDeclarationVisitor extends ASTVisitor
 	{
 		for (Rule rule : Application.getPolicy().getRules())
 		{
-			if (rule.getRuleType().equals(RuleType.Must) && rule.getCompartment().getId().equals(method.getCompartment().getId()))
+			if (method.getCompartment() != null && rule.getRuleType().equals(RuleType.Must) && rule.getCompartment().getId().equals(method.getCompartment().getId()))
 			{
 				if (rule.getExceptionExpressions().get(0).equals(EPLConstants.WILDCARD_REPLACEMENT_REGEX))
 				{
